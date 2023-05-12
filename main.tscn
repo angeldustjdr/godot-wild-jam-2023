@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bemixejw5fm7q"]
+[gd_scene load_steps=3 format=3 uid="uid://04las3e1i5u8"]
+
+[ext_resource type="Script" path="res://script/DialogWorker.gd" id="1_qo6nv"]
+[ext_resource type="Resource" uid="uid://xbnlxfwedppm" path="res://dialog/test_dialog.dialogue" id="2_5rf7r"]
 
 [node name="Main" type="Node2D"]
+
+[node name="DialogWorker" type="Node2D" parent="."]
+script = ExtResource("1_qo6nv")
+file = ExtResource("2_5rf7r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 277.0
+offset_top = 181.0
+offset_right = 465.0
+offset_bottom = 215.0
+text = "press space for dialog"
