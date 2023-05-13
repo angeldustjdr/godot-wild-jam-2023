@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://8001k27dcfjx"]
+
+[ext_resource type="Texture2D" uid="uid://c7et5w7m7pb12" path="res://asset/sprite/generic_building.png" id="1_86arg"]
+[ext_resource type="Script" path="res://script/GenericBuilding.gd" id="1_v8jsb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mllce"]
+size = Vector2(68, 68)
+
+[node name="GenericBuilding" type="Area2D"]
+script = ExtResource("1_v8jsb")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2, 2)
+texture = ExtResource("1_86arg")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(34, 34)
+shape = SubResource("RectangleShape2D_mllce")
+
+[node name="Tooltip" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 68.0
+offset_bottom = 68.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

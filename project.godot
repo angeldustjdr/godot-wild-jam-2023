@@ -24,9 +24,18 @@ GameState="*res://GameState.gd"
 
 general/wrap_lines=true
 
+[display]
+
+window/size/viewport_width=648
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[gui]
+
+timers/tooltip_delay_sec=0.0
 
 [internationalization]
 
