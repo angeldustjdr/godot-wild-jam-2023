@@ -1,15 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://8001k27dcfjx"]
+[gd_scene load_steps=6 format=3 uid="uid://8001k27dcfjx"]
 
 [ext_resource type="Texture2D" uid="uid://c7et5w7m7pb12" path="res://asset/sprite/generic_building.png" id="1_86arg"]
 [ext_resource type="Script" path="res://script/GenericBuilding.gd" id="1_v8jsb"]
+
+[sub_resource type="Shader" id="Shader_uoqyb"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	// Place fragment code here.
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_32tqi"]
+shader = SubResource("Shader_uoqyb")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mllce"]
 size = Vector2(68, 68)
 
 [node name="GenericBuilding" type="Area2D"]
+material = SubResource("ShaderMaterial_32tqi")
 script = ExtResource("1_v8jsb")
+description = "A generic building."
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2, 2)
 texture = ExtResource("1_86arg")
 centered = false
@@ -23,3 +36,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 68.0
 offset_bottom = 68.0
+mouse_filter = 1
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
