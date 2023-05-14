@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhe0gdpwpe3hf"]
+
+[ext_resource type="Script" path="res://script/updateUI.gd" id="1_auiuf"]
+
+[node name="Top_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 544.0
+offset_bottom = 68.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 544.0
+offset_bottom = 68.0
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 544.0
+offset_bottom = 68.0
+alignment = 1
+
+[node name="Food" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Food"
+
+[node name="Food_quantity" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0
+"
+script = ExtResource("1_auiuf")
+ressourceType = "FOOD"
+
+[node name="Water" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Water"
+
+[node name="Water_quantity" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+script = ExtResource("1_auiuf")
+ressourceType = "WATER"
+
+[node name="O2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "O2"
+
+[node name="O2_quantity" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+script = ExtResource("1_auiuf")
+ressourceType = "O2"
+
+[node name="Pop" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Pop"
+
+[node name="Pop_quantity" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "1000
+"
+script = ExtResource("1_auiuf")
+ressourceType = "POP"

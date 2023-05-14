@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-GameState="*res://GameState.gd"
+GameState="*res://script/GameState.gd"
+RadioDiffusion="*res://script/RadioDiffusion.gd"
 
 [dialogue_manager]
 
@@ -32,7 +32,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray()
 
 [gui]
 

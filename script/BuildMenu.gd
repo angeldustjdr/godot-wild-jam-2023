@@ -8,17 +8,20 @@ func _input(event):
 			freeMenu()
 
 func _on_farm_button_pressed():
-	main.selected.selfDestruct("Farm")
+	if main.selected != null:
+		main.selected.selfDestruct("Farm")
 	freeMenu()
 
 
 func _on_tree_button_pressed():
-	main.selected.selfDestruct("Tree")
+	if main.selected != null:
+		main.selected.selfDestruct("Tree")
 	freeMenu()
 
 
 func _on_well_button_pressed():
-	main.selected.selfDestruct("Well")
+	if main.selected != null:
+		main.selected.selfDestruct("Well")
 	freeMenu()
 
 

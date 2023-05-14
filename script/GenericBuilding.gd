@@ -1,15 +1,24 @@
 extends Area2D
 class_name GenericBuilding
 
-@export var description:String
+@export_multiline var description:String
+
 var i
 var j
-@onready var grid = self.get_parent()
-@onready var main = grid.get_parent()
+
+@export var base_stat = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}
+@export var modifier = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Tooltip.tooltip_text = description
+	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
+	updateTooltip()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,9 +31,19 @@ func _on_input_event(viewport, event, shape_idx):
 			selfDestruct("Empty")
 
 func selfDestruct(type):
-	print(i,j)
-	grid.gridUpdate(i,j,type)
-	await get_tree().create_timer(0.1).timeout #A remplacer par l'animation de destruction
+	#print(i,j)
+	RadioDiffusion.gridUpdateCall(i,j,type)
+	await get_tree().create_timer(0.3).timeout #A remplacer par l'animation de destruction
 	GameState.actionnable_on()
-	main.cleanSelected()
+	RadioDiffusion.cleanSelectedCall()
 	queue_free()
+
+func updateTooltip():
+	var updatedDescription = description
+	for name in GameState.ressourceName:
+		if base_stat[name]!=0 or modifier[name]!=0 :
+			var totalStat = base_stat[name]+modifier[name]
+			var sign = ""
+			if totalStat>0: sign="+" 
+			updatedDescription += "\n"+sign+str(totalStat)+" "+name
+	$Tooltip.tooltip_text = updatedDescription

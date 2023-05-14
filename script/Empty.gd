@@ -7,5 +7,5 @@ func _on_input_event(viewport, event, shape_idx):
 			createBuildMenu(self)
 
 func createBuildMenu(obj):
-	main.createBuildMenu(obj)
+	RadioDiffusion.createBuildMenuCall(obj)
 

@@ -6,7 +6,13 @@
 
 [node name="Well" instance=ExtResource("1_day3t")]
 script = ExtResource("2_5bo8q")
-description = "A little Well (+1 Water)"
+description = "A little Well"
+base_stat = {
+"FOOD": 0,
+"O2": 0,
+"POP": 0,
+"WATER": 1
+}
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("3_ppyoo")

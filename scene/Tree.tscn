@@ -6,7 +6,13 @@
 
 [node name="Tree" instance=ExtResource("1_w1hx2")]
 script = ExtResource("2_sdvdm")
-description = "A beautiful Tree (+1 O2)"
+description = "A beautiful Tree"
+base_stat = {
+"FOOD": 0,
+"O2": 1,
+"POP": 0,
+"WATER": 0
+}
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("3_hbn72")
