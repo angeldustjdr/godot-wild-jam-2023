@@ -1,8 +1,10 @@
 extends Node2D
 
 var tileSize:int = 68 # in pixel
-@onready var Xmax = GameState.Xmax
-@onready var Ymax = GameState.Ymax
+var Xmax = 6
+var Ymax = 5
+var grid
+
 var rng = RandomNumberGenerator.new()
 
 var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
@@ -31,25 +33,21 @@ func fillInitialGrid() -> void:
 		var col = Array()
 		for j in Ymax:
 			if requiredBuildingName == []:
-				popBuilding("Generic",i,j)
-				col.append("Generic")
+				col.append(popBuilding("Generic",i,j))
 			else:
 				if rng.randf_range(0.,100.) > 50.:
 					requiredBuildingName.shuffle()
 					var elem = requiredBuildingName[0]
-					popBuilding(elem,i,j)
-					col.append(elem)
+					col.append(popBuilding(elem,i,j))
 					requiredBuilding[elem] -= 1
 					if requiredBuilding[elem] <= 0 : requiredBuildingName.erase(elem)
 				else:
-					popBuilding("Generic",i,j)
-					col.append("Generic")
+					col.append(popBuilding("Generic",i,j))
 		myGrid.append(col)
-	GameState.setFullGrid(myGrid)
+	grid = myGrid
 
 func gridUpdate(x,y,type):
-	GameState.setGrid(x,y,type)
-	popBuilding(GameState.getCell(x,y),x,y)
+	grid[x][y] = popBuilding(type,x,y)
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
@@ -57,6 +55,7 @@ func popBuilding(type,x,y):
 	b.i = x
 	b.j = y
 	add_child(b)
+	return b
 
 func calculateRessources():
 	var recalculatedRessource = {"POP" : 1000,"WATER" : 0,"FOOD" : 0,"O2" : 0}
