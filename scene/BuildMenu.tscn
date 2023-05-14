@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjlqheo1hxrae"]
+
+[ext_resource type="Script" path="res://script/BuildMenu.gd" id="1_45w4o"]
+
+[node name="BuildMenu" type="VBoxContainer"]
+z_index = 11
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = -396.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45w4o")
+
+[node name="FarmButton" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "+1 Food"
+text = "Build a Farm"
+
+[node name="TreeButton" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "+1 O2"
+text = "Plant a Tree"
+
+[node name="WellButton" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "+1 Water"
+text = "Build a Well"
+
+[node name="Cancel" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "Don't build anything."
+text = "Cancel"
+
+[connection signal="pressed" from="FarmButton" to="." method="_on_farm_button_pressed"]
+[connection signal="pressed" from="TreeButton" to="." method="_on_tree_button_pressed"]
+[connection signal="pressed" from="WellButton" to="." method="_on_well_button_pressed"]
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]

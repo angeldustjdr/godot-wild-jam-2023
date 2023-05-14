@@ -4,7 +4,6 @@ class_name GenericBuilding
 @export var description:String
 var i
 var j
-var isActionable = true
 @onready var grid = self.get_parent()
 
 # Called when the node enters the scene tree for the first time.
@@ -16,12 +15,14 @@ func _process(delta):
 	pass
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and isActionable == true:
+	if event is InputEventMouseButton and GameState.actionnable:
 		if event.button_index==MOUSE_BUTTON_LEFT:
-			isActionable = false
-			selfDestruct()
+			GameState.actionnable_off()
+			selfDestruct("Empty")
 
-func selfDestruct():
+func selfDestruct(type):
 	print(i,j)
-	grid.gridUpdate(i,j,"Empty")
+	grid.gridUpdate(i,j,type)
+	await get_tree().create_timer(0.1).timeout #A remplacer par l'animation de destruction
+	GameState.actionnable_on()
 	queue_free()

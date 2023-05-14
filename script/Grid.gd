@@ -5,7 +5,10 @@ var Xmax:int = 6
 var Ymax:int = 5
 
 var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
-				"Empty" : load("res://scene/Empty.tscn") }
+				"Empty" : load("res://scene/Empty.tscn"),
+				"Farm" :  load("res://scene/Farm.tscn"),
+				"Well" :  load("res://scene/Well.tscn"),
+				"Tree" :  load("res://scene/Tree.tscn")}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
