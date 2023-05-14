@@ -10,26 +10,24 @@ var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fillGrid()
-	GameState.connect("gridUpdateNeeded",_on_gridUpdateNeeded)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func fillGrid() -> void:
+	var myGrid = Array()
 	for i in Xmax:
 		var col = Array()
 		for j in Ymax:
 			popBuilding("Generic",i,j)
 			col.append("Generic")
-		GameState.grid.append(col)
-	print(GameState.grid)
+		myGrid.append(col)
+	GameState.setFullGrid(myGrid)
 
-func _on_gridUpdateNeeded():
-	cleanNode()
-	for i in Xmax:
-		for j in Ymax:
-			popBuilding(GameState.grid[i][j],i,j)
+func gridUpdate(x,y,type):
+	GameState.setGrid(x,y,type)
+	popBuilding(GameState.getCell(x,y),x,y)
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
