@@ -19,6 +19,10 @@ var j
 func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
+	var totStat = getTotalStat()
+	if totStat != null:
+		$JuicyLabel.text = totStat
+		$AnimationPlayer.play("JuicyLabelPop")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -40,10 +44,15 @@ func selfDestruct(type):
 
 func updateTooltip():
 	var updatedDescription = description
+	updatedDescription += getTotalStat()
+	$Tooltip.tooltip_text = updatedDescription
+
+func getTotalStat():
+	var TotalStat:String
 	for name in GameState.ressourceName:
 		if base_stat[name]!=0 or modifier[name]!=0 :
 			var totalStat = base_stat[name]+modifier[name]
 			var sign = ""
 			if totalStat>0: sign="+" 
-			updatedDescription += "\n"+sign+str(totalStat)+" "+name
-	$Tooltip.tooltip_text = updatedDescription
+			TotalStat += "\n"+sign+str(totalStat)+" "+name
+	return TotalStat

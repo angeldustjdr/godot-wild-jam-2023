@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3gm120uavfjx"]
+
+[ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4x0ar"]
+[ext_resource type="Texture2D" uid="uid://cb4mtckhb17vq" path="res://asset/sprite/superwater.png" id="2_5djf0"]
+
+[node name="SuperWaterGenerator" instance=ExtResource("1_4x0ar")]
+description = "Somehow it provides a lot of water."
+base_stat = {
+"FOOD": 0,
+"O2": 0,
+"POP": 0,
+"WATER": 6
+}
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_5djf0")

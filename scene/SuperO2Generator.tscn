@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4t1fdr1ilywi"]
+
+[ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_65x5b"]
+[ext_resource type="Texture2D" uid="uid://b5v8muersd25k" path="res://asset/sprite/superO2.png" id="2_c1u7c"]
+
+[node name="SuperO2" instance=ExtResource("1_65x5b")]
+description = "Somehow it purifies the air."
+base_stat = {
+"FOOD": 0,
+"O2": 6,
+"POP": 0,
+"WATER": 0
+}
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_c1u7c")

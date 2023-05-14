@@ -16,7 +16,7 @@ var Ymax:int = 5
 
 func setGrid(x,y,type):
 	grid[x][y] = type
-	#print(grid)
+	print(grid)
 
 func setFullGrid(myGrid):
 	grid = myGrid

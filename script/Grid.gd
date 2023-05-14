@@ -3,38 +3,53 @@ extends Node2D
 var tileSize:int = 68 # in pixel
 @onready var Xmax = GameState.Xmax
 @onready var Ymax = GameState.Ymax
+var rng = RandomNumberGenerator.new()
 
 var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
 				"Empty" : load("res://scene/Empty.tscn"),
 				"Farm" :  load("res://scene/Farm.tscn"),
 				"Well" :  load("res://scene/Well.tscn"),
-				"Tree" :  load("res://scene/Tree.tscn")}
+				"Tree" :  load("res://scene/Tree.tscn"),
+				"SuperWater" : load("res://scene/SuperWaterGenerator.tscn"),
+				"SuperFood" : load("res://scene/SuperFoodGenerator.tscn"),
+				"SuperO2" : load("res://scene/SuperO2Generator.tscn")}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	fillInitialGrid()
-	calculateRessources()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	calculateRessources()
 
 func fillInitialGrid() -> void:
+	var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2}
+	var requiredBuildingName = requiredBuilding.keys()
 	var myGrid = Array()
 	for i in Xmax:
 		var col = Array()
 		for j in Ymax:
-			popBuilding("Generic",i,j)
-			col.append("Generic")
+			if requiredBuildingName == []:
+				popBuilding("Generic",i,j)
+				col.append("Generic")
+			else:
+				if rng.randf_range(0.,100.) > 50.:
+					requiredBuildingName.shuffle()
+					var elem = requiredBuildingName[0]
+					popBuilding(elem,i,j)
+					col.append(elem)
+					requiredBuilding[elem] -= 1
+					if requiredBuilding[elem] <= 0 : requiredBuildingName.erase(elem)
+				else:
+					popBuilding("Generic",i,j)
+					col.append("Generic")
 		myGrid.append(col)
 	GameState.setFullGrid(myGrid)
-	calculateRessources()
 
 func gridUpdate(x,y,type):
 	GameState.setGrid(x,y,type)
 	popBuilding(GameState.getCell(x,y),x,y)
-	calculateRessources()
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
