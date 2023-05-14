@@ -15,7 +15,6 @@ var j
 				"FOOD" : 0,
 				"O2" : 0}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
@@ -24,11 +23,8 @@ func _ready():
 		$JuicyLabel.text = totStat
 		$AnimationPlayer.play("JuicyLabelPop")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and GameState.actionnable:
 		if event.button_index==MOUSE_BUTTON_LEFT:
 			GameState.actionnable_off()
@@ -48,11 +44,11 @@ func updateTooltip():
 	$Tooltip.tooltip_text = updatedDescription
 
 func getTotalStat():
-	var TotalStat:String
-	for name in GameState.ressourceName:
-		if base_stat[name]!=0 or modifier[name]!=0 :
-			var totalStat = base_stat[name]+modifier[name]
-			var sign = ""
-			if totalStat>0: sign="+" 
-			TotalStat += "\n"+sign+str(totalStat)+" "+name
+	var TotalStat = ""
+	for n in GameState.ressourceName:
+		if base_stat[n]!=0 or modifier[n]!=0 :
+			var totalStat = base_stat[n]+modifier[n]
+			var plus = ""
+			if totalStat>0: plus="+" 
+			TotalStat += "\n"+plus+str(totalStat)+" "+n
 	return TotalStat

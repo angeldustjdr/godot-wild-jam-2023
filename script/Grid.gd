@@ -3,7 +3,7 @@ extends Node2D
 var tileSize:int = 68 # in pixel
 var Xmax = 6
 var Ymax = 5
-var grid
+var grid #holds the buildings in a 2d matrix. Warning, X and Y are based on godot x and y axis (oriented weirdly)
 
 var rng = RandomNumberGenerator.new()
 
@@ -16,22 +16,21 @@ var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
 				"SuperFood" : load("res://scene/SuperFoodGenerator.tscn"),
 				"SuperO2" : load("res://scene/SuperO2Generator.tscn")}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	fillInitialGrid()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	calculateRessources()
 
 func fillInitialGrid() -> void:
-	var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2}
+	var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2} # number of special buildings
 	var requiredBuildingName = requiredBuilding.keys()
 	var myGrid = Array()
 	for i in Xmax:
 		var col = Array()
 		for j in Ymax:
+			# ok, this way of filling the grid sucks ! it needs to be improved
 			if requiredBuildingName == []:
 				col.append(popBuilding("Generic",i,j))
 			else:
@@ -46,7 +45,7 @@ func fillInitialGrid() -> void:
 		myGrid.append(col)
 	grid = myGrid
 
-func gridUpdate(x,y,type):
+func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	grid[x][y] = popBuilding(type,x,y)
 	
 func popBuilding(type,x,y):
@@ -59,9 +58,9 @@ func popBuilding(type,x,y):
 
 func calculateRessources():
 	var recalculatedRessource = {"POP" : 1000,"WATER" : 0,"FOOD" : 0,"O2" : 0}
-	for building in get_children():
-		for name in GameState.ressourceName:
-			recalculatedRessource[name] += building.base_stat[name] + building.modifier[name]
+	for build in get_children():
+		for n in GameState.ressourceName:
+			recalculatedRessource[n] += build.base_stat[n] + build.modifier[n]
 	GameState.fillRessource(recalculatedRessource)
 	RadioDiffusion.updateTopUICall()
 

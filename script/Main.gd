@@ -1,15 +1,10 @@
 extends Node2D
 
-var selected
+var selected # hold the cell to build onto
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready(): # signal connexion
 	RadioDiffusion.connect("cleanSelectionNeeded",cleanSelected)
 	RadioDiffusion.connect("createBuildMenuNeeded",createBuildMenu)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func createBuildMenu(obj):
 	selected = obj

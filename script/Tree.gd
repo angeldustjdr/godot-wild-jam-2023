@@ -1,4 +1,4 @@
 extends GenericBuilding
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, _event, _shape_idx):
 	pass
