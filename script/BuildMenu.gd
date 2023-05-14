@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var parent = get_parent()
+@onready var main = get_parent()
 
 func _input(event):
 	if event is InputEventMouseButton and !GameState.actionnable:
@@ -8,17 +8,17 @@ func _input(event):
 			freeMenu()
 
 func _on_farm_button_pressed():
-	parent.selfDestruct("Farm")
+	main.selected.selfDestruct("Farm")
 	freeMenu()
 
 
 func _on_tree_button_pressed():
-	parent.selfDestruct("Tree")
+	main.selected.selfDestruct("Tree")
 	freeMenu()
 
 
 func _on_well_button_pressed():
-	parent.selfDestruct("Well")
+	main.selected.selfDestruct("Well")
 	freeMenu()
 
 

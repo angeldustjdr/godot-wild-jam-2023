@@ -5,6 +5,7 @@ class_name GenericBuilding
 var i
 var j
 @onready var grid = self.get_parent()
+@onready var main = grid.get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,4 +26,5 @@ func selfDestruct(type):
 	grid.gridUpdate(i,j,type)
 	await get_tree().create_timer(0.1).timeout #A remplacer par l'animation de destruction
 	GameState.actionnable_on()
+	main.cleanSelected()
 	queue_free()
