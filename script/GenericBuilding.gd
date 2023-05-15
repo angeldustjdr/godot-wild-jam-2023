@@ -35,6 +35,7 @@ func selfDestruct(type):
 	RadioDiffusion.gridUpdateCall(i,j,type)
 	await get_tree().create_timer(0.3).timeout #A remplacer par l'animation de destruction
 	GameState.actionnable_on()
+	GameState.increaseNbAction()
 	RadioDiffusion.cleanSelectedCall()
 	queue_free()
 

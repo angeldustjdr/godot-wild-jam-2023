@@ -21,7 +21,7 @@ func _ready():
 	fillInitialGrid()
 
 func _process(_delta):
-	calculateRessources()
+	calculateRessources(GameState.checkPop)
 
 func fillInitialGrid() -> void:
 	var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2} # number of special buildings
@@ -56,12 +56,13 @@ func popBuilding(type,x,y):
 	add_child(b)
 	return b
 
-func calculateRessources():
-	var recalculatedRessource = {"POP" : 1000,"WATER" : 0,"FOOD" : 0,"O2" : 0}
+func calculateRessources(check):
+	var recalculatedRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
 	for build in get_children():
-		for n in GameState.ressourceName:
+		for n in recalculatedRessource.keys():
 			recalculatedRessource[n] += build.base_stat[n] + build.modifier[n]
 	GameState.fillRessource(recalculatedRessource)
+	if check: GameState.calculatePop()
 	RadioDiffusion.updateTopUICall()
 
 func cleanNode():
