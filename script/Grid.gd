@@ -31,9 +31,11 @@ func _ready():
 	fillInitialGrid()
 	calculateRessources()
 
-func getCell(i,j):
-	print(self.grid[i][j])
-	return self.grid[i][j]
+func getCell(i,j): # i = line number and j = column number
+	if (i >= self.Ymax or j >= self.Xmax):
+		return null
+	else:
+		return self.grid[j][i]
 
 func fillInitialGrid() -> void:
 	#fill grids with nothing
@@ -73,20 +75,17 @@ func fillInitialGrid() -> void:
 				grid[i][j] = newBuilding
 				sourceEffectGrid[i][j] = newBuilding.effect
 	recalculateEffect()
-	print(grid)
 
 
 func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
-	print(self.grid[x][y])
 	recalculateEffect()
 	calculateRessources()
 	GameState.actionnable_on()
 	GameState.increaseNbAction()
 	RadioDiffusion.cleanSelectedCall()
-	print(self.grid[x][y])
 	gridUpdated.emit(x,y)
 	
 func popBuilding(type,x,y):

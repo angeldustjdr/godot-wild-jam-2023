@@ -18,8 +18,8 @@ func createBuildMenu(obj):
 
 func checkPatterns(i,j):
 	for pattern in $Patterns.get_children():
-		pattern.check(i,j)
-	pass
+		if(pattern.check(j,i)):
+			pattern.apply()
 
 func cleanSelected():
 	selected = null

@@ -2,22 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4fp6f"]
 [ext_resource type="Script" path="res://script/Farm.gd" id="2_m277t"]
-[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_h3vxe"]
 [ext_resource type="Texture2D" uid="uid://sof7miy6o6wl" path="res://asset/sheet/farm-sheet.png" id="3_khlq3"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_kr3jd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yi5r"]
 resource_local_to_scene = true
 shader = ExtResource("3_kr3jd")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/width = 0.0
-shader_parameter/pattern = 0
-shader_parameter/inside = false
-shader_parameter/add_margins = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7o3c"]
-resource_local_to_scene = true
-shader = ExtResource("3_h3vxe")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
