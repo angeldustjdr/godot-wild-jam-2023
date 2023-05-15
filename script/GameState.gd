@@ -17,6 +17,7 @@ func increaseNbAction():
 
 #################
 # RESSOURCE
+var limit = {"WATER" : 10,"FOOD" : 10,"O2" : 10}
 var ressource = {"POP" : 0,
 				"WATER" : 0,
 				"FOOD" : 0,
@@ -34,7 +35,6 @@ func fillRessource(newRessource):
 		ressource[elem] = newRessource[elem]
 
 func calculatePop():
-	var limit = {"WATER" : 10,"FOOD" : 10,"O2" : 10}
 	for elem in limit.keys():
 		if ressource[elem] <= limit[elem]:
 			ressource["POP"] -= 100

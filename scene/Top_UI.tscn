@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhe0gdpwpe3hf"]
+[gd_scene load_steps=3 format=3 uid="uid://dhe0gdpwpe3hf"]
 
+[ext_resource type="Theme" uid="uid://dkbcrw73g6705" path="res://asset/Theme.tres" id="1_0j54i"]
 [ext_resource type="Script" path="res://script/updateUI.gd" id="1_auiuf"]
 
 [node name="Top_UI" type="Control"]
@@ -7,55 +8,75 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 544.0
 offset_bottom = 68.0
+theme = ExtResource("1_0j54i")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 544.0
+[node name="Grid" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -206.0
+offset_right = 206.0
 offset_bottom = 68.0
-color = Color(0, 0, 0, 1)
+grow_horizontal = 2
+columns = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 544.0
-offset_bottom = 68.0
+[node name="Hbox" type="HBoxContainer" parent="Grid"]
+custom_minimum_size = Vector2(100, 68)
+layout_mode = 2
 alignment = 1
 
-[node name="Food" type="Label" parent="HBoxContainer"]
+[node name="Food" type="Label" parent="Grid/Hbox"]
 layout_mode = 2
 text = "Food"
 
-[node name="Food_quantity" type="Label" parent="HBoxContainer"]
+[node name="Food_quantity" type="Label" parent="Grid/Hbox"]
 layout_mode = 2
 text = "0
 "
 script = ExtResource("1_auiuf")
 ressourceType = "FOOD"
 
-[node name="Water" type="Label" parent="HBoxContainer"]
+[node name="Hbox2" type="HBoxContainer" parent="Grid"]
+custom_minimum_size = Vector2(100, 68)
+layout_mode = 2
+alignment = 1
+
+[node name="Water" type="Label" parent="Grid/Hbox2"]
 layout_mode = 2
 text = "Water"
 
-[node name="Water_quantity" type="Label" parent="HBoxContainer"]
+[node name="Water_quantity" type="Label" parent="Grid/Hbox2"]
 layout_mode = 2
 text = "0"
 script = ExtResource("1_auiuf")
 ressourceType = "WATER"
 
-[node name="O2" type="Label" parent="HBoxContainer"]
+[node name="Hbox3" type="HBoxContainer" parent="Grid"]
+custom_minimum_size = Vector2(100, 68)
+layout_mode = 2
+alignment = 1
+
+[node name="O2" type="Label" parent="Grid/Hbox3"]
 layout_mode = 2
 text = "O2"
 
-[node name="O2_quantity" type="Label" parent="HBoxContainer"]
+[node name="O2_quantity" type="Label" parent="Grid/Hbox3"]
 layout_mode = 2
 text = "0"
 script = ExtResource("1_auiuf")
 ressourceType = "O2"
 
-[node name="Pop" type="Label" parent="HBoxContainer"]
+[node name="Hbox4" type="HBoxContainer" parent="Grid"]
+custom_minimum_size = Vector2(100, 68)
+layout_mode = 2
+alignment = 1
+
+[node name="Pop" type="Label" parent="Grid/Hbox4"]
 layout_mode = 2
 text = "Pop"
 
-[node name="Pop_quantity" type="Label" parent="HBoxContainer"]
+[node name="Pop_quantity" type="Label" parent="Grid/Hbox4"]
 layout_mode = 2
 text = "1000
 "

@@ -58,7 +58,15 @@ func getTotalStat():
 	return TotalStat
 
 func popLabel(text):
-	var j = juicyLabel.instantiate()
-	j.playAnimation("UP")
-	j.text = text
-	add_child(j)
+	var l = juicyLabel.instantiate()
+	l.playAnimation("UP")
+	l.text = text
+	add_child(l)
+
+
+func _on_tooltip_mouse_entered():
+	$Sprite.material.set("shader_param/width",2.)
+
+
+func _on_tooltip_mouse_exited():
+	$Sprite.material.set("shader_param/width",0.)

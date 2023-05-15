@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvwt2pd6xsvn7"]
+[gd_scene load_steps=7 format=3 uid="uid://dvwt2pd6xsvn7"]
 
+[ext_resource type="Theme" uid="uid://dkbcrw73g6705" path="res://asset/Theme.tres" id="1_bs4bt"]
 [ext_resource type="Script" path="res://script/JuicyLabel.gd" id="1_ls5gl"]
 
 [sub_resource type="Animation" id="Animation_nk3dw"]
@@ -17,21 +18,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(40, -35)]
 }
 
-[sub_resource type="Animation" id="Animation_n07sx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("JuicyLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(45, 20)]
-}
-
 [sub_resource type="Animation" id="Animation_k004l"]
 resource_name = "JuicyLabelPop_2"
 tracks/0/type = "value"
@@ -47,6 +33,21 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(40, 30)]
 }
 
+[sub_resource type="Animation" id="Animation_n07sx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JuicyLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(45, 20)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5w5el"]
 _data = {
 "JuicyLabelPop": SubResource("Animation_nk3dw"),
@@ -59,7 +60,8 @@ z_index = 10
 offset_left = 40.0
 offset_top = 30.0
 offset_right = 80.0
-offset_bottom = 56.0
+offset_bottom = 60.0
+theme = ExtResource("1_bs4bt")
 text = "++"
 script = ExtResource("1_ls5gl")
 

@@ -6,9 +6,18 @@ extends Label
 func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTopUI)
 
+func _process(_delta):
+	var myRessource = GameState.ressource[ressourceType]
+	if ressourceType!="POP":
+		if myRessource <= GameState.limit[ressourceType] : 
+			self.set("theme_override_colors/font_color", Color(1,0,0))
+		else :
+			self.set("theme_override_colors/font_color", Color(1,1,1))
+
 func updateTopUI():
-	var modified = GameState.ressource[ressourceType] - int(self.text)
-	self.text = str(GameState.ressource[ressourceType])
+	var myRessource = GameState.ressource[ressourceType]
+	var modified = myRessource - int(self.text)
+	self.text = str(myRessource)
 	if modified != 0 :
 		var j = juicyLabel.instantiate()
 		if modified>0 : j.text = "+"+str(modified)+ressourceType

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjlqheo1hxrae"]
+[gd_scene load_steps=3 format=3 uid="uid://cjlqheo1hxrae"]
 
 [ext_resource type="Script" path="res://script/BuildMenu.gd" id="1_45w4o"]
+[ext_resource type="Theme" uid="uid://dkbcrw73g6705" path="res://asset/Theme.tres" id="1_ft1y2"]
 
 [node name="BuildMenu" type="VBoxContainer"]
 z_index = 11
@@ -11,6 +12,7 @@ offset_right = -352.0
 offset_bottom = -396.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ft1y2")
 script = ExtResource("1_45w4o")
 
 [node name="FarmButton" type="Button" parent="."]
