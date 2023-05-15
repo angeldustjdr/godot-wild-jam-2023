@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlapequk3cgrn"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_l28i7"]
-[ext_resource type="Texture2D" uid="uid://cmy2x616ckr6f" path="res://asset/sprite/superfood.png" id="2_7lk5o"]
+[ext_resource type="Texture2D" uid="uid://cto001atu7tqv" path="res://asset/sheet/superfood-sheet.png" id="2_s6svs"]
 
 [node name="SuperFood" instance=ExtResource("1_l28i7")]
 description = "Somehow it provides a lot of food."
@@ -13,4 +13,4 @@ base_stat = {
 }
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("2_7lk5o")
+texture = ExtResource("2_s6svs")

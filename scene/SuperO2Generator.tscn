@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4t1fdr1ilywi"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_65x5b"]
-[ext_resource type="Texture2D" uid="uid://b5v8muersd25k" path="res://asset/sprite/superO2.png" id="2_c1u7c"]
+[ext_resource type="Texture2D" uid="uid://bf41mjler7057" path="res://asset/sheet/superO2-sheet.png" id="2_23q8v"]
 
 [node name="SuperO2" instance=ExtResource("1_65x5b")]
 description = "Somehow it purifies the air."
@@ -13,4 +13,4 @@ base_stat = {
 }
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("2_c1u7c")
+texture = ExtResource("2_23q8v")

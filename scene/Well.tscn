@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_day3t"]
 [ext_resource type="Script" path="res://script/Well.gd" id="2_5bo8q"]
-[ext_resource type="Texture2D" uid="uid://cd1pjbm678l6w" path="res://asset/sprite/well.png" id="3_ppyoo"]
+[ext_resource type="Texture2D" uid="uid://d0fcf2wgrd6fb" path="res://asset/sheet/well-sheet.png" id="3_8pt4o"]
 
 [node name="Well" instance=ExtResource("1_day3t")]
 script = ExtResource("2_5bo8q")
@@ -13,6 +13,7 @@ base_stat = {
 "POP": 0,
 "WATER": 1
 }
+playIdle = false
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("3_ppyoo")
+texture = ExtResource("3_8pt4o")

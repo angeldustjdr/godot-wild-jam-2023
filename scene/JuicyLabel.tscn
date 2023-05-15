@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvwt2pd6xsvn7"]
+
+[ext_resource type="Script" path="res://script/JuicyLabel.gd" id="1_ls5gl"]
+
+[sub_resource type="Animation" id="Animation_nk3dw"]
+resource_name = "JuicyLabelPop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JuicyLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.307786, 0.000911165),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(40, -35)]
+}
+
+[sub_resource type="Animation" id="Animation_n07sx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JuicyLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(45, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_k004l"]
+resource_name = "JuicyLabelPop_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JuicyLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.307786, 0.000911165),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(40, 30)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5w5el"]
+_data = {
+"JuicyLabelPop": SubResource("Animation_nk3dw"),
+"JuicyLabelPop_2": SubResource("Animation_k004l"),
+"RESET": SubResource("Animation_n07sx")
+}
+
+[node name="JuicyLabel" type="Label"]
+z_index = 10
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 80.0
+offset_bottom = 56.0
+text = "++"
+script = ExtResource("1_ls5gl")
+
+[node name="AnimationPlayerLabel" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_5w5el")
+}
+
+[connection signal="animation_finished" from="AnimationPlayerLabel" to="." method="_on_animation_player_label_animation_finished"]

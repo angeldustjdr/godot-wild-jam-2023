@@ -2,9 +2,7 @@ extends Area2D
 class_name GenericBuilding
 
 @export_multiline var description:String
-
-var i
-var j
+@export var playIdle:bool
 
 @export var base_stat = {"POP" : 0,
 				"WATER" : 0,
@@ -15,13 +13,18 @@ var j
 				"FOOD" : 0,
 				"O2" : 0}
 
+var i
+var j
+@onready var juicyLabel = load("res://scene/JuicyLabel.tscn")
+
 func _ready():
+	if playIdle: 
+		$AnimationPlayerBuilding.speed_scale = randf_range(0.9,1.1)
+		$AnimationPlayerBuilding.play("idle")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 	var totStat = getTotalStat()
-	if totStat != null:
-		$JuicyLabel.text = totStat
-		$AnimationPlayer.play("JuicyLabelPop")
+	if totStat != null: popLabel(totStat)
 
 
 func _on_input_event(_viewport, event, _shape_idx):
@@ -53,3 +56,9 @@ func getTotalStat():
 			if totalStat>0: plus="+" 
 			TotalStat += "\n"+plus+str(totalStat)+" "+n
 	return TotalStat
+
+func popLabel(text):
+	var j = juicyLabel.instantiate()
+	j.playAnimation("UP")
+	j.text = text
+	add_child(j)

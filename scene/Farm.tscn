@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4fp6f"]
 [ext_resource type="Script" path="res://script/Farm.gd" id="2_m277t"]
-[ext_resource type="Texture2D" uid="uid://bwkp6r7x60acx" path="res://asset/sprite/farm.png" id="3_60813"]
+[ext_resource type="Texture2D" uid="uid://sof7miy6o6wl" path="res://asset/sheet/farm-sheet.png" id="3_khlq3"]
 
 [node name="Farm" instance=ExtResource("1_4fp6f")]
 script = ExtResource("2_m277t")
@@ -13,6 +13,7 @@ base_stat = {
 "POP": 0,
 "WATER": 0
 }
+playIdle = false
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("3_60813")
+texture = ExtResource("3_khlq3")

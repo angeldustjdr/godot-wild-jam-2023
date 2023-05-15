@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://8001k27dcfjx"]
 
-[ext_resource type="Texture2D" uid="uid://c7et5w7m7pb12" path="res://asset/sprite/generic_building.png" id="1_86arg"]
 [ext_resource type="Script" path="res://script/GenericBuilding.gd" id="1_v8jsb"]
+[ext_resource type="Texture2D" uid="uid://cwv7xdmk2wb87" path="res://asset/sheet/building1-sheet.png" id="2_ihrt5"]
 
 [sub_resource type="Shader" id="Shader_uoqyb"]
 code = "shader_type canvas_item;
@@ -17,75 +17,77 @@ shader = SubResource("Shader_uoqyb")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mllce"]
 size = Vector2(68, 68)
 
-[sub_resource type="Animation" id="Animation_nk3dw"]
-resource_name = "JuicyLabelPop"
+[sub_resource type="Animation" id="Animation_lhjvy"]
+resource_name = "idle"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("JuicyLabel:visible")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true, true, false]
+"values": [0, 1, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("JuicyLabel:position")
+tracks/1/path = NodePath("Sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.307786, 0.000911165),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.329877, 1),
 "update": 0,
-"values": [Vector2(45, 20), Vector2(75, -20)]
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_n07sx"]
+[sub_resource type="Animation" id="Animation_5ipuh"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("JuicyLabel:visible")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("JuicyLabel:position")
+tracks/1/path = NodePath("Sprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(45, 20)]
+"values": [Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5w5el"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ksdrg"]
 _data = {
-"JuicyLabelPop": SubResource("Animation_nk3dw"),
-"RESET": SubResource("Animation_n07sx")
+"RESET": SubResource("Animation_5ipuh"),
+"idle": SubResource("Animation_lhjvy")
 }
 
 [node name="GenericBuilding" type="Area2D"]
 material = SubResource("ShaderMaterial_32tqi")
 script = ExtResource("1_v8jsb")
 description = "A generic building."
+playIdle = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(2, 2)
-texture = ExtResource("1_86arg")
-centered = false
+position = Vector2(34, 34)
+texture = ExtResource("2_ihrt5")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(34, 34)
@@ -98,18 +100,9 @@ offset_right = 68.0
 offset_bottom = 68.0
 mouse_filter = 1
 
-[node name="JuicyLabel" type="Label" parent="."]
-visible = false
-z_index = 10
-offset_left = 45.0
-offset_top = 20.0
-offset_right = 85.0
-offset_bottom = 46.0
-text = "++"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerBuilding" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_5w5el")
+"": SubResource("AnimationLibrary_ksdrg")
 }
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

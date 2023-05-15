@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_w1hx2"]
 [ext_resource type="Script" path="res://script/Tree.gd" id="2_sdvdm"]
-[ext_resource type="Texture2D" uid="uid://nbeurxj6784p" path="res://asset/sprite/tree.png" id="3_hbn72"]
+[ext_resource type="Texture2D" uid="uid://csndg3jfh248p" path="res://asset/sheet/tree-sheet.png" id="3_10po4"]
 
 [node name="Tree" instance=ExtResource("1_w1hx2")]
 script = ExtResource("2_sdvdm")
@@ -13,6 +13,7 @@ base_stat = {
 "POP": 0,
 "WATER": 0
 }
+playIdle = false
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("3_hbn72")
+texture = ExtResource("3_10po4")
