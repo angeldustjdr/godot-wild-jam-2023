@@ -22,12 +22,18 @@ var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
 var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2} # number of special buildings
 var genericBuildingChoiceWeight = {"Generic" : 90, "Heat" : 10} # probability of getting the initial generic building
 
+signal gridUpdated(x,y)
+
 func _ready():
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
 	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)
 	fillInitialGrid()
 	calculateRessources()
+
+func getCell(i,j):
+	print(self.grid[i][j])
+	return self.grid[i][j]
 
 func fillInitialGrid() -> void:
 	#fill grids with nothing
@@ -73,13 +79,15 @@ func fillInitialGrid() -> void:
 func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
-	sourceEffectGrid[x][y] = newBuilding.effect
+	sourceEffectGrid[x][y] = self.grid[x][y].effect
+	print(self.grid[x][y])
 	recalculateEffect()
 	calculateRessources()
 	GameState.actionnable_on()
 	GameState.increaseNbAction()
 	RadioDiffusion.cleanSelectedCall()
-	
+	print(self.grid[x][y])
+	gridUpdated.emit(x,y)
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
