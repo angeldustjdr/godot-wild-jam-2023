@@ -2,6 +2,7 @@ extends Area2D
 class_name GenericBuilding
 
 @export_multiline var description:String
+@export var effect:String = "Nothing"
 @export var playIdle:bool
 
 @export var base_stat = {"POP" : 0,
@@ -63,10 +64,14 @@ func popLabel(text):
 	l.text = text
 	add_child(l)
 
+func cleanParticules():
+	for n in get_children():
+		if n is CPUParticles2D:
+			n.queue_free()
 
 func _on_tooltip_mouse_entered():
-	$Sprite.material.set("shader_param/width",2.)
+	$Sprite.material.set_shader_parameter("width",2.)
 
 
 func _on_tooltip_mouse_exited():
-	$Sprite.material.set("shader_param/width",0.)
+	$Sprite.material.set_shader_parameter("width",0.)

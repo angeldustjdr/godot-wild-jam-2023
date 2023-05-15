@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlapequk3cgrn"]
+[gd_scene load_steps=5 format=3 uid="uid://dlapequk3cgrn"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_l28i7"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_ntvqc"]
 [ext_resource type="Texture2D" uid="uid://cto001atu7tqv" path="res://asset/sheet/superfood-sheet.png" id="2_s6svs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rc8j6"]
+resource_local_to_scene = true
+shader = ExtResource("2_ntvqc")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [node name="SuperFood" instance=ExtResource("1_l28i7")]
 description = "Somehow it provides a lot of food."
@@ -13,4 +23,5 @@ base_stat = {
 }
 
 [node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_rc8j6")
 texture = ExtResource("2_s6svs")
