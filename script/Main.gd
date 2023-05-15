@@ -6,7 +6,8 @@ func _ready(): # signal connexion
 	RadioDiffusion.connect("cleanSelectionNeeded",cleanSelected)
 	RadioDiffusion.connect("createBuildMenuNeeded",createBuildMenu)
 	
-	GameState.ressourceInit(1000,0,0,0)
+	GameState.ressourceInit(1000,12,12,12)
+	RadioDiffusion.updateTopUICall()
 
 func createBuildMenu(obj):
 	selected = obj

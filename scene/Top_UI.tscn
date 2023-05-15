@@ -32,8 +32,7 @@ text = "Food"
 
 [node name="Food_quantity" type="Label" parent="Grid/Hbox"]
 layout_mode = 2
-text = "0
-"
+text = "0"
 script = ExtResource("1_auiuf")
 ressourceType = "FOOD"
 

@@ -24,19 +24,21 @@ var genericBuildingChoiceWeight = {"Generic" : 90, "Heat" : 10} # probability of
 
 func _ready():
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
+	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
+	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)
 	fillInitialGrid()
-
-func _process(_delta):
-	calculateRessources(GameState.checkPop)
+	calculateRessources()
 
 func fillInitialGrid() -> void:
 	#fill grids with nothing
+	var myGrid = Array()
 	for i in Xmax:
 		var col = Array()
 		for j in Ymax:
 			col.append(null)
-		grid.append(col)
-		sourceEffectGrid.append(col)
+		myGrid.append(col)
+	grid = myGrid.duplicate(true)
+	sourceEffectGrid = myGrid.duplicate(true)
 	
 	#fill with required buildings
 	var alreadyFilled = []
@@ -65,6 +67,7 @@ func fillInitialGrid() -> void:
 				grid[i][j] = newBuilding
 				sourceEffectGrid[i][j] = newBuilding.effect
 	recalculateEffect()
+	print(grid)
 
 
 func gridUpdate(x,y,type): #pops a building of type at [x,y]
@@ -72,6 +75,11 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = newBuilding.effect
 	recalculateEffect()
+	calculateRessources()
+	GameState.actionnable_on()
+	GameState.increaseNbAction()
+	RadioDiffusion.cleanSelectedCall()
+	
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
@@ -81,13 +89,14 @@ func popBuilding(type,x,y):
 	add_child(b)
 	return b
 
-func calculateRessources(check):
+func calculateRessources():
 	var recalculatedRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
 	for build in get_children():
 		for n in recalculatedRessource.keys():
-			recalculatedRessource[n] += build.base_stat[n] + build.modifier[n]
+			build.getTotalStat()
+			recalculatedRessource[n] += build.totalStat[n]
 	GameState.fillRessource(recalculatedRessource)
-	if check: GameState.calculatePop()
+	if GameState.checkPop: GameState.calculatePop()
 	RadioDiffusion.updateTopUICall()
 
 func recalculateEffect():
@@ -110,6 +119,7 @@ func applyEffect():
 				var heatParticle = load("res://scene/HeatParticules.tscn")
 				var h = heatParticle.instantiate()
 				n.add_child(h)
+				n.applyCellEffect("Heat")
 			"Nothing":
 				n.cleanParticules()
 

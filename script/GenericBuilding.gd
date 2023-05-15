@@ -13,9 +13,15 @@ class_name GenericBuilding
 				"WATER" : 0,
 				"FOOD" : 0,
 				"O2" : 0}
+var totalStat = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}
+@export var negativeStat = false
 
 var i
 var j
+var cellEffect = "Nothing"
 @onready var juicyLabel = load("res://scene/JuicyLabel.tscn")
 
 func _ready():
@@ -24,8 +30,6 @@ func _ready():
 		$AnimationPlayerBuilding.play("idle")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
-	var totStat = getTotalStat()
-	if totStat != null: popLabel(totStat)
 
 
 func _on_input_event(_viewport, event, _shape_idx):
@@ -37,10 +41,6 @@ func _on_input_event(_viewport, event, _shape_idx):
 func selfDestruct(type):
 	#print(i,j)
 	RadioDiffusion.gridUpdateCall(i,j,type)
-	await get_tree().create_timer(0.3).timeout #A remplacer par l'animation de destruction
-	GameState.actionnable_on()
-	GameState.increaseNbAction()
-	RadioDiffusion.cleanSelectedCall()
 	queue_free()
 
 func updateTooltip():
@@ -49,14 +49,15 @@ func updateTooltip():
 	$Tooltip.tooltip_text = updatedDescription
 
 func getTotalStat():
-	var TotalStat = ""
+	var returnStat = ""
 	for n in GameState.ressourceName:
-		if base_stat[n]!=0 or modifier[n]!=0 :
-			var totalStat = base_stat[n]+modifier[n]
+		if negativeStat: totalStat[n] = base_stat[n]+modifier[n]
+		else : totalStat[n] = clamp(base_stat[n]+modifier[n],0,100)
+		if totalStat[n]!=0:
 			var plus = ""
-			if totalStat>0: plus="+" 
-			TotalStat += "\n"+plus+str(totalStat)+" "+n
-	return TotalStat
+			if totalStat[n]>0: plus="+" 
+			returnStat += "\n"+plus+str(totalStat[n])+" "+n
+	return returnStat
 
 func popLabel(text):
 	var l = juicyLabel.instantiate()
@@ -68,6 +69,9 @@ func cleanParticules():
 	for n in get_children():
 		if n is CPUParticles2D:
 			n.queue_free()
+
+func applyCellEffect(_myEffect):
+	pass
 
 func _on_tooltip_mouse_entered():
 	$Sprite.material.set_shader_parameter("width",2.)

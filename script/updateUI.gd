@@ -5,14 +5,7 @@ extends Label
 
 func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTopUI)
-
-func _process(_delta):
-	var myRessource = GameState.ressource[ressourceType]
-	if ressourceType!="POP":
-		if myRessource <= GameState.limit[ressourceType] : 
-			self.set("theme_override_colors/font_color", Color(1,0,0))
-		else :
-			self.set("theme_override_colors/font_color", Color(1,1,1))
+	updateTopUI()
 
 func updateTopUI():
 	var myRessource = GameState.ressource[ressourceType]
@@ -24,3 +17,12 @@ func updateTopUI():
 		else : j.text = str(modified)+ressourceType
 		j.playAnimation("DOWN")
 		add_child(j)
+	checkcolor()
+
+func checkcolor():
+	var myRessource = GameState.ressource[ressourceType]
+	if ressourceType!="POP":
+		if myRessource <= GameState.limit[ressourceType] : 
+			self.set("theme_override_colors/font_color", Color(1,0,0))
+		else :
+			self.set("theme_override_colors/font_color", Color(1,1,1))

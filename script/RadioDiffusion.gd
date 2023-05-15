@@ -18,3 +18,10 @@ signal updateTopUINeeded()
 func updateTopUICall():
 	updateTopUINeeded.emit()
 
+signal recalculateEffectNeeded
+func recalculateEffectCall():
+	recalculateEffectNeeded.emit()
+
+signal calculateRessourcesNeeded
+func calculateRessourcesCall():
+	calculateRessourcesNeeded.emit()

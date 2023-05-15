@@ -80,7 +80,8 @@ _data = {
 
 [node name="GenericBuilding" type="Area2D"]
 script = ExtResource("1_v8jsb")
-description = "A techno-organic building. Nobody knows what is its purpose."
+description = "A techno-organic building.
+Nobody knows what is its purpose."
 playIdle = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
