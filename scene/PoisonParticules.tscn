@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1fhvkfxg3hoe"]
+
+[sub_resource type="Gradient" id="Gradient_of7t0"]
+offsets = PackedFloat32Array(0, 0.533333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.674815, 0.674815, 0.674814, 1, 0.237539, 0.237539, 0.237539, 1)
+
+[node name="Particules" type="CPUParticles2D"]
+position = Vector2(34, 64)
+amount = 25
+speed_scale = 4.0
+emission_shape = 3
+emission_rect_extents = Vector2(34, 1)
+gravity = Vector2(0, -5)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.337255, 0.956863, 0.341176, 1)
+color_ramp = SubResource("Gradient_of7t0")

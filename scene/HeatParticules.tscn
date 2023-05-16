@@ -14,7 +14,7 @@ _data = [Vector2(0.0102041, 0.0090909), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0,
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_2bv8q"]
-colors = PackedColorArray(0.717647, 0.231373, 0.101961, 0.717647, 0.180392, 0.0313726, 0.0117647, 0.670588)
+colors = PackedColorArray(0.65, 0.0975, 0.0975, 0.717647, 0.18, 0.09072, 0.0126, 0.670588)
 
 [node name="Particules" type="CPUParticles2D"]
 material = SubResource("CanvasItemMaterial_p3v85")

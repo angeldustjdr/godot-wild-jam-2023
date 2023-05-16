@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 
 var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
 				"Heat" : load("res://scene/HeatBuilding.tscn"),
+				"Pollution" : load("res://scene/PollutedBuilding.tscn"),
 				"Empty" : load("res://scene/Empty.tscn"),
 				"Farm" :  load("res://scene/Farm.tscn"),
 				"Well" :  load("res://scene/Well.tscn"),
@@ -19,8 +20,10 @@ var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
 				"SuperFood" : load("res://scene/SuperFoodGenerator.tscn"),
 				"SuperO2" : load("res://scene/SuperO2Generator.tscn")}
 
-var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2} # number of special buildings
-var genericBuildingChoiceWeight = {"Generic" : 90, "Heat" : 10} # probability of getting the initial generic building
+var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 1, "Pollution" : 1} # number of special buildings
+var genericBuildingChoiceWeight = {"Generic" : 90, "Heat" : 5, "Pollution" : 5} # probability of getting the initial generic building
+var possibleOutcomes = {"RAS" : 75, "LOCK" : 25} #probability of outcomes
+var emptyGrid = Array()
 
 signal gridUpdated(x,y)
 
@@ -28,6 +31,7 @@ func _ready():
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
 	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)
+	RadioDiffusion.connect("generateOutcomeNeeded",generateOutcome)
 	fillInitialGrid()
 	calculateRessources()
 
@@ -39,14 +43,13 @@ func getCell(i,j): # i = line number and j = column number
 
 func fillInitialGrid() -> void:
 	#fill grids with nothing
-	var myGrid = Array()
 	for i in Xmax:
 		var col = Array()
 		for j in Ymax:
 			col.append(null)
-		myGrid.append(col)
-	grid = myGrid.duplicate(true)
-	sourceEffectGrid = myGrid.duplicate(true)
+		emptyGrid.append(col)
+	grid = emptyGrid.duplicate(true)
+	sourceEffectGrid = emptyGrid.duplicate(true)
 	
 	#fill with required buildings
 	var alreadyFilled = []
@@ -109,27 +112,57 @@ func calculateRessources():
 	RadioDiffusion.updateTopUICall()
 
 func recalculateEffect():
-	effectGrid = sourceEffectGrid.duplicate(true)
+	var bufferGrid = emptyGrid.duplicate(true)
 	for i in Xmax:
 		for j in Ymax:
-			var neighbours = [[i,j-1],[i,j+1],[i-1,j],[i+1,j]]
-			match  sourceEffectGrid[i][j]:
-				"Heat": 
-					for ij in neighbours:
-						var i_n = clamp(ij[0],0,Xmax-1)
-						var j_n = clamp(ij[1],0,Ymax-1)
-						if sourceEffectGrid[i_n][j_n] == "Nothing": effectGrid[i_n][j_n]="Heat"
+			var neighbours = [[i,j-1],[i,j+1],[i-1,j],[i+1,j],[i,j]]
+			for ij in neighbours:
+				var i_n = clamp(ij[0],0,Xmax-1)
+				var j_n = clamp(ij[1],0,Ymax-1)
+				if bufferGrid[i_n][j_n] == null: bufferGrid[i_n][j_n] = [sourceEffectGrid[i][j]]
+				else : bufferGrid[i_n][j_n].append(sourceEffectGrid[i][j])
+
+	effectGrid = emptyGrid.duplicate(true)
+	for i in Xmax:
+		for j in Ymax:
+			if bufferGrid[i][j].size() == 1 : effectGrid[i][j] = bufferGrid[i][j][0]
+			else :
+				if "Heat" in bufferGrid[i][j] :
+					if "Pollution" in bufferGrid[i][j]:
+						effectGrid[i][j] = "Smoke"
+					else :
+						effectGrid[i][j] = "Heat"
+				elif "Pollution" in bufferGrid[i][j]:
+					if "Heat" in bufferGrid[i][j]:
+						effectGrid[i][j] = "Smoke"
+					else :
+						effectGrid[i][j] = "Pollution"
+				else :
+					effectGrid[i][j] = "Nothing"
 	applyEffect()
 
 func applyEffect():
 	for n in get_children():
-		match effectGrid[n.i][n.j]:
-			"Nothing":
-				n.applyCellEffect("Nothing")
-				n.cleanParticules()
-			_:
-				n.applyCellEffect(effectGrid[n.i][n.j])
+		if n.cellEffect != effectGrid[n.i][n.j]:
+			n.cleanParticules()
+		n.applyCellEffect(effectGrid[n.i][n.j])
 
 func cleanNode():
 	for n in get_children():
 		n.queue_free()
+
+func generateOutcome():
+	var outcome = Array()
+	for o in possibleOutcomes.keys():
+		for p in possibleOutcomes[o]:
+			outcome.append(o)
+	outcome.shuffle()
+	var i = randi_range(0,Xmax-1)
+	var j = randi_range(0,Ymax-1)
+	while grid[i][j].hasHourglass:
+		i = randi_range(0,Xmax-1)
+		j = randi_range(0,Ymax-1)
+	match outcome[0]:
+		"LOCK":
+			grid[i][j].setLock()
+		_ : pass

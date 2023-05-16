@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2bi3kptd10vi"]
+
+[sub_resource type="Curve" id="Curve_gmopm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3gjbu"]
+offsets = PackedFloat32Array(0, 0.49697, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.709091, 0, 0, 0, 0.447059)
+
+[node name="Particules" type="CPUParticles2D"]
+position = Vector2(34, 68)
+lifetime = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(34, 1)
+gravity = Vector2(0, -50)
+angular_velocity_max = 200.0
+angle_max = 180.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_gmopm")
+color_ramp = SubResource("Gradient_3gjbu")
