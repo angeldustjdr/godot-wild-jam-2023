@@ -8,7 +8,7 @@ func _ready():
 func setTimer(n):
 	turnLeft = n
 	self.text = str(n)
-	if n<=3:
+	if n<=10:
 		$AnimationPlayer.play("flash")
 	if n<=0:
 		get_parent().selfDestruct("Empty")

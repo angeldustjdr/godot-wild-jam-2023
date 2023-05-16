@@ -21,6 +21,7 @@ base_stat = {
 "POP": 0,
 "WATER": 0
 }
+hasHourglass = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_mq6i5")

@@ -19,7 +19,7 @@ var totalStat = {"POP" : 0,
 				"O2" : 0}
 @export var negativeStat = false
 @export var hasHourglass = false
-@export var hourglassTimer = 10
+@export var hourglassTimer = 50
 @export var effectDescription = {"Heat" : "The air temperature is pretty high here! It may harm life."}
 
 var i

@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3gm120uavfjx"]
+[gd_scene load_steps=5 format=3 uid="uid://d3gm120uavfjx"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4x0ar"]
-[ext_resource type="Texture2D" uid="uid://bbc5glu15c2i8" path="res://asset/sheet/superwater-sheet.png" id="2_h0b01"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_3fxsc"]
+[ext_resource type="Texture2D" uid="uid://dth0nhqilrghc" path="res://asset/sheet/water-plant-1-sheet.png" id="3_qt113"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kucal"]
+resource_local_to_scene = true
+shader = ExtResource("2_3fxsc")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [node name="SuperWaterGenerator" instance=ExtResource("1_4x0ar")]
 description = "Somehow it provides a lot of water."
@@ -11,6 +21,8 @@ base_stat = {
 "POP": 0,
 "WATER": 6
 }
+hasHourglass = true
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("2_h0b01")
+material = SubResource("ShaderMaterial_kucal")
+texture = ExtResource("3_qt113")
