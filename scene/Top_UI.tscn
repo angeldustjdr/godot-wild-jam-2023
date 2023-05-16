@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhe0gdpwpe3hf"]
 
-[ext_resource type="Theme" uid="uid://dkbcrw73g6705" path="res://asset/Theme.tres" id="1_0j54i"]
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_0j54i"]
 [ext_resource type="Script" path="res://script/updateUI.gd" id="1_auiuf"]
 
 [node name="Top_UI" type="Control"]

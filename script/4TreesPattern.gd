@@ -1,21 +1,21 @@
 extends GenericPattern
-class_name FourFieldsPattern
+class_name FourTreesPattern
 
-var sprites = [preload('res://asset/sheet/big_farm_upper_left.png'),
-			preload('res://asset/sheet/big_farm_upper_right.png'),
-			preload('res://asset/sheet/big_farm_lower_right.png'),
-			preload('res://asset/sheet/big_farm_lower_left.png')] # 1 : upper left, 2 upper right, 3 lower right, 4 lower left
+var sprites = [preload('res://asset/sheet/big_tree_upper_left.png'),
+			preload('res://asset/sheet/big_tree_upper_right.png'),
+			preload('res://asset/sheet/big_tree_lower_right.png'),
+			preload('res://asset/sheet/big_tree_lower_left.png')] # 1 : upper left, 2 upper right, 3 lower right, 4 lower left
 
 func check(i,j,grid):
 	var cellij = grid.getCell(i,j)
 	if(cellij != null):
-		if cellij is Farm:
+		if cellij is myTree:
 			var cellip1j = grid.getCell(i+1,j)
-			if cellip1j is Farm:
+			if cellip1j is myTree:
 				var cellijp1 = grid.getCell(i,j+1)
-				if cellijp1 is Farm:
+				if cellijp1 is myTree:
 					var cellip1jp1 = grid.getCell(i+1,j+1)
-					if cellip1jp1 is Farm:
+					if cellip1jp1 is myTree:
 						self.coords.append([i,j])
 						self.completeSquareCoords()
 						return true
@@ -23,9 +23,9 @@ func check(i,j,grid):
 						return false
 				else:
 					var cellijm1 = grid.getCell(i,j-1)
-					if cellijm1 is Farm:
+					if cellijm1 is myTree:
 						var cellip1jm1 = grid.getCell(i+1,j-1)
-						if cellip1jm1 is Farm:
+						if cellip1jm1 is myTree:
 							self.coords.append([i,j-1])
 							self.completeSquareCoords()
 							return true
@@ -35,11 +35,11 @@ func check(i,j,grid):
 						return false
 			else:
 				var cellim1j = grid.getCell(i-1,j)
-				if cellim1j is Farm:
+				if cellim1j is myTree:
 					var cellijp1 = grid.getCell(i,j+1)
-					if cellijp1 is Farm:
+					if cellijp1 is myTree:
 						var cellim1jp1 = grid.getCell(i-1,j+1)
-						if cellim1jp1 is Farm:
+						if cellim1jp1 is myTree:
 							self.coords.append([i-1,j])
 							self.completeSquareCoords()
 							return true
@@ -47,9 +47,9 @@ func check(i,j,grid):
 							return false
 					else:
 						var cellijm1 = grid.getCell(i,j-1)
-						if cellijm1 is Farm:
+						if cellijm1 is myTree:
 							var cellim1jm1 = grid.getCell(i-1,j-1)
-							if cellim1jm1 is Farm:
+							if cellim1jm1 is myTree:
 								self.coords.append([i-1,j-1])
 								self.completeSquareCoords()
 								return true
@@ -62,7 +62,7 @@ func check(i,j,grid):
 		else:
 			return false
 	else:
-		print("4FieldsPattern:check:cell(i,j) is empty???")
+		print("4TreesPattern:check:cell(i,j) is empty???")
 		return -1
 
 func checkNotBig(grid):

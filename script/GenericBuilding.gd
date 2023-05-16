@@ -25,6 +25,7 @@ var totalStat = {"POP" : 0,
 var i
 var j
 var cellEffect = "Nothing"
+@export var is_big = false
 @onready var juicyLabel = load("res://scene/JuicyLabel.tscn")
 
 func _ready():
@@ -39,6 +40,8 @@ func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 
+func becomes_big():
+	self.is_big = true
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and GameState.actionnable:

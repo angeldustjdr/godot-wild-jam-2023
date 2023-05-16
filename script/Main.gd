@@ -17,9 +17,11 @@ func createBuildMenu(obj):
 	add_child(b)
 
 func checkPatterns(i,j):
+	var grid = self.get_node("Grid")
 	for pattern in $Patterns.get_children():
-		if(pattern.check(j,i)):
-			pattern.apply()
+		if(pattern.check(j,i,grid)):
+			pattern.apply(grid)
+	grid.calculateRessources()
 
 func cleanSelected():
 	selected = null

@@ -9,15 +9,15 @@ var effectGrid = Array() #holds the effects
 
 var rng = RandomNumberGenerator.new()
 
-var building = {"Generic" : load("res://scene/GenericBuilding.tscn"),
-				"Heat" : load("res://scene/HeatBuilding.tscn"),
-				"Empty" : load("res://scene/Empty.tscn"),
-				"Farm" :  load("res://scene/Farm.tscn"),
-				"Well" :  load("res://scene/Well.tscn"),
-				"Tree" :  load("res://scene/Tree.tscn"),
-				"SuperWater" : load("res://scene/SuperWaterGenerator.tscn"),
-				"SuperFood" : load("res://scene/SuperFoodGenerator.tscn"),
-				"SuperO2" : load("res://scene/SuperO2Generator.tscn")}
+var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
+				"Heat" : preload("res://scene/HeatBuilding.tscn"),
+				"Empty" : preload("res://scene/Empty.tscn"),
+				"Farm" :  preload("res://scene/Farm.tscn"),
+				"Well" :  preload("res://scene/Well.tscn"),
+				"Tree" :  preload("res://scene/Tree.tscn"),
+				"SuperWater" : preload("res://scene/SuperWaterGenerator.tscn"),
+				"SuperFood" : preload("res://scene/SuperFoodGenerator.tscn"),
+				"SuperO2" : preload("res://scene/SuperO2Generator.tscn")}
 
 var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2} # number of special buildings
 var genericBuildingChoiceWeight = {"Generic" : 90, "Heat" : 10} # probability of getting the initial generic building
@@ -97,7 +97,7 @@ func popBuilding(type,x,y):
 	add_child(b)
 	return b
 
-func calculateRessources():
+func calculateRessources(): # GB : could be optimized by considering only modified cells
 	var recalculatedRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
 	for build in get_children():
 		for n in recalculatedRessource.keys():

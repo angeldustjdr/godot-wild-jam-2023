@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn3ct20vgo1ch"]
+[gd_scene load_steps=6 format=3 uid="uid://cn3ct20vgo1ch"]
 
 [ext_resource type="Script" path="res://script/Main.gd" id="1_k1vvl"]
 [ext_resource type="Script" path="res://script/Grid.gd" id="2_r7481"]
 [ext_resource type="PackedScene" uid="uid://dhe0gdpwpe3hf" path="res://scene/Top_UI.tscn" id="3_5exu0"]
 [ext_resource type="PackedScene" uid="uid://dp4g4m3mh8wxk" path="res://scene/4FieldsPattern.tscn" id="4_t3bms"]
+[ext_resource type="PackedScene" uid="uid://d4m0itj0m7yts" path="res://scene/4TreesPattern.tscn" id="5_lkv8a"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k1vvl")
@@ -17,3 +18,5 @@ script = ExtResource("2_r7481")
 [node name="Patterns" type="Node" parent="."]
 
 [node name="4FieldsPattern" parent="Patterns" instance=ExtResource("4_t3bms")]
+
+[node name="4TreesPattern" parent="Patterns" instance=ExtResource("5_lkv8a")]
