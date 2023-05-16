@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 
 var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"Heat" : preload("res://scene/HeatBuilding.tscn"),
+				"Pollution" : preload("res://scene/PollutedBuilding.tscn"),
 				"Empty" : preload("res://scene/Empty.tscn"),
 				"Farm" :  preload("res://scene/Farm.tscn"),
 				"Well" :  preload("res://scene/Well.tscn"),
