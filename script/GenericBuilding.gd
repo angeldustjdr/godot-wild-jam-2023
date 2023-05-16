@@ -20,20 +20,22 @@ var totalStat = {"POP" : 0,
 @export var negativeStat = false
 @export var hasHourglass = false
 @export var hourglassTimer = 50
-@export var effectDescription = {"Heat" : "The air temperature is pretty high here! It may harm life."}
+@export var locked = false
+
+@onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
+	"Pollution" : "The floor is covered with polluted water!",
+	"Smoke" : "Toxic smoke in the air!"}
 
 var i
 var j
 var cellEffect = "Nothing"
 @export var is_big = false
+var firstTime = true
 @onready var juicyLabel = load("res://scene/JuicyLabel.tscn")
 
 func _ready():
 	if hasHourglass:
-		var hourglass = load("res://scene/Hourglass.tscn")
-		var h = hourglass.instantiate()
-		h.setTimer(hourglassTimer)
-		add_child(h)
+		setHourglass()
 	if playIdle: 
 		$AnimationPlayerBuilding.speed_scale = randf_range(0.9,1.1)
 		$AnimationPlayerBuilding.play("idle")
@@ -44,20 +46,23 @@ func becomes_big():
 	self.is_big = true
 
 func _on_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and GameState.actionnable:
-		if event.button_index==MOUSE_BUTTON_LEFT:
-			GameState.actionnable_off()
-			selfDestruct("Empty")
+	if not locked :
+		if event is InputEventMouseButton and GameState.actionnable:
+			if event.button_index==MOUSE_BUTTON_LEFT:
+				GameState.actionnable_off()
+				selfDestruct("Empty")
 
 func selfDestruct(type):
 	#print(i,j)
 	RadioDiffusion.gridUpdateCall(i,j,type)
+	RadioDiffusion.generateOutcomeCall()
 	queue_free()
 
 func updateTooltip():
 	var updatedDescription = description
 	updatedDescription += getTotalStat()
 	updatedDescription += getCellEffect()
+	updatedDescription += getLocked()
 	$Tooltip.tooltip_text = updatedDescription
 
 func getTotalStat():
@@ -89,15 +94,52 @@ func cleanParticules():
 			n.queue_free()
 
 func applyCellEffect(myEffect):
-	if myEffect!=cellEffect:
+	if myEffect!=cellEffect or firstTime:
 		applyEffectModifier(myEffect)
+		var particules = null
 		match myEffect:
 			"Heat":
-				var particules = load("res://scene/HeatParticules.tscn")
-				var p = particules.instantiate()
-				add_child(p)
+				particules = load("res://scene/HeatParticules.tscn")
+			"Pollution":
+				particules = load("res://scene/PoisonParticules.tscn")
+			"Smoke":
+				particules = load("res://scene/SmokeParticules.tscn")
+		if particules!=null:
+			var p = particules.instantiate()
+			add_child(p)
 		cellEffect = myEffect
 		updateTooltip()
+		firstTime = false
+
+func setHourglass():
+	hasHourglass = true
+	var hourglass = load("res://scene/Hourglass.tscn")
+	var h = hourglass.instantiate()
+	h.setTimer(hourglassTimer)
+	add_child(h)
+
+func unsetHourglass():
+	hasHourglass = false
+	if self.has_node("Hourglass") :
+		$Hourglass.queue_free()
+
+func setLock():
+	hasHourglass = true
+	hourglassTimer = 6
+	locked = true
+	$Chain.visible = true
+	setHourglass()
+
+func unsetLock():
+	hasHourglass = false
+	$Chain.visible = false
+	locked = false
+	unsetHourglass()
+
+func getLocked():
+	var returned = ""
+	if locked: returned="\nThis building is locked."
+	return returned
 
 func applyEffectModifier(_effectName):
 	pass

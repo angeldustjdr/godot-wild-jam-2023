@@ -25,3 +25,7 @@ func recalculateEffectCall():
 signal calculateRessourcesNeeded
 func calculateRessourcesCall():
 	calculateRessourcesNeeded.emit()
+
+signal generateOutcomeNeeded
+func generateOutcomeCall():
+	generateOutcomeNeeded.emit()

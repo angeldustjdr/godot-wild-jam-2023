@@ -20,6 +20,16 @@ func applyEffectModifier(effectName):
 	match effectName:
 		"Heat" :
 				modifier["FOOD"] += _heat_modifier_value
+		"Pollution" :
+				modifier["FOOD"] = -5
+		"Smoke" :
+				modifier["FOOD"] = -5
 #		"Nothing" :
 #				modifier["FOOD"] = 0
 	popLabel(getTotalStat())
+
+func setLock():
+	pass
+
+func unsetLock():
+	pass
