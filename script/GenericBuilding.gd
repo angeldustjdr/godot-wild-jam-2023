@@ -18,6 +18,9 @@ var totalStat = {"POP" : 0,
 				"FOOD" : 0,
 				"O2" : 0}
 @export var negativeStat = false
+@export var hasHourglass = false
+@export var hourglassTimer = 10
+@export var effectDescription = {"Heat" : "The air temperature is pretty high here! It may harm life."}
 
 var i
 var j
@@ -25,6 +28,11 @@ var cellEffect = "Nothing"
 @onready var juicyLabel = load("res://scene/JuicyLabel.tscn")
 
 func _ready():
+	if hasHourglass:
+		var hourglass = load("res://scene/Hourglass.tscn")
+		var h = hourglass.instantiate()
+		h.setTimer(hourglassTimer)
+		add_child(h)
 	if playIdle: 
 		$AnimationPlayerBuilding.speed_scale = randf_range(0.9,1.1)
 		$AnimationPlayerBuilding.play("idle")
@@ -46,6 +54,7 @@ func selfDestruct(type):
 func updateTooltip():
 	var updatedDescription = description
 	updatedDescription += getTotalStat()
+	updatedDescription += getCellEffect()
 	$Tooltip.tooltip_text = updatedDescription
 
 func getTotalStat():
@@ -59,6 +68,12 @@ func getTotalStat():
 			returnStat += "\n"+plus+str(totalStat[n])+" "+n
 	return returnStat
 
+func getCellEffect():
+	var returned = ""
+	if cellEffect != "Nothing":
+		returned = "\n"+effectDescription[cellEffect]
+	return returned
+
 func popLabel(text):
 	var l = juicyLabel.instantiate()
 	l.playAnimation("UP")
@@ -70,7 +85,18 @@ func cleanParticules():
 		if n is CPUParticles2D:
 			n.queue_free()
 
-func applyCellEffect(_myEffect):
+func applyCellEffect(myEffect):
+	if myEffect!=cellEffect:
+		applyEffectModifier(myEffect)
+		match myEffect:
+			"Heat":
+				var particules = load("res://scene/HeatParticules.tscn")
+				var p = particules.instantiate()
+				add_child(p)
+		cellEffect = myEffect
+		updateTooltip()
+
+func applyEffectModifier(_effectName):
 	pass
 
 func _on_tooltip_mouse_entered():

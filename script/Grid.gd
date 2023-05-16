@@ -78,6 +78,7 @@ func fillInitialGrid() -> void:
 
 
 func gridUpdate(x,y,type): #pops a building of type at [x,y]
+	await get_tree().create_timer(0.3).timeout
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
@@ -103,7 +104,8 @@ func calculateRessources():
 			build.getTotalStat()
 			recalculatedRessource[n] += build.totalStat[n]
 	GameState.fillRessource(recalculatedRessource)
-	if GameState.checkPop: GameState.calculatePop()
+	if GameState.checkPop: 
+		GameState.calculatePop()
 	RadioDiffusion.updateTopUICall()
 
 func recalculateEffect():
@@ -122,13 +124,11 @@ func recalculateEffect():
 func applyEffect():
 	for n in get_children():
 		match effectGrid[n.i][n.j]:
-			"Heat":
-				var heatParticle = load("res://scene/HeatParticules.tscn")
-				var h = heatParticle.instantiate()
-				n.add_child(h)
-				n.applyCellEffect("Heat")
 			"Nothing":
+				n.applyCellEffect("Nothing")
 				n.cleanParticules()
+			_:
+				n.applyCellEffect(effectGrid[n.i][n.j])
 
 func cleanNode():
 	for n in get_children():

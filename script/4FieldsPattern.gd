@@ -1,9 +1,9 @@
 extends GenericPattern
 
-var sprites = [preload('res://asset/sprite/upper_left.png'),
-			preload('res://asset/sprite/upper_right.png'),
-			preload('res://asset/sprite/lower_right.png'),
-			preload('res://asset/sprite/lower_left.png')] # 1 : upper left, 2 upper right, 3 lower right, 4 lower left
+var sprites = [preload('res://asset/sheet/upper_left.png'),
+			preload('res://asset/sheet/upper_right.png'),
+			preload('res://asset/sheet/lower_right.png'),
+			preload('res://asset/sheet/lower_left.png')] # 1 : upper left, 2 upper right, 3 lower right, 4 lower left
 
 var list_coords = [] # 1 : upper left, 2 upper right, 3 lower right, 4 lower left
 

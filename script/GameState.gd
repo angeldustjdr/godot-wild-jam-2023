@@ -8,10 +8,12 @@ func actionnable_on():
 func actionnable_off():
 	actionnable = false
 	
+signal transfertNbAction
 var nbAction = 0
 var checkPop = false
 func increaseNbAction():
 	nbAction = (nbAction+1)%2
+	transfertNbAction.emit()
 	if nbAction==0: checkPop = true
 	else: checkPop = false
 

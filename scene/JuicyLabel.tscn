@@ -57,10 +57,8 @@ _data = {
 
 [node name="JuicyLabel" type="Label"]
 z_index = 10
-offset_left = 40.0
-offset_top = 30.0
-offset_right = 80.0
-offset_bottom = 60.0
+offset_right = 40.0
+offset_bottom = 30.0
 theme = ExtResource("1_bs4bt")
 text = "++"
 script = ExtResource("1_ls5gl")

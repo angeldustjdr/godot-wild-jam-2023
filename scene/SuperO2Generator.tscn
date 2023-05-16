@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4t1fdr1ilywi"]
+[gd_scene load_steps=5 format=3 uid="uid://b4t1fdr1ilywi"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_65x5b"]
-[ext_resource type="Texture2D" uid="uid://bf41mjler7057" path="res://asset/sheet/superO2-sheet.png" id="2_23q8v"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_fqr5i"]
+[ext_resource type="Texture2D" uid="uid://cc5m1mtcal5vq" path="res://asset/sheet/poumons-sheet.png" id="3_2y18k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mq6i5"]
+resource_local_to_scene = true
+shader = ExtResource("2_fqr5i")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [node name="SuperO2" instance=ExtResource("1_65x5b")]
-description = "Somehow it purifies the air."
+description = "A weird machine that somehow purifies the air."
 base_stat = {
 "FOOD": 0,
 "O2": 6,
@@ -13,4 +23,5 @@ base_stat = {
 }
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("2_23q8v")
+material = SubResource("ShaderMaterial_mq6i5")
+texture = ExtResource("3_2y18k")
