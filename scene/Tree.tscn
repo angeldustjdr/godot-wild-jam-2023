@@ -1,19 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1pis7haq12vr"]
+[gd_scene load_steps=6 format=3 uid="uid://b1pis7haq12vr"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_w1hx2"]
 [ext_resource type="Script" path="res://script/Tree.gd" id="2_sdvdm"]
-[ext_resource type="Texture2D" uid="uid://csndg3jfh248p" path="res://asset/sheet/tree-sheet.png" id="3_10po4"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_ugomi"]
+[ext_resource type="Texture2D" uid="uid://bu7tc70pkgyoi" path="res://asset/sheet/tree-1-sheet.png" id="4_q8026"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l27tc"]
+resource_local_to_scene = true
+shader = ExtResource("3_ugomi")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [node name="Tree" instance=ExtResource("1_w1hx2")]
 script = ExtResource("2_sdvdm")
 description = "A beautiful Tree"
+playIdle = false
 base_stat = {
 "FOOD": 0,
 "O2": 1,
 "POP": 0,
 "WATER": 0
 }
-playIdle = false
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource("3_10po4")
+material = SubResource("ShaderMaterial_l27tc")
+texture = ExtResource("4_q8026")
