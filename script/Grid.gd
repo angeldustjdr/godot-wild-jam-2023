@@ -12,6 +12,7 @@ var rng = RandomNumberGenerator.new()
 var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"Heat" : preload("res://scene/HeatBuilding.tscn"),
 				"Pollution" : preload("res://scene/PollutedBuilding.tscn"),
+				"Spore" : preload("res://scene/SporeBuilding.tscn"),
 				"Empty" : preload("res://scene/Empty.tscn"),
 				"Farm" :  preload("res://scene/Farm.tscn"),
 				"Well" :  preload("res://scene/Well.tscn"),
@@ -20,9 +21,8 @@ var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"SuperFood" : preload("res://scene/SuperFoodGenerator.tscn"),
 				"SuperO2" : preload("res://scene/SuperO2Generator.tscn")}
 
-var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 1, "Pollution" : 1} # number of special buildings
-var genericBuildingChoiceWeight = {"Generic" : 90, "Heat" : 5, "Pollution" : 5} # probability of getting the initial generic building
-var possibleOutcomes = {"RAS" : 75, "LOCK" : 25} #probability of outcomes
+@export var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 2, "Pollution" : 2, "Spore" : 2} # number of special buildings
+@export var possibleOutcomes = {"RAS" : 50, "LOCK" : 25, "SWAP" : 25} #probability of outcomes
 var emptyGrid = Array()
 
 signal gridUpdated(x,y)
@@ -65,16 +65,10 @@ func fillInitialGrid() -> void:
 			grid[X_rng][Y_rng] = newBuilding
 			sourceEffectGrid[X_rng][Y_rng] = newBuilding.effect
 	
-	#fill with the other ones
-	var genericBuildingChoice = []
-	for g in genericBuildingChoiceWeight.keys():
-		for w in genericBuildingChoiceWeight[g]:
-			genericBuildingChoice.append(g)
 	for i in Xmax:
 		for j in Ymax:
 			if [i,j] not in alreadyFilled:
-				genericBuildingChoice.shuffle()
-				var newBuilding = popBuilding(genericBuildingChoice[0],i,j)
+				var newBuilding = popBuilding("Generic",i,j)
 				grid[i][j] = newBuilding
 				sourceEffectGrid[i][j] = newBuilding.effect
 	recalculateEffect()
@@ -127,18 +121,19 @@ func recalculateEffect():
 		for j in Ymax:
 			if bufferGrid[i][j].size() == 1 : effectGrid[i][j] = bufferGrid[i][j][0]
 			else :
-				if "Heat" in bufferGrid[i][j] :
-					if "Pollution" in bufferGrid[i][j]:
-						effectGrid[i][j] = "Smoke"
-					else :
-						effectGrid[i][j] = "Heat"
-				elif "Pollution" in bufferGrid[i][j]:
-					if "Heat" in bufferGrid[i][j]:
-						effectGrid[i][j] = "Smoke"
-					else :
-						effectGrid[i][j] = "Pollution"
-				else :
-					effectGrid[i][j] = "Nothing"
+				var uniqueSorted = []
+				for elem in bufferGrid[i][j]:
+					if elem not in uniqueSorted and elem!="Nothing": uniqueSorted.append(elem)
+					uniqueSorted.sort()
+				match uniqueSorted:
+					["Heat"]: effectGrid[i][j] = "Heat"
+					["Pollution"]: effectGrid[i][j] = "Pollution"
+					["Spore"]: effectGrid[i][j] = "Spore"
+					["Heat","Pollution"]: effectGrid[i][j] = "Smoke"
+					["Heat","Spore"]: effectGrid[i][j] = "Fertilizer"
+					["Pollution","Spore"]: effectGrid[i][j] = "Spore"
+					["Heat","Pollution","Spore"] : effectGrid[i][j] = "Meat"
+					_ : effectGrid[i][j] = "Nothing"
 	applyEffect()
 
 func applyEffect():
@@ -157,12 +152,39 @@ func generateOutcome():
 		for p in possibleOutcomes[o]:
 			outcome.append(o)
 	outcome.shuffle()
-	var i = randi_range(0,Xmax-1)
-	var j = randi_range(0,Ymax-1)
-	while grid[i][j].hasHourglass:
-		i = randi_range(0,Xmax-1)
-		j = randi_range(0,Ymax-1)
+	var ok = false
 	match outcome[0]:
 		"LOCK":
-			grid[i][j].setLock()
+			while not ok :
+				var i = getRandomI()
+				var j = getRandomJ()
+				if grid[i][j].hasHourglass: 
+					grid[i][j].setLock()
+					ok=true
+		"SWAP":
+			while not ok:
+				var i = getRandomI()
+				var j = getRandomJ()
+				var k = getRandomI()
+				var l = getRandomJ()
+				if [i,j]!=[k,l] and grid[i][j].swapable and grid[k][l].swapable:
+					grid[i][j].swap(k,l,tileSize)
+					grid[k][l].swap(i,j,tileSize)
+					await get_tree().create_timer(1).timeout
+					var bufferIJ = grid[i][j].duplicate()
+					var bufferKL = grid[k][l].duplicate()
+					grid[i][j] = bufferKL
+					grid[k][l] = bufferIJ
+					bufferIJ = sourceEffectGrid[i][j]
+					bufferKL = sourceEffectGrid[k][l]
+					sourceEffectGrid[i][j] = bufferKL
+					sourceEffectGrid[k][l] = bufferIJ
+					recalculateEffect()
+					calculateRessources()
+					ok = true
 		_ : pass
+		
+func getRandomI():
+	return randi_range(0,Xmax-1)
+func getRandomJ():
+	return randi_range(0,Ymax-1)

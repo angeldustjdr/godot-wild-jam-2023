@@ -20,12 +20,26 @@ func applyEffectModifier(effectName):
 	match effectName:
 		"Heat" :
 				modifier["FOOD"] += _heat_modifier_value
+				unsetHourglass()
 		"Pollution" :
 				modifier["FOOD"] = -5
+				unsetHourglass()
 		"Smoke" :
 				modifier["FOOD"] = -5
+				unsetHourglass()
+		"Fertilizer" :
+				modifier["FOOD"] = +3
+				unsetHourglass()
+		"Spore" :
+				modifier["FOOD"] = 0
+				unsetHourglass()
+		"Meat" :
+				modifier["FOOD"] = -5
+				hourglassTimer = 5
+				setHourglass()
 		"Nothing" :
 				modifier["FOOD"] = 0
+				unsetHourglass()
 	popLabel(getTotalStat())
 
 func setLock():

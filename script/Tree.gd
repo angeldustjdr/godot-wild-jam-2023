@@ -21,8 +21,21 @@ func applyEffectModifier(effectName):
 				setHourglass()
 		"Pollution" :
 				modifier["O2"] -= 5
+				unsetHourglass()
 		"Smoke" :
 				modifier["O2"] -= 5
+				hourglassTimer = 5
+				setHourglass()
+		"Spore" :
+				modifier["O2"] -= 5
+		"Fertilizer" :
+				modifier["O2"] -= 0
+				hourglassTimer = 5
+				setHourglass()
+		"Meat" :
+				modifier["O2"] -= 0
+				hourglassTimer = 5
+				setHourglass()
 		"Nothing" :
 				modifier["O2"] = 0
 				unsetHourglass()

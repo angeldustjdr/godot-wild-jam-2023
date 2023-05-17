@@ -24,6 +24,7 @@ base_stat = {
 "POP": 0,
 "WATER": 1
 }
+swapable = false
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_25j6i")

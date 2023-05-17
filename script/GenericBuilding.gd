@@ -25,10 +25,14 @@ var totalStat = {"POP" : 0,
 @export var hasHourglass = false
 @export var hourglassTimer = 50
 @export var locked = false
+@export var swapable = true
 
 @onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
 	"Pollution" : "The floor is covered with polluted water!",
-	"Smoke" : "Toxic smoke in the air!"}
+	"Smoke" : "Toxic smoke in the air!",
+	"Spore" : "Some weird spores float in the air!",
+	"Fertilizer" : "The crops grow better here for some reasons!",
+	"Meat" : "Something horrible tries to feed !"}
 
 var i
 var j
@@ -108,12 +112,18 @@ func applyCellEffect(myEffect):
 				particules = load("res://scene/PoisonParticules.tscn")
 			"Smoke":
 				particules = load("res://scene/SmokeParticules.tscn")
+			"Spore":
+				particules = load("res://scene/SporeParticules.tscn")
+			"Fertilizer":
+				particules = load("res://scene/EngraisParticules.tscn")	
+			"Meat":
+				particules = load("res://scene/MeatParticules.tscn")
 		if particules!=null:
 			var p = particules.instantiate()
 			add_child(p)
 		cellEffect = myEffect
 		updateTooltip()
-		firstTime = false
+		firstTime = false	
 
 func setHourglass():
 	hasHourglass = true
@@ -147,6 +157,13 @@ func getLocked():
 
 func applyEffectModifier(_effectName):
 	pass
+
+func swap(arrivee_x,arrivee_y,size):
+	i = arrivee_x
+	j = arrivee_y
+	cellEffect = "InTransition"
+	var tween = create_tween()
+	tween.tween_property(self, "position",Vector2(arrivee_x*size,arrivee_y*size),1).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
 func _on_tooltip_mouse_entered():
 	$Sprite.material.set_shader_parameter("width",2.)

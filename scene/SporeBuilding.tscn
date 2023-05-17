@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnlvggur1lm11"]
+
+[ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4odel"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_tlpoj"]
+[ext_resource type="Texture2D" uid="uid://b6tfghmd6r3pk" path="res://asset/sheet/spore_generator-sheet.png" id="3_xdvcm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3tj7"]
+resource_local_to_scene = true
+shader = ExtResource("2_tlpoj")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[node name="SporeBuilding" instance=ExtResource("1_4odel")]
+description = "A techno-organic that emits spores."
+effect = "Spore"
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_r3tj7")
+texture = ExtResource("3_xdvcm")
