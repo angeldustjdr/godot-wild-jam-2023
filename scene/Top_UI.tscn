@@ -21,63 +21,70 @@ offset_bottom = 68.0
 grow_horizontal = 2
 columns = 4
 
-[node name="Hbox" type="HBoxContainer" parent="Grid"]
+[node name="Vbox" type="VBoxContainer" parent="Grid"]
 custom_minimum_size = Vector2(100, 68)
 layout_mode = 2
 alignment = 1
 
-[node name="Food" type="Label" parent="Grid/Hbox"]
+[node name="Food" type="Label" parent="Grid/Vbox"]
 layout_mode = 2
 text = "Food"
+horizontal_alignment = 1
 
-[node name="Food_quantity" type="Label" parent="Grid/Hbox"]
+[node name="Food_quantity" type="ProgressBar" parent="Grid/Vbox"]
 layout_mode = 2
-text = "0"
+theme = ExtResource("1_0j54i")
+max_value = 20.0
 script = ExtResource("1_auiuf")
 ressourceType = "FOOD"
 
-[node name="Hbox2" type="HBoxContainer" parent="Grid"]
+[node name="Vbox2" type="VBoxContainer" parent="Grid"]
 custom_minimum_size = Vector2(100, 68)
 layout_mode = 2
 alignment = 1
 
-[node name="Water" type="Label" parent="Grid/Hbox2"]
+[node name="Water" type="Label" parent="Grid/Vbox2"]
 layout_mode = 2
 text = "Water"
+horizontal_alignment = 1
 
-[node name="Water_quantity" type="Label" parent="Grid/Hbox2"]
+[node name="Water_quantity" type="ProgressBar" parent="Grid/Vbox2"]
 layout_mode = 2
-text = "0"
+theme = ExtResource("1_0j54i")
+max_value = 20.0
 script = ExtResource("1_auiuf")
 ressourceType = "WATER"
 
-[node name="Hbox3" type="HBoxContainer" parent="Grid"]
+[node name="Vbox3" type="VBoxContainer" parent="Grid"]
 custom_minimum_size = Vector2(100, 68)
 layout_mode = 2
 alignment = 1
 
-[node name="O2" type="Label" parent="Grid/Hbox3"]
+[node name="O2" type="Label" parent="Grid/Vbox3"]
 layout_mode = 2
 text = "O2"
+horizontal_alignment = 1
 
-[node name="O2_quantity" type="Label" parent="Grid/Hbox3"]
+[node name="O2_quantity" type="ProgressBar" parent="Grid/Vbox3"]
 layout_mode = 2
-text = "0"
+theme = ExtResource("1_0j54i")
+max_value = 20.0
 script = ExtResource("1_auiuf")
 ressourceType = "O2"
 
-[node name="Hbox4" type="HBoxContainer" parent="Grid"]
+[node name="Vbox4" type="VBoxContainer" parent="Grid"]
 custom_minimum_size = Vector2(100, 68)
 layout_mode = 2
 alignment = 1
 
-[node name="Pop" type="Label" parent="Grid/Hbox4"]
+[node name="Pop" type="Label" parent="Grid/Vbox4"]
 layout_mode = 2
-text = "Pop"
+text = "Population"
+horizontal_alignment = 1
 
-[node name="Pop_quantity" type="Label" parent="Grid/Hbox4"]
+[node name="Pop_quantity" type="ProgressBar" parent="Grid/Vbox4"]
 layout_mode = 2
-text = "1000
-"
+theme = ExtResource("1_0j54i")
+max_value = 1000.0
 script = ExtResource("1_auiuf")
 ressourceType = "POP"

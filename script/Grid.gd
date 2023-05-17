@@ -100,6 +100,7 @@ func calculateRessources(): # GB : could be optimized by considering only modifi
 		for n in recalculatedRessource.keys():
 			build.getTotalStat()
 			recalculatedRessource[n] += build.totalStat[n]
+			recalculatedRessource[n] = clamp(recalculatedRessource[n],0,GameState.maxStat)
 	GameState.fillRessource(recalculatedRessource)
 	if GameState.checkPop: 
 		GameState.calculatePop()

@@ -78,11 +78,11 @@ func getTotalStat():
 	var returnStat = ""
 	for n in GameState.ressourceName:
 		if negativeStat: totalStat[n] = base_stat[n]+modifier[n]+patternModifier[n]
-		else : totalStat[n] = clamp(base_stat[n]+modifier[n]+patternModifier[n],0,100)
+		else : totalStat[n] = clamp(base_stat[n]+modifier[n]+patternModifier[n],0,GameState.maxStat)
 		if totalStat[n]!=0:
 			var plus = ""
 			if totalStat[n]>0: plus="+" 
-			returnStat += "\n"+plus+str(totalStat[n])+" "+n
+			returnStat += "\n"+plus+str(100*totalStat[n]/GameState.maxStat)+"% "+n
 	return returnStat
 
 func getCellEffect():

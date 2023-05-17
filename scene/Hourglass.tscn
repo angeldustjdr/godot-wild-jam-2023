@@ -80,6 +80,7 @@ _data = {
 }
 
 [node name="Hourglass" type="Label"]
+z_index = 10
 offset_left = 49.0
 offset_top = 43.0
 offset_right = 65.0
