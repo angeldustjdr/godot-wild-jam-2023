@@ -26,6 +26,6 @@ signal calculateRessourcesNeeded
 func calculateRessourcesCall():
 	calculateRessourcesNeeded.emit()
 
-signal generateOutcomeNeeded
-func generateOutcomeCall():
-	generateOutcomeNeeded.emit()
+signal generateOutcomeNeeded(i,j)
+func generateOutcomeCall(i,j):
+	generateOutcomeNeeded.emit(i,j)

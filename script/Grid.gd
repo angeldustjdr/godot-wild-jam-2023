@@ -22,7 +22,7 @@ var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"SuperO2" : preload("res://scene/SuperO2Generator.tscn")}
 
 @export var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 2, "Pollution" : 2, "Spore" : 2} # number of special buildings
-@export var possibleOutcomes = {"RAS" : 50, "LOCK" : 25, "SWAP" : 25} #probability of outcomes
+@export var possibleOutcomes = {"RAS" : 0, "LOCK" : 0, "SWAP" : 20, "TIMER" : 0} #probability of outcomes
 var emptyGrid = Array()
 
 signal gridUpdated(x,y)
@@ -81,10 +81,10 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
 	recalculateEffect()
 	calculateRessources()
-	GameState.actionnable_on()
 	GameState.increaseNbAction()
 	RadioDiffusion.cleanSelectedCall()
 	gridUpdated.emit(x,y)
+	GameState.actionnable_on()
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
@@ -146,7 +146,8 @@ func cleanNode():
 	for n in get_children():
 		n.queue_free()
 
-func generateOutcome():
+func generateOutcome(destr_i,destr_j):
+	GameState.actionnable_off()
 	var outcome = Array()
 	for o in possibleOutcomes.keys():
 		for p in possibleOutcomes[o]:
@@ -158,7 +159,7 @@ func generateOutcome():
 			while not ok :
 				var i = getRandomI()
 				var j = getRandomJ()
-				if grid[i][j].hasHourglass: 
+				if grid[i][j].hasHourglass == false: 
 					grid[i][j].setLock()
 					ok=true
 		"SWAP":
@@ -168,21 +169,34 @@ func generateOutcome():
 				var k = getRandomI()
 				var l = getRandomJ()
 				if [i,j]!=[k,l] and grid[i][j].swapable and grid[k][l].swapable:
-					grid[i][j].swap(k,l,tileSize)
-					grid[k][l].swap(i,j,tileSize)
-					await get_tree().create_timer(1).timeout
-					var bufferIJ = grid[i][j].duplicate()
-					var bufferKL = grid[k][l].duplicate()
-					grid[i][j] = bufferKL
-					grid[k][l] = bufferIJ
-					bufferIJ = sourceEffectGrid[i][j]
-					bufferKL = sourceEffectGrid[k][l]
-					sourceEffectGrid[i][j] = bufferKL
-					sourceEffectGrid[k][l] = bufferIJ
-					recalculateEffect()
-					calculateRessources()
-					ok = true
+					if [i,j]!=[destr_i,destr_j] and [k,l]!=[destr_i,destr_j]:
+						grid[i][j].swap(k,l,tileSize)
+						grid[k][l].swap(i,j,tileSize)
+						var bufferIJ = grid[i][j]
+						var bufferKL = grid[k][l]
+						grid[i][j].i = k
+						grid[i][j].j = l
+						grid[k][l].i = i
+						grid[k][l].j = j
+						grid[i][j] = bufferKL
+						grid[k][l] = bufferIJ
+						bufferIJ = sourceEffectGrid[i][j]
+						bufferKL = sourceEffectGrid[k][l]
+						sourceEffectGrid[i][j] = bufferKL
+						sourceEffectGrid[k][l] = bufferIJ
+						recalculateEffect()
+						calculateRessources()
+						ok = true
+		"TIMER":
+			while not ok:
+				var i = getRandomI()
+				var j = getRandomJ()
+				if grid[i][j].hasHourglass: 
+					grid[i][j].get_node("Hourglass").decreaseTimer()
+					grid[i][j].popLabel("-1 TURN")
+					ok=true
 		_ : pass
+	GameState.actionnable_on()
 		
 func getRandomI():
 	return randi_range(0,Xmax-1)

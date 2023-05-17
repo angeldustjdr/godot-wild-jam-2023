@@ -36,6 +36,7 @@ enabled=PackedStringArray()
 
 [gui]
 
+theme/lcd_subpixel_layout=0
 timers/tooltip_delay_sec=0.2
 
 [internationalization]

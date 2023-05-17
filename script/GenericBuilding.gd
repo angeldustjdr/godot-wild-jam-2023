@@ -49,6 +49,7 @@ func _ready():
 		$AnimationPlayerBuilding.play("idle")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
+	print(self,": ",str(i),str(j))
 
 func becomes_big():
 	self.is_big = true
@@ -62,8 +63,9 @@ func _on_input_event(_viewport, event, _shape_idx):
 
 func selfDestruct(type):
 	#print(i,j)
+	GameState.actionnable_off()
 	RadioDiffusion.gridUpdateCall(i,j,type)
-	RadioDiffusion.generateOutcomeCall()
+	RadioDiffusion.generateOutcomeCall(i,j)
 	queue_free()
 
 func updateTooltip():
@@ -138,6 +140,7 @@ func unsetHourglass():
 		$Hourglass.queue_free()
 
 func setLock():
+	unsetLock()
 	hasHourglass = true
 	hourglassTimer = 6
 	locked = true
@@ -159,11 +162,9 @@ func applyEffectModifier(_effectName):
 	pass
 
 func swap(arrivee_x,arrivee_y,size):
-	i = arrivee_x
-	j = arrivee_y
 	cellEffect = "InTransition"
 	var tween = create_tween()
-	tween.tween_property(self, "position",Vector2(arrivee_x*size,arrivee_y*size),1).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position",Vector2(arrivee_x*size,arrivee_y*size),0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
 func _on_tooltip_mouse_entered():
 	$Sprite.material.set_shader_parameter("width",2.)

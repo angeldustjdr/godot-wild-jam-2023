@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.307786, 0.000911165),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(40, -35)]
+"values": [Vector2(0, 0), Vector2(34, -34)]
 }
 
 [sub_resource type="Animation" id="Animation_k004l"]
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.307786, 0.000911165),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(40, 30)]
+"values": [Vector2(0, 0), Vector2(34, 34)]
 }
 
 [sub_resource type="Animation" id="Animation_n07sx"]
@@ -57,8 +57,9 @@ _data = {
 
 [node name="JuicyLabel" type="Label"]
 z_index = 10
+offset_top = -34.0
 offset_right = 40.0
-offset_bottom = 30.0
+offset_bottom = -4.0
 theme = ExtResource("1_bs4bt")
 text = "++"
 script = ExtResource("1_ls5gl")
