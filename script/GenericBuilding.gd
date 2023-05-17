@@ -49,7 +49,6 @@ func _ready():
 		$AnimationPlayerBuilding.play("idle")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
-	print(self,": ",str(i),str(j))
 
 func becomes_big():
 	self.is_big = true
