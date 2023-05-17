@@ -9,10 +9,14 @@ class_name GenericBuilding
 				"WATER" : 0,
 				"FOOD" : 0,
 				"O2" : 0}
-@export var modifier = {"POP" : 0,
+var modifier = {"POP" : 0,
 				"WATER" : 0,
 				"FOOD" : 0,
 				"O2" : 0}
+var patternModifier = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}				
 var totalStat = {"POP" : 0,
 				"WATER" : 0,
 				"FOOD" : 0,
@@ -68,8 +72,8 @@ func updateTooltip():
 func getTotalStat():
 	var returnStat = ""
 	for n in GameState.ressourceName:
-		if negativeStat: totalStat[n] = base_stat[n]+modifier[n]
-		else : totalStat[n] = clamp(base_stat[n]+modifier[n],0,100)
+		if negativeStat: totalStat[n] = base_stat[n]+modifier[n]+patternModifier[n]
+		else : totalStat[n] = clamp(base_stat[n]+modifier[n]+patternModifier[n],0,100)
 		if totalStat[n]!=0:
 			var plus = ""
 			if totalStat[n]>0: plus="+" 

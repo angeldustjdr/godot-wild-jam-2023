@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvwt2pd6xsvn7"]
 
-[ext_resource type="Theme" uid="uid://dkbcrw73g6705" path="res://asset/Theme.tres" id="1_bs4bt"]
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_bs4bt"]
 [ext_resource type="Script" path="res://script/JuicyLabel.gd" id="1_ls5gl"]
 
 [sub_resource type="Animation" id="Animation_nk3dw"]

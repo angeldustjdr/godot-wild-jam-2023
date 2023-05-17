@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjlqheo1hxrae"]
 
 [ext_resource type="Script" path="res://script/BuildMenu.gd" id="1_45w4o"]
-[ext_resource type="Theme" uid="uid://dkbcrw73g6705" path="res://asset/Theme.tres" id="1_ft1y2"]
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_ft1y2"]
 
 [node name="BuildMenu" type="VBoxContainer"]
 z_index = 11

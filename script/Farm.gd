@@ -11,7 +11,7 @@ func _on_input_event(_viewport, _event, _shape_idx):
 
 func applyPatternModifier(pattern):
 	if pattern is FourFieldsPattern:
-		modifier["FOOD"] += _big_modifier_value
+		patternModifier["FOOD"] = _big_modifier_value
 	else:
 		print("Farm:applyModifier:ERROR: pattern is unknown.")
 	popLabel(getTotalStat())
@@ -24,8 +24,8 @@ func applyEffectModifier(effectName):
 				modifier["FOOD"] = -5
 		"Smoke" :
 				modifier["FOOD"] = -5
-#		"Nothing" :
-#				modifier["FOOD"] = 0
+		"Nothing" :
+				modifier["FOOD"] = 0
 	popLabel(getTotalStat())
 
 func setLock():

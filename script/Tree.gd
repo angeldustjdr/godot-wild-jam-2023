@@ -5,7 +5,7 @@ var _big_modifier_value = 1
 
 func applyPatternModifier(pattern):
 	if pattern is FourTreesPattern:
-		modifier["O2"] += _big_modifier_value
+		patternModifier["O2"] += _big_modifier_value
 	else:
 		print("myTree:applyModifier:ERROR: pattern is unknown.")
 	popLabel(getTotalStat())
