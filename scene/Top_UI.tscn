@@ -34,7 +34,8 @@ horizontal_alignment = 1
 [node name="Food_quantity" type="ProgressBar" parent="Grid/Vbox"]
 layout_mode = 2
 theme = ExtResource("1_0j54i")
-max_value = 20.0
+max_value = 10.0
+allow_greater = true
 script = ExtResource("1_auiuf")
 ressourceType = "FOOD"
 
@@ -51,7 +52,8 @@ horizontal_alignment = 1
 [node name="Water_quantity" type="ProgressBar" parent="Grid/Vbox2"]
 layout_mode = 2
 theme = ExtResource("1_0j54i")
-max_value = 20.0
+max_value = 10.0
+allow_greater = true
 script = ExtResource("1_auiuf")
 ressourceType = "WATER"
 
@@ -68,7 +70,8 @@ horizontal_alignment = 1
 [node name="O2_quantity" type="ProgressBar" parent="Grid/Vbox3"]
 layout_mode = 2
 theme = ExtResource("1_0j54i")
-max_value = 20.0
+max_value = 10.0
+allow_greater = true
 script = ExtResource("1_auiuf")
 ressourceType = "O2"
 

@@ -26,6 +26,7 @@ base_stat = {
 }
 swapable = false
 outcomeAllowed = false
+particuleAllowed = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_l27tc")

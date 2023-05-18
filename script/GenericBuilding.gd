@@ -27,6 +27,7 @@ var totalStat = {"POP" : 0,
 @export var locked = false
 @export var swapable = true
 @export var outcomeAllowed = true
+@export var particuleAllowed = false
 
 @onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
 	"Pollution" : "The floor is covered with polluted water!",
@@ -47,6 +48,9 @@ var applicablePatterns = []
 var applicablePatternsValues = []
 
 func _ready():
+	var random = randf_range(0,100)
+	if random < 20 :
+		locked = true
 	if hasHourglass:
 		setHourglass()
 	if locked:
@@ -99,7 +103,11 @@ func _on_input_event(_viewport, event, _shape_idx):
 		if event is InputEventMouseButton and GameState.actionnable:
 			if event.button_index==MOUSE_BUTTON_LEFT:
 				GameState.actionnable_off()
-				selfDestruct("Empty")
+				GameState.actionnable_off()
+				createConfirmMenu(self)
+
+func createConfirmMenu(obj):
+	RadioDiffusion.createConfirmMenuCall(obj)
 
 func selfDestruct(type):
 	#print(i,j)
@@ -111,6 +119,9 @@ func selfDestruct(type):
 func updateTooltip():
 	var updatedDescription = description
 	updatedDescription += getTotalStat()
+	if getTotalStat() =="" : 
+		for n in base_stat.keys():
+			if base_stat[n]!=0: updatedDescription += "\nIt's supposed to produce "+n+" but it's not!"
 	updatedDescription += getCellEffect()
 	updatedDescription += getLocked()
 	$Tooltip.tooltip_text = updatedDescription
@@ -123,7 +134,7 @@ func getTotalStat():
 		if totalStat[n]!=0:
 			var plus = ""
 			if totalStat[n]>0: plus="+" 
-			returnStat += "\n"+plus+str(int(100*totalStat[n]/GameState.maxStat))+"% "+n
+			returnStat += "\n"+plus+str(int(100*totalStat[n]/(GameState.maxStat/2)))+"% "+n
 	return returnStat
 
 func getCellEffect():
@@ -148,23 +159,24 @@ func cleanParticules():
 func applyCellEffect(myEffect):
 	if myEffect!=cellEffect or firstTime:
 		applyEffectModifier(myEffect)
-		var particules = null
-		match myEffect:
-			"Heat":
-				particules = load("res://scene/HeatParticules.tscn")
-			"Pollution":
-				particules = load("res://scene/PoisonParticules.tscn")
-			"Smoke":
-				particules = load("res://scene/SmokeParticules.tscn")
-			"Spore":
-				particules = load("res://scene/SporeParticules.tscn")
-			"Fertilizer":
-				particules = load("res://scene/EngraisParticules.tscn")	
-			"Meat":
-				particules = load("res://scene/MeatParticules.tscn")
-		if particules!=null:
-			var p = particules.instantiate()
-			add_child(p)
+		if particuleAllowed:
+			var particules = null
+			match myEffect:
+				"Heat":
+					particules = load("res://scene/HeatParticules.tscn")
+				"Pollution":
+					particules = load("res://scene/PoisonParticules.tscn")
+				"Smoke":
+					particules = load("res://scene/SmokeParticules.tscn")
+				"Spore":
+					particules = load("res://scene/SporeParticules.tscn")
+				"Fertilizer":
+					particules = load("res://scene/EngraisParticules.tscn")	
+				"Meat":
+					particules = load("res://scene/MeatParticules.tscn")
+			if particules!=null:
+				var p = particules.instantiate()
+				add_child(p)
 		cellEffect = myEffect
 		updateTooltip()
 		firstTime = false	

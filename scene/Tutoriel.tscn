@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c86filsth2pik"]
+
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_47q81"]
+[ext_resource type="Script" path="res://script/DialogueText.gd" id="2_l7w11"]
+[ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="3_srdv8"]
+
+[node name="Tutoriel" type="Node2D"]
+
+[node name="Bottom_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 420.0
+offset_right = 544.0
+offset_bottom = 544.0
+theme = ExtResource("1_47q81")
+
+[node name="ColorRect" type="ColorRect" parent="Bottom_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[node name="DialogueText" type="Label" parent="Bottom_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = -36.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "toto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("2_l7w11")
+startingPoint = "tuto1"
+
+[node name="Timer" type="Timer" parent="Bottom_UI/DialogueText"]
+
+[node name="DialogueProgressBar" parent="Bottom_UI/DialogueText" instance=ExtResource("3_srdv8")]
+visible = true
+layout_mode = 0
+offset_left = 472.0
+offset_top = 72.0
+offset_right = 504.0
+offset_bottom = 104.0
+
+[connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
+[connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]

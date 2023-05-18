@@ -8,7 +8,6 @@ var maxValue
 func _ready():
 	match ressourceType:
 		"POP": maxValue = GameState.maxStatPop
-		_: self.max_value = GameState.maxStat
 	RadioDiffusion.connect("updateTopUINeeded",updateTopUI)
 	updateTopUI()
 
@@ -42,7 +41,7 @@ func checkcolor():
 		else :
 			self.set("theme_override_colors/font_color", Color(1,1,1))
 	else :
-		if self.value <= self.max_value/2 : 
+		if self.value <= self.max_value : 
 			self.set("theme_override_colors/font_color", Color(1,0,0))
 		else :
 			self.set("theme_override_colors/font_color", Color(1,1,1))
