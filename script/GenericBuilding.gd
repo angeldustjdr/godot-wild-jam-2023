@@ -65,7 +65,11 @@ func _on_input_event(_viewport, event, _shape_idx):
 		if event is InputEventMouseButton and GameState.actionnable:
 			if event.button_index==MOUSE_BUTTON_LEFT:
 				GameState.actionnable_off()
-				selfDestruct("Empty")
+				GameState.actionnable_off()
+				createConfirmMenu(self)
+
+func createConfirmMenu(obj):
+	RadioDiffusion.createConfirmMenuCall(obj)
 
 func selfDestruct(type):
 	#print(i,j)

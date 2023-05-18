@@ -6,6 +6,7 @@ var selected # hold the cell to build onto
 func _ready(): # signal connexion
 	RadioDiffusion.connect("cleanSelectionNeeded",cleanSelected)
 	RadioDiffusion.connect("createBuildMenuNeeded",createBuildMenu)
+	RadioDiffusion.connect("createConfirmMenuNeeded",createConfirmMenu)
 	RadioDiffusion.connect("popLabelNeeded",popLabel)
 	$Grid.connect("gridUpdated",checkPatterns)
 	
@@ -15,6 +16,12 @@ func _ready(): # signal connexion
 func createBuildMenu(obj):
 	selected = obj
 	var b = load("res://scene/BuildMenu.tscn").instantiate()
+	b.position = get_local_mouse_position()
+	add_child(b)
+	
+func createConfirmMenu(obj):
+	selected = obj
+	var b = load("res://scene/ConfirmMenu.tscn").instantiate()
 	b.position = get_local_mouse_position()
 	add_child(b)
 

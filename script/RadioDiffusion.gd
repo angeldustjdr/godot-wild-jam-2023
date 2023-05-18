@@ -13,6 +13,10 @@ func cleanSelectedCall():
 signal createBuildMenuNeeded(object)
 func createBuildMenuCall(obj):
 	createBuildMenuNeeded.emit(obj)
+	
+signal createConfirmMenuNeeded(object)
+func createConfirmMenuCall(obj):
+	createConfirmMenuNeeded.emit(obj)
 
 signal updateTopUINeeded()
 func updateTopUICall():
