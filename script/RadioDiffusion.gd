@@ -33,3 +33,7 @@ func generateOutcomeCall(i,j):
 signal nextDialogPlease(text)
 func nextDialogNeeded(text):
 	nextDialogPlease.emit(text)
+
+signal popLabelNeeded(pos,text,dir)
+func popLabelCall(pos,text,dir):
+	popLabelNeeded.emit(pos,text,dir)

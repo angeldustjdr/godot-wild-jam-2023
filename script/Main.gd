@@ -1,10 +1,12 @@
 extends Node2D
 
 var selected # hold the cell to build onto
+@onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
 
 func _ready(): # signal connexion
 	RadioDiffusion.connect("cleanSelectionNeeded",cleanSelected)
 	RadioDiffusion.connect("createBuildMenuNeeded",createBuildMenu)
+	RadioDiffusion.connect("popLabelNeeded",popLabel)
 	$Grid.connect("gridUpdated",checkPatterns)
 	
 	GameState.ressourceInit(1000,12,12,12)
@@ -25,3 +27,9 @@ func checkPatterns(i,j):
 
 func cleanSelected():
 	selected = null
+
+func popLabel(pos,text,dir):
+	var j = juicyLabel.instantiate()
+	add_child(j)
+	j.init(pos,text,dir)
+

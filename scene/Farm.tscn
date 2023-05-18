@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4fp6f"]
 [ext_resource type="Script" path="res://script/Farm.gd" id="2_m277t"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_kr3jd"]
-[ext_resource type="Texture2D" uid="uid://dgh5m3y0fmqnj" path="res://asset/sheet/crops-1-sheet.png" id="4_5hrgb"]
+[ext_resource type="Texture2D" uid="uid://bep42s64vwawe" path="res://asset/sheet/crops-1-sheet.png" id="4_5hrgb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yi5r"]
 resource_local_to_scene = true

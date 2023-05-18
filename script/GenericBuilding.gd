@@ -94,6 +94,7 @@ func getCellEffect():
 	return returned
 
 func popLabel(text):
+	RadioDiffusion.popLabelCall(self.global_position,text,"UP")
 #	var l = juicyLabel.instantiate()
 #	l.playAnimation("UP")
 #	l.text = text

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bdi2wh60pgfdt"]
 
-[ext_resource type="Texture2D" uid="uid://baem23ic0nufs" path="res://asset/floaty_64.png" id="1_oqasc"]
-[ext_resource type="Texture2D" uid="uid://tuwrhgchik8l" path="res://asset/sprite/tentacules.png" id="2_3g2cs"]
+[ext_resource type="Texture2D" uid="uid://cadpwjlmvnht1" path="res://asset/floaty_64.png" id="1_oqasc"]
+[ext_resource type="Texture2D" uid="uid://t028w6was367" path="res://asset/sprite/tentacules.png" id="2_3g2cs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3v85"]
 blend_mode = 1
@@ -16,6 +16,33 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_520g5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.290196)
+
+[sub_resource type="Animation" id="Animation_jpkm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_abpsf"]
 resource_name = "idle_tentacules"
@@ -44,33 +71,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 0.233258, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_jpkm5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:skew")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swxew"]

@@ -1,100 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvwt2pd6xsvn7"]
+[gd_scene load_steps=3 format=3 uid="uid://dvwt2pd6xsvn7"]
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_bs4bt"]
 [ext_resource type="Script" path="res://script/JuicyLabel.gd" id="1_ls5gl"]
 
-[sub_resource type="Animation" id="Animation_nk3dw"]
-resource_name = "JuicyLabelPop"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("JuicyLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.307786, 0.000911165),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(34, -34)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("JuicyLabel")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_k004l"]
-resource_name = "JuicyLabelPop_2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("JuicyLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.307786, 0.000911165),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(34, 34)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("JuicyLabel")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_n07sx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("JuicyLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(45, 20)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5w5el"]
-_data = {
-"JuicyLabelPop": SubResource("Animation_nk3dw"),
-"JuicyLabelPop_2": SubResource("Animation_k004l"),
-"RESET": SubResource("Animation_n07sx")
-}
-
 [node name="JuicyLabel" type="Label"]
 z_index = 10
-offset_left = 34.0
-offset_top = 34.0
-offset_right = 74.0
-offset_bottom = 64.0
+offset_right = 40.0
+offset_bottom = 30.0
 theme = ExtResource("1_bs4bt")
 text = "++"
 script = ExtResource("1_ls5gl")
-
-[node name="AnimationPlayerLabel" type="AnimationPlayer" parent="."]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_5w5el")
-}

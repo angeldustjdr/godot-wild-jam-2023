@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://8001k27dcfjx"]
 
 [ext_resource type="Script" path="res://script/GenericBuilding.gd" id="1_v8jsb"]
-[ext_resource type="Texture2D" uid="uid://cwv7xdmk2wb87" path="res://asset/sheet/building1-sheet.png" id="2_ihrt5"]
+[ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="2_ihrt5"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_jt4ha"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="3_4g578"]
-[ext_resource type="Texture2D" uid="uid://cd2esipto6stc" path="res://asset/sprite/chain.png" id="5_pgkn5"]
+[ext_resource type="Texture2D" uid="uid://bnv8uvlivrn0w" path="res://asset/sprite/chain.png" id="5_pgkn5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wq1gu"]
 resource_local_to_scene = true
