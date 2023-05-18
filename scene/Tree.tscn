@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_w1hx2"]
 [ext_resource type="Script" path="res://script/Tree.gd" id="2_sdvdm"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_ugomi"]
-[ext_resource type="Texture2D" uid="uid://c5qlo050wggj" path="res://asset/sheet/tree-1-sheet.png" id="4_q8026"]
+[ext_resource type="Texture2D" uid="uid://bfa3vdsasblvn" path="res://asset/sheet/tree-1-sheet.png" id="4_q8026"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l27tc"]
 resource_local_to_scene = true

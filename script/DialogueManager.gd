@@ -9,6 +9,7 @@ func _ready():
 func readDialogueFile(path):
 	var f = FileAccess
 	var rawDialogue = f.get_file_as_string(path)
+	rawDialogue = rawDialogue.replace("\r","")
 	rawDialogue = rawDialogue.split("\n")
 	for line in rawDialogue: 
 		if line != "":

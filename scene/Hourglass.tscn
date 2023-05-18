@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cfenhhhyixv68"]
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_ln803"]
-[ext_resource type="Texture2D" uid="uid://cafvty7lohumo" path="res://asset/sprite/hourglass.png" id="2_6kdwl"]
+[ext_resource type="Texture2D" uid="uid://cibcbkexfvtve" path="res://asset/sprite/hourglass.png" id="2_6kdwl"]
 [ext_resource type="Script" path="res://script/Hourglass.gd" id="2_rw7ih"]
 
 [sub_resource type="Animation" id="Animation_kder2"]
