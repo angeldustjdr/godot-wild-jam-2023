@@ -39,7 +39,7 @@ var j
 var cellEffect = "Nothing"
 @export var is_big = false
 var firstTime = true
-@onready var juicyLabel = load("res://scene/JuicyLabel.tscn")
+@onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
 
 func _ready():
 	if hasHourglass:
@@ -94,10 +94,11 @@ func getCellEffect():
 	return returned
 
 func popLabel(text):
-	var l = juicyLabel.instantiate()
-	l.playAnimation("UP")
-	l.text = text
-	add_child(l)
+#	var l = juicyLabel.instantiate()
+#	l.playAnimation("UP")
+#	l.text = text
+#	add_child(l)
+	pass
 
 func cleanParticules():
 	for n in get_children():

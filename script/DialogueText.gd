@@ -1,7 +1,7 @@
 extends Label
 
 @export var startingPoint = "start"
-@export var typingSpeed = 0.05
+@export var typingSpeed = 0.03
 
 var line = ""
 var nextLine = "end"

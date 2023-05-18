@@ -1,8 +1,7 @@
 extends Label
 
-func _on_animation_player_label_animation_finished(_anim_name):
-	queue_free()
+@onready var animation = $AnimationPlayerLabel
 
 func playAnimation(direction):
-	if direction=="UP" : $AnimationPlayerLabel.play("JuicyLabelPop")
-	if direction=="DOWN" : $AnimationPlayerLabel.play("JuicyLabelPop_2")
+	if direction=="UP" : animation.play("JuicyLabelPop")
+	if direction=="DOWN" : animation.play("JuicyLabelPop_2")

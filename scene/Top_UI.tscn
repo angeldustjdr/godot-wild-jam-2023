@@ -82,9 +82,10 @@ layout_mode = 2
 text = "Population"
 horizontal_alignment = 1
 
-[node name="Pop_quantity" type="ProgressBar" parent="Grid/Vbox4"]
+[node name="Pop_quantity" type="Label" parent="Grid/Vbox4"]
 layout_mode = 2
 theme = ExtResource("1_0j54i")
-max_value = 1000.0
+text = "0"
+horizontal_alignment = 1
 script = ExtResource("1_auiuf")
 ressourceType = "POP"
