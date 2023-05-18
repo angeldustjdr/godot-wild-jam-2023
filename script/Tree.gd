@@ -28,6 +28,7 @@ func applyEffectModifier(effectName):
 				setHourglass()
 		"Spore" :
 				modifier["O2"] -= 5
+				unsetHourglass()
 		"Fertilizer" :
 				modifier["O2"] -= 0
 				hourglassTimer = 5

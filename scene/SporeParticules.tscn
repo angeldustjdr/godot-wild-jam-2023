@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx7rl2v1uy4eh"]
 
-[ext_resource type="Texture2D" uid="uid://djfuf0wq2fxgs" path="res://asset/floaty_64.png" id="1_isalo"]
+[ext_resource type="Texture2D" uid="uid://v8gu2ue22ewm" path="res://asset/floaty_64.png" id="1_isalo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3v85"]
 blend_mode = 1

@@ -8,8 +8,8 @@
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="6_q8o6k"]
 [ext_resource type="Script" path="res://script/DialogueText.gd" id="7_1pdy4"]
 [ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="8_cws47"]
-[ext_resource type="Texture2D" uid="uid://cibcbkexfvtve" path="res://asset/sprite/hourglass.png" id="8_debgt"]
-[ext_resource type="Texture2D" uid="uid://bkg41p5peiyfq" path="res://asset/sprite/cycle.png" id="10_rj2fj"]
+[ext_resource type="Texture2D" uid="uid://dvl4yfsuasl43" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="Texture2D" uid="uid://332rav7quon3" path="res://asset/sprite/cycle.png" id="10_rj2fj"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k1vvl")

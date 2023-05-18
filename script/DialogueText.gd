@@ -13,7 +13,6 @@ func _ready():
 	RadioDiffusion.connect("nextDialogPlease",startDialogue)
 	waitBar.connect("maxReached",callNext)
 	if DialogueManager.isReady:
-		print(DialogueManager.Dialogues)
 		startDialogue(startingPoint)
 
 func startDialogue(which):

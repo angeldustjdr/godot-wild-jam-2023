@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4ft2sfu28omo"]
 
-[ext_resource type="Texture2D" uid="uid://u1jvjaoqh4la" path="res://asset/sprite/round.png" id="1_vnt4p"]
+[ext_resource type="Texture2D" uid="uid://0rfnpj0n3xbg" path="res://asset/sprite/round.png" id="1_vnt4p"]
 [ext_resource type="Script" path="res://script/DialogueProgressBar.gd" id="2_v6f3k"]
 
 [node name="DialogueProgressBar" type="TextureProgressBar"]

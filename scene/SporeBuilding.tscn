@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4odel"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_tlpoj"]
-[ext_resource type="Texture2D" uid="uid://rcyupagwwiqo" path="res://asset/sheet/spore_generator-sheet.png" id="3_xdvcm"]
+[ext_resource type="Texture2D" uid="uid://dmvtdearw3a18" path="res://asset/sheet/spore_generator-sheet.png" id="3_xdvcm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r3tj7"]
 resource_local_to_scene = true
