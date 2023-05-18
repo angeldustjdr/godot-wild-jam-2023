@@ -19,9 +19,9 @@ func startDialogue(which):
 	if which == "end" : return
 	waitBar.stopTimer()
 	isTyping = true
-	self.visible_characters = 0
 	line = DialogueManager.Dialogues[which][0]
 	nextLine = DialogueManager.Dialogues[which][1]
+	self.visible_characters = 0
 	self.text = line
 	timer.wait_time = typingSpeed
 	timer.start()
@@ -35,7 +35,7 @@ func _on_timer_timeout():
 func endLine():
 	self.visible_characters = line.length()
 	timer.stop()
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(1).timeout
 	isTyping = false
 	if nextLine!= "end": waitBar.startTimer()
 
@@ -45,8 +45,7 @@ func _on_gui_input(event):
 			if isTyping : 
 				endLine()
 			else : 
-				await get_tree().create_timer(0.1).timeout
-				startDialogue(nextLine)
+				callNext()
 
 func callNext():
 	startDialogue(nextLine)

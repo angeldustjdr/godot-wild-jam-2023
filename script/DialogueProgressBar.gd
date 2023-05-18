@@ -4,9 +4,9 @@ extends TextureProgressBar
 signal maxReached
 
 func startTimer():
-	if timer.is_stopped() : 
-		self.visible = true
-		timer.start()
+	stopTimer()
+	self.visible = true
+	timer.start()
 
 func stopTimer():
 	self.value = 0.

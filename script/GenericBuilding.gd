@@ -27,6 +27,7 @@ var totalStat = {"POP" : 0,
 @export var locked = false
 @export var swapable = true
 @export var outcomeAllowed = true
+@export var particuleAllowed = false
 
 @onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
 	"Pollution" : "The floor is covered with polluted water!",
@@ -43,6 +44,9 @@ var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
 
 func _ready():
+	var random = randf_range(0,100)
+	if random < 20 :
+		locked = true
 	if hasHourglass:
 		setHourglass()
 	if locked:
@@ -110,23 +114,24 @@ func cleanParticules():
 func applyCellEffect(myEffect):
 	if myEffect!=cellEffect or firstTime:
 		applyEffectModifier(myEffect)
-		var particules = null
-		match myEffect:
-			"Heat":
-				particules = load("res://scene/HeatParticules.tscn")
-			"Pollution":
-				particules = load("res://scene/PoisonParticules.tscn")
-			"Smoke":
-				particules = load("res://scene/SmokeParticules.tscn")
-			"Spore":
-				particules = load("res://scene/SporeParticules.tscn")
-			"Fertilizer":
-				particules = load("res://scene/EngraisParticules.tscn")	
-			"Meat":
-				particules = load("res://scene/MeatParticules.tscn")
-		if particules!=null:
-			var p = particules.instantiate()
-			add_child(p)
+		if particuleAllowed:
+			var particules = null
+			match myEffect:
+				"Heat":
+					particules = load("res://scene/HeatParticules.tscn")
+				"Pollution":
+					particules = load("res://scene/PoisonParticules.tscn")
+				"Smoke":
+					particules = load("res://scene/SmokeParticules.tscn")
+				"Spore":
+					particules = load("res://scene/SporeParticules.tscn")
+				"Fertilizer":
+					particules = load("res://scene/EngraisParticules.tscn")	
+				"Meat":
+					particules = load("res://scene/MeatParticules.tscn")
+			if particules!=null:
+				var p = particules.instantiate()
+				add_child(p)
 		cellEffect = myEffect
 		updateTooltip()
 		firstTime = false	

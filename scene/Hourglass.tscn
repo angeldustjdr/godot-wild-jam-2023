@@ -22,7 +22,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_ul3s7"]
 resource_name = "rotateHourglass"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,7 +96,6 @@ texture = ExtResource("2_6kdwl")
 
 [node name="AnimationPlayerHourglass" type="AnimationPlayer" parent="Hourglass"]
 root_node = NodePath("../..")
-autoplay = "rotateHourglass"
 libraries = {
 "": SubResource("AnimationLibrary_4w7up")
 }

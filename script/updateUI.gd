@@ -8,7 +8,6 @@ var maxValue
 func _ready():
 	match ressourceType:
 		"POP": maxValue = GameState.maxStatPop
-		_: self.max_value = GameState.maxStat
 	RadioDiffusion.connect("updateTopUINeeded",updateTopUI)
 	updateTopUI()
 

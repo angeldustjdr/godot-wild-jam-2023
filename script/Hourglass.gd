@@ -17,3 +17,4 @@ func setTimer(n):
 
 func decreaseTimer():
 	setTimer(turnLeft-1)
+	$Hourglass/AnimationPlayerHourglass.play("rotateHourglass")
