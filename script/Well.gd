@@ -1,6 +1,14 @@
 extends GenericBuilding
 class_name Well
 
+func _ready():
+	# Defining applicable patterns
+	self.applicablePatterns = ["IrrigatedPattern"]
+	self.applicablePatternsValues = {"FOOD":[0],
+									"WATER":[-1],
+									"O2":[0],
+									"POP":[0]}
+
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass
 

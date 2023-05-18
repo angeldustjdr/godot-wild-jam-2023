@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj5j2pi11jxhf"]
+
+[ext_resource type="Script" path="res://script/IrrigatedPattern.gd" id="1_sp12a"]
+
+[node name="IrrigatedPattern" type="Node2D"]
+script = ExtResource("1_sp12a")

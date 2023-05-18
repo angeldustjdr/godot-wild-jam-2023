@@ -35,9 +35,15 @@ func _ready():
 	fillInitialGrid()
 	calculateRessources()
 
+func getNeighbors(i,j): # North, East, South, West
+	return [self.getCell(i-1,j),self.getCell(i,j+1),self.getCell(i+1,j),self.getCell(i,j-1)]
+
+func getNeighborsCoords(i,j): # North, East, South, West
+	return [[i-1,j],[i,j+1],[i+1,j],[i,j-1]]
+
 func getCell(i,j): # i = line number and j = column number
 	if (i >= self.Ymax or j >= self.Xmax):
-		return null
+		return self
 	else:
 		return self.grid[j][i]
 

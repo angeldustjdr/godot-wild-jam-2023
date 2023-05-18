@@ -38,9 +38,13 @@ var totalStat = {"POP" : 0,
 var i
 var j
 var cellEffect = "Nothing"
-@export var is_big = false
 var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
+
+# PATTERNS
+var appliedPatterns = []
+var applicablePatterns = []
+var applicablePatternsValues = []
 
 func _ready():
 	if hasHourglass:
@@ -53,8 +57,42 @@ func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 
-func becomes_big():
-	self.is_big = true
+# PATTERNS ####
+func isPatternApplied(pattern):
+	return pattern in self.appliedPatterns
+
+func isApplicablePattern(pattern):
+	for p in self.applicablePatterns:
+		if p in pattern.name:
+			return true
+	return false
+
+func getPatternModifierValue(pattern,stat):
+	if stat in self.applicablePatternsValues.keys():
+		var modifiers = self.applicablePatternsValues[stat]
+		if self.isApplicablePattern(pattern):
+			var index = self.applicablePatterns.find(pattern,0)
+			return modifiers[index]
+		else:
+			print("GenericBuilding:getPatternValue:ERROR: Pattern is not applicable.")
+
+func applyPattern(pattern):
+	if not self.isPatternApplied(pattern):
+		self.appliedPatterns.append(pattern)
+		for stat in patternModifier.keys():
+			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
+		popLabel(getTotalStat())
+
+func unApplyPattern(pattern):
+	if self.isPatternApplied(pattern):
+		self.appliedPatterns.erase(pattern)
+		for stat in patternModifier.keys():
+			patternModifier[stat] -= self.getPatternModifierValue(pattern,stat)
+		popLabel(getTotalStat())
+	else:
+		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
+		
+###############
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if not locked :

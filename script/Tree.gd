@@ -1,14 +1,13 @@
 extends GenericBuilding
 class_name myTree # Tree is already a class in godot4
 
-var _big_modifier_value = 1
-
-func applyPatternModifier(pattern):
-	if pattern is FourTreesPattern:
-		patternModifier["O2"] += _big_modifier_value
-	else:
-		print("myTree:applyModifier:ERROR: pattern is unknown.")
-	popLabel(getTotalStat())
+func _ready():
+	# Defining applicable patterns
+	self.applicablePatterns = ["4TreesPattern"]
+	self.applicablePatternsValues = {"FOOD":[1],
+									"WATER":[0],
+									"O2":[0],
+									"POP":[0]}
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass
