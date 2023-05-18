@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn3ct20vgo1ch"]
+[gd_scene load_steps=11 format=3 uid="uid://cn3ct20vgo1ch"]
 
 [ext_resource type="Script" path="res://script/Main.gd" id="1_k1vvl"]
 [ext_resource type="Script" path="res://script/Grid.gd" id="2_r7481"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dp4g4m3mh8wxk" path="res://scene/4FieldsPattern.tscn" id="4_t3bms"]
 [ext_resource type="PackedScene" uid="uid://d4m0itj0m7yts" path="res://scene/4TreesPattern.tscn" id="5_lkv8a"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="6_q8o6k"]
+[ext_resource type="Script" path="res://script/DialogueText.gd" id="7_1pdy4"]
+[ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="8_cws47"]
+[ext_resource type="Texture2D" uid="uid://cbtsedibpnrp7" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="Texture2D" uid="uid://c3crrfpyo6k0f" path="res://asset/sprite/cycle.png" id="10_rj2fj"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k1vvl")
@@ -37,16 +41,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.239216, 0.239216, 0.239216, 1)
 
-[node name="Label" type="Label" parent="Bottom_UI"]
+[node name="DialogueText" type="Label" parent="Bottom_UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = -80.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "here goes the dialog"
+mouse_filter = 1
+text = "toto"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2
+script = ExtResource("7_1pdy4")
+
+[node name="Timer" type="Timer" parent="Bottom_UI/DialogueText"]
+
+[node name="DialogueProgressBar" parent="Bottom_UI/DialogueText" instance=ExtResource("8_cws47")]
+visible = true
+layout_mode = 0
+offset_left = 408.0
+offset_top = 80.0
+offset_right = 440.0
+offset_bottom = 112.0
+
+[node name="PassTurnButton" type="Button" parent="Bottom_UI"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 20.0
+offset_right = 528.0
+offset_bottom = 59.0
+tooltip_text = "Wait a turn."
+focus_mode = 0
+icon = ExtResource("8_debgt")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RestartButton" type="Button" parent="Bottom_UI"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 68.0
+offset_right = 528.0
+offset_bottom = 107.0
+focus_mode = 0
+icon = ExtResource("10_rj2fj")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
+[connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]

@@ -22,7 +22,7 @@ var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"SuperO2" : preload("res://scene/SuperO2Generator.tscn")}
 
 @export var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 2, "Pollution" : 2, "Spore" : 2} # number of special buildings
-@export var possibleOutcomes = {"RAS" : 25, "LOCK" : 25, "SWAP" : 25, "TIMER" : 25} #probability of outcomes
+@export var possibleOutcomes = {"RAS" : 30, "LOCK" : 25, "SWAP" : 25, "TIMER" : 20} #probability of outcomes
 var emptyGrid = Array()
 
 signal gridUpdated(x,y)
@@ -162,6 +162,7 @@ func generateOutcome(destr_i,destr_j):
 				var j = getRandomJ()
 				if grid[i][j].hasHourglass == false: 
 					grid[i][j].setLock()
+					RadioDiffusion.nextDialogNeeded("lock")
 					ok=true
 		"SWAP":
 			while not ok:
@@ -187,6 +188,7 @@ func generateOutcome(destr_i,destr_j):
 						sourceEffectGrid[k][l] = bufferIJ
 						recalculateEffect()
 						calculateRessources()
+						RadioDiffusion.nextDialogNeeded("swap")
 						ok = true
 		"TIMER":
 			while not ok:
@@ -195,8 +197,11 @@ func generateOutcome(destr_i,destr_j):
 				if grid[i][j].hasHourglass: 
 					grid[i][j].get_node("Hourglass").decreaseTimer()
 					grid[i][j].popLabel("-1 TURN")
+					RadioDiffusion.nextDialogNeeded("wait_turn")
 					ok=true
-		_ : pass
+		_ : 
+			var nb_variation = 2
+			RadioDiffusion.nextDialogNeeded("ras"+str(randi_range(1,nb_variation)))
 	GameState.actionnable_on()
 		
 func getRandomI():

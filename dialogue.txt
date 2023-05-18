@@ -1,0 +1,8 @@
+start/Let's get to work ! Destroy buildings by clicking on it./start2
+start2/You can then build on empty tiles./end
+
+lock/Something has become inaccessible.../end
+swap/What? The layout of the city just changed!/end
+wait_turn/I have a bad feeling about this./end
+ras1/Nothing bad happened./end
+ras2/The connected toaster went down. Nobody seems to care./end

@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+DialogueManager="*res://script/DialogueManager.gd"
 GameState="*res://script/GameState.gd"
 RadioDiffusion="*res://script/RadioDiffusion.gd"
 

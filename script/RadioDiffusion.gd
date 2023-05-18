@@ -29,3 +29,7 @@ func calculateRessourcesCall():
 signal generateOutcomeNeeded(i,j)
 func generateOutcomeCall(i,j):
 	generateOutcomeNeeded.emit(i,j)
+
+signal nextDialogPlease(text)
+func nextDialogNeeded(text):
+	nextDialogPlease.emit(text)
