@@ -16,8 +16,8 @@ func updateTopUI():
 	self.value = myRessource
 	if modified != 0 :
 		var j = juicyLabel.instantiate()
-		if modified>0 : j.text = "+"+str(modified)+"% "+ressourceType
-		else : j.text = str(modified)+"% "+ressourceType
+		if modified>0 : j.text = "+"+str(int(modified))+"% "+ressourceType
+		else : j.text = str(int(modified))+"% "+ressourceType
 		add_child(j)
 		j.playAnimation("DOWN")
 	checkcolor()

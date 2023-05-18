@@ -16,6 +16,7 @@ shader_parameter/add_margins = true
 [node name="HeatBuilding" instance=ExtResource("1_gq15e")]
 description = "A techno-organic building that emits heat."
 effect = "Heat"
+locked = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_f40ye")

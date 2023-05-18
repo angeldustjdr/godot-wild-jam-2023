@@ -44,6 +44,8 @@ var firstTime = true
 func _ready():
 	if hasHourglass:
 		setHourglass()
+	if locked:
+		setLock()
 	if playIdle: 
 		$AnimationPlayerBuilding.speed_scale = randf_range(0.9,1.1)
 		$AnimationPlayerBuilding.play("idle")
@@ -82,7 +84,7 @@ func getTotalStat():
 		if totalStat[n]!=0:
 			var plus = ""
 			if totalStat[n]>0: plus="+" 
-			returnStat += "\n"+plus+str(100*totalStat[n]/GameState.maxStat)+"% "+n
+			returnStat += "\n"+plus+str(int(100*totalStat[n]/GameState.maxStat))+"% "+n
 	return returnStat
 
 func getCellEffect():

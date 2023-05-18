@@ -16,6 +16,7 @@ shader_parameter/add_margins = true
 [node name="PollutedBuilding" instance=ExtResource("1_r3o7a")]
 description = "A techno-organic building with dripping polluted water."
 effect = "Pollution"
+locked = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_jihqy")
