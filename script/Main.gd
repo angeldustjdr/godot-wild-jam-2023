@@ -33,3 +33,6 @@ func popLabel(pos,text,dir):
 	add_child(j)
 	j.init(pos,text,dir)
 
+
+func _on_pass_turn_button_pressed():
+	GameState.increaseNbAction()

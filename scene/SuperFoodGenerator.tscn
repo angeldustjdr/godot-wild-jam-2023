@@ -22,6 +22,7 @@ base_stat = {
 "WATER": 0
 }
 hasHourglass = true
+outcomeAllowed = false
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_rc8j6")

@@ -9,10 +9,10 @@ func init(pos,myText,dir):
 
 func playAnimation(direction):
 	var tween = get_tree().create_tween()
-	var sign
-	if direction=="UP" : sign = -1
-	if direction=="DOWN" : sign = 1
-	tween.tween_property(self, "global_position", self.global_position+Vector2(34,sign*34), animationTime)
+	var mySign
+	if direction=="UP" : mySign = -1
+	if direction=="DOWN" : mySign = 1
+	tween.tween_property(self, "global_position", self.global_position+Vector2(34,mySign*34), animationTime)
 	await get_tree().create_timer(animationTime).timeout
 	queue_free()
 

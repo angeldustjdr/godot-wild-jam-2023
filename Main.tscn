@@ -89,6 +89,7 @@ offset_left = 480.0
 offset_top = 68.0
 offset_right = 528.0
 offset_bottom = 107.0
+tooltip_text = "Reset the game"
 focus_mode = 0
 icon = ExtResource("10_rj2fj")
 icon_alignment = 1
@@ -96,3 +97,4 @@ expand_icon = true
 
 [connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
 [connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]
+[connection signal="pressed" from="Bottom_UI/PassTurnButton" to="." method="_on_pass_turn_button_pressed"]

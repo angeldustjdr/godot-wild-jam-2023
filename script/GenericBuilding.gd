@@ -26,6 +26,7 @@ var totalStat = {"POP" : 0,
 @export var hourglassTimer = 50
 @export var locked = false
 @export var swapable = true
+@export var outcomeAllowed = true
 
 @onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
 	"Pollution" : "The floor is covered with polluted water!",
@@ -66,7 +67,7 @@ func selfDestruct(type):
 	#print(i,j)
 	GameState.actionnable_off()
 	RadioDiffusion.gridUpdateCall(i,j,type)
-	RadioDiffusion.generateOutcomeCall(i,j)
+	if outcomeAllowed : RadioDiffusion.generateOutcomeCall(i,j)
 	queue_free()
 
 func updateTooltip():
