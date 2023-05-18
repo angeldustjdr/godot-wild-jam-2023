@@ -96,7 +96,7 @@ func getTotalStat():
 		if totalStat[n]!=0:
 			var plus = ""
 			if totalStat[n]>0: plus="+" 
-			returnStat += "\n"+plus+str(int(100*totalStat[n]/GameState.maxStat))+"% "+n
+			returnStat += "\n"+plus+str(int(100*totalStat[n]/(GameState.maxStat/2)))+"% "+n
 	return returnStat
 
 func getCellEffect():
