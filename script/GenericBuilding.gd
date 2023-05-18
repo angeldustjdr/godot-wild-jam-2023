@@ -77,6 +77,9 @@ func selfDestruct(type):
 func updateTooltip():
 	var updatedDescription = description
 	updatedDescription += getTotalStat()
+	if getTotalStat() =="" : 
+		for n in base_stat.keys():
+			if base_stat[n]!=0: updatedDescription += "\nIt's supposed to produce "+n+" but it's not!"
 	updatedDescription += getCellEffect()
 	updatedDescription += getLocked()
 	$Tooltip.tooltip_text = updatedDescription
