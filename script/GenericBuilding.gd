@@ -43,7 +43,9 @@ var j
 var cellEffect = "Nothing"
 var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
-@onready var dust = $AnimationPlayerDestroy.get_node("DustParticule")
+@onready var animationDestroyNode = preload("res://scene/AnimationPlayerDestroy.tscn")
+@export var destroyable = true
+var dust
 
 # PATTERNS
 var appliedPatterns = []
@@ -61,6 +63,10 @@ func _ready():
 	if playIdle: 
 		$AnimationPlayerBuilding.speed_scale = randf_range(0.9,1.1)
 		$AnimationPlayerBuilding.play("idle")
+	if destroyable: 
+		var ad = animationDestroyNode.instantiate()
+		add_child(ad)
+		dust = $AnimationPlayerDestroy.get_node("DustParticule")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 
@@ -115,12 +121,13 @@ func createConfirmMenu(obj):
 func selfDestruct(type):
 	#print(i,j)
 	GameState.actionnable_off()
-	if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
-	dust.global_position = self.global_position + Vector2(34,68)
-	dust.visible = true
-	$AnimationPlayerDestroy.play("destroy"+animationDestroy)
-	await $AnimationPlayerDestroy.animation_finished
-	dust.visible = false
+	if destroyable:
+		if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
+		dust.global_position = self.global_position + Vector2(34,68)
+		dust.visible = true
+		$AnimationPlayerDestroy.play("destroy"+animationDestroy)
+		await $AnimationPlayerDestroy.animation_finished
+		dust.visible = false
 	RadioDiffusion.gridUpdateCall(i,j,type)
 	if outcomeAllowed : RadioDiffusion.generateOutcomeCall(i,j)
 	queue_free()

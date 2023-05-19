@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bdi2wh60pgfdt"]
 
-[ext_resource type="Texture2D" uid="uid://v8gu2ue22ewm" path="res://asset/floaty_64.png" id="1_oqasc"]
-[ext_resource type="Texture2D" uid="uid://dse0i1td0xokj" path="res://asset/sprite/tentacules.png" id="2_3g2cs"]
+[ext_resource type="Texture2D" uid="uid://6r70fhdqdebk" path="res://asset/floaty_64.png" id="1_oqasc"]
+[ext_resource type="Texture2D" uid="uid://2pgwowqrmva1" path="res://asset/sprite/tentacules.png" id="2_3g2cs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p3v85"]
 blend_mode = 1
