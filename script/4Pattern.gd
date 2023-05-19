@@ -89,5 +89,5 @@ func apply(grid):
 	if self.checkAlreadySquare(grid):
 		for i in range(0,len(self.coords)):
 			var cell = grid.getCell(self.coords[i][0],self.coords[i][1])
-			cell.applyPattern(self)
-			cell.updateSprite(i)
+			cell.applyPattern(self,i)
+			cell.updateSprite()

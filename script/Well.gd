@@ -18,10 +18,11 @@ func _ready():
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass
 
-func updateSprite(pos=-1):
+func updateSprite():
 	if not self.resetSprite():
+		var p = self.computePosition()
 		if self.isPatternAppliedName("IrrigatedPattern"):
-			self.updateSpriteName("IrrigatedPattern",pos)
+			self.updateSpriteName("IrrigatedPattern",p)
 		else:
 			print("Well:updateSprite:WARNING: Unknown pattern combination.")
 

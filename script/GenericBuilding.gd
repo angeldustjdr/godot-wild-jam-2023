@@ -52,6 +52,7 @@ var dust
 signal buildingDestruction(i,j)
 var sprites = {}
 var appliedPatterns = []
+var pos = []
 var appliedPatternsNames = []
 var applicablePatterns = []
 var applicablePatternsValues = []
@@ -83,11 +84,11 @@ func resetSprite():
 		return true
 	return false
 
-func updateSpriteName(name, pos=-1):
-	if pos != -1:
-		self.get_node("Sprite").texture = load(self.sprites[name][pos])
+func updateSpriteName(given_name, p=-1):
+	if p == -1:
+		self.get_node("Sprite").texture = load(self.sprites[given_name])
 	else:
-		self.get_node("Sprite").texture = load(self.sprites[name])
+		self.get_node("Sprite").texture = load(self.sprites[given_name][p])
 
 func applyBaseSprite():
 	self.get_node("Sprite").texture = load(self.sprites["base"])
@@ -113,10 +114,15 @@ func getPatternModifierValue(pattern,stat):
 		else:
 			print("GenericBuilding:getPatternValue:ERROR: Pattern is not applicable.")
 
-func applyPattern(pattern):
+func computePosition():
+	return self.pos.max()
+
+func applyPattern(pattern,p=-1):
 	if not self.isPatternAppliedName(pattern.name):
 		self.appliedPatternsNames.append(pattern.name)
 		self.appliedPatterns.append(pattern.duplicate())
+		self.appliedPatterns[-1].coords = pattern.coords.duplicate()
+		self.pos.append(p)
 		for stat in patternModifier.keys():
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
@@ -125,8 +131,9 @@ func applyPattern(pattern):
 func unApplyPattern(pattern):
 	if self.isPatternAppliedName(pattern.name):
 		var index = self.appliedPatternsNames.find(pattern.name,0)
-		self.appliedPatternsNames.remove(index)
-		self.appliedPatterns.remove(index)
+		self.appliedPatternsNames.remove_at(index)
+		self.appliedPatterns.remove_at(index)
+		self.pos.remove_at(index)
 		for stat in patternModifier.keys():
 			patternModifier[stat] -= self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
@@ -145,9 +152,9 @@ func createConfirmMenu(obj):
 	RadioDiffusion.createConfirmMenuCall(obj)
 
 func selfDestruct(type):
+	buildingDestruction.emit(self.j,self.i)
 	GameState.actionnable_off()
 	if destroyable:
-		buildingDestruction.emit(self.j,self.i)
 		if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
 		dust.global_position = self.global_position + Vector2(34,68)
 		dust.visible = true

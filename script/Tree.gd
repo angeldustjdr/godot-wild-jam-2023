@@ -12,18 +12,19 @@ func _ready():
 	self.applicablePatternsValues = {"FOOD":[0,0],
 									"WATER":[0,0],
 									"O2":[1,0],
-									"POP":[0,0]}								
+									"POP":[0,0]}
 	$AnimationPlayerBuilding.play("build")
 	await $AnimationPlayerBuilding.animation_finished
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 
-func updateSprite(pos=-1):
+func updateSprite():
 	if not self.resetSprite():
+		var p = self.computePosition()
 		if self.isPatternAppliedName("4TreesPattern") or (self.isPatternAppliedName("4TreesPattern") and  self.isPatternAppliedName("PermaCulturePattern")):
-			self.updateSpriteName("4TreesPattern",pos)
+			self.updateSpriteName("4TreesPattern",p)
 		elif self.isPatternAppliedName("PermaCulturePattern"):
-			self.updateSpriteName("base",pos)
+			self.updateSpriteName("base",p)
 		else:
 			print("Tree:updateSprite:WARNING: Unknown pattern combination.")
 

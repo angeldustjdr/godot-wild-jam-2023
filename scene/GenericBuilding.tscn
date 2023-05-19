@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="2_ihrt5"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_jt4ha"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="3_4g578"]
-[ext_resource type="Texture2D" uid="uid://dd5i6sdpmj1pr" path="res://asset/sprite/chain.png" id="5_pgkn5"]
+[ext_resource type="Texture2D" uid="uid://onh3o58ooacv" path="res://asset/sprite/chain.png" id="5_pgkn5"]
 [ext_resource type="PackedScene" uid="uid://b4hs7wnnbndbx" path="res://scene/AnimationPlayerDestroy.tscn" id="6_6vore"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wq1gu"]
@@ -58,34 +58,6 @@ tracks/2/keys = {
 "values": [Vector2(34, 34)]
 }
 
-[sub_resource type="Animation" id="Animation_lhjvy"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 0.287175, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_ogrl4"]
 resource_name = "build"
 length = 0.5
@@ -112,6 +84,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(34, 68), Vector2(34, 34)]
+}
+
+[sub_resource type="Animation" id="Animation_lhjvy"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.287175, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ksdrg"]

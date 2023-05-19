@@ -28,7 +28,7 @@ var emptyGrid = Array()
 signal gridUpdated(x,y)
 
 func _ready():
-	#rng.seed = 0
+	rng.seed = 0
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
 	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)
@@ -37,9 +37,12 @@ func _ready():
 	calculateRessources()
 
 func unApplyPatterns(i,j):
-	for pattern in self.getCell(i,j).appliedPatterns:
-		for coordinates in pattern.coords:
-			self.getCell(coordinates[0],coordinates[1]).unApplyPattern(pattern)
+	var aPatterns = self.getCell(i,j).appliedPatterns.duplicate(true)
+	for pattern in aPatterns:
+		for k in range(0,len(pattern.coords)):
+			var cell = self.getCell(pattern.coords[k][0],pattern.coords[k][1])
+			cell.unApplyPattern(pattern)
+			cell.updateSprite()
 
 func getNeighbors(i,j): # North, East, South, West
 	return [self.getCell(i-1,j),self.getCell(i,j+1),self.getCell(i+1,j),self.getCell(i,j-1)]
