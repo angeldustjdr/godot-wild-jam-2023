@@ -28,12 +28,18 @@ var emptyGrid = Array()
 signal gridUpdated(x,y)
 
 func _ready():
+	#rng.seed = 0
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
 	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)
 	RadioDiffusion.connect("generateOutcomeNeeded",generateOutcome)
 	fillInitialGrid()
 	calculateRessources()
+
+func unApplyPatterns(i,j):
+	for pattern in self.getCell(i,j).appliedPatterns:
+		for coordinates in pattern.coords:
+			self.getCell(coordinates[0],coordinates[1]).unApplyPattern(pattern)
 
 func getNeighbors(i,j): # North, East, South, West
 	return [self.getCell(i-1,j),self.getCell(i,j+1),self.getCell(i+1,j),self.getCell(i,j-1)]
@@ -97,6 +103,7 @@ func popBuilding(type,x,y):
 	b.global_position = Vector2(x*tileSize,y*tileSize)
 	b.i = x
 	b.j = y
+	b.connect("buildingDestruction",unApplyPatterns)
 	add_child(b)
 	return b
 

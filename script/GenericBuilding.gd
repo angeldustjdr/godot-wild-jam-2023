@@ -49,6 +49,7 @@ var firstTime = true
 var dust
 
 # PATTERNS
+signal buildingDestruction(i,j)
 var sprites = {}
 var appliedPatterns = []
 var appliedPatternsNames = []
@@ -125,8 +126,6 @@ func unApplyPattern(pattern):
 	if self.isPatternAppliedName(pattern.name):
 		var index = self.appliedPatternsNames.find(pattern.name,0)
 		self.appliedPatternsNames.remove(index)
-		var pattern_to_remove_obj = self.appliedPatterns[index]
-		var coordinates_of_pattern = pattern_to_remove_obj.coords
 		self.appliedPatterns.remove(index)
 		for stat in patternModifier.keys():
 			patternModifier[stat] -= self.getPatternModifierValue(pattern,stat)
@@ -148,6 +147,7 @@ func createConfirmMenu(obj):
 func selfDestruct(type):
 	GameState.actionnable_off()
 	if destroyable:
+		buildingDestruction.emit(self.j,self.i)
 		if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
 		dust.global_position = self.global_position + Vector2(34,68)
 		dust.visible = true
