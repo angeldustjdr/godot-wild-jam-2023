@@ -214,7 +214,7 @@ func generateOutcome(destr_i,destr_j):
 					return
 				var i = getRandomI()
 				var j = getRandomJ()
-				if grid[i][j].hasHourglass: 
+				if grid[i][j].hasHourglass and [i,j]!=[destr_i,destr_j]: 
 					grid[i][j].get_node("Hourglass").decreaseTimer()
 					grid[i][j].popLabel("-1 TURN")
 					RadioDiffusion.nextDialogNeeded("wait_turn")

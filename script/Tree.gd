@@ -12,7 +12,11 @@ func _ready():
 	self.applicablePatternsValues = {"FOOD":[0,0],
 									"WATER":[0,0],
 									"O2":[1,0],
-									"POP":[0,0]}
+									"POP":[0,0]}								
+	$AnimationPlayerBuilding.play("build")
+	await $AnimationPlayerBuilding.animation_finished
+	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
+	updateTooltip()
 
 func updateSprite(pos=-1):
 	if not self.resetSprite():

@@ -10,6 +10,10 @@ func _ready():
 									"WATER":[-1],
 									"O2":[0],
 									"POP":[0]}
+	$AnimationPlayerBuilding.play("build")
+	await $AnimationPlayerBuilding.animation_finished
+	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
+	updateTooltip()
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass

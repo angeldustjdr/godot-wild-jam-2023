@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_2foch"]
 [ext_resource type="Script" path="res://script/Empty.gd" id="2_mvp6a"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_ye8ws"]
-[ext_resource type="Texture2D" uid="uid://i00lf8a07afe" path="res://asset/sheet/empty-space-sheet.png" id="4_7kr6w"]
+[ext_resource type="Texture2D" uid="uid://bghw4x0wodvqu" path="res://asset/sheet/empty-space-sheet.png" id="4_7kr6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p7vs3"]
 resource_local_to_scene = true
@@ -20,6 +20,7 @@ description = "An empty space."
 playIdle = false
 lockable = false
 outcomeAllowed = false
+destroyable = false
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_p7vs3")

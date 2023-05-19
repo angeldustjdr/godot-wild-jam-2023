@@ -1,8 +1,6 @@
 extends GenericBuilding
 class_name Farm
 
-var _heat_modifier_value = -5
-
 func _ready():
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/crops-1-sheet.png",
@@ -20,6 +18,10 @@ func _ready():
 									"WATER":[0,0],
 									"O2":[0,0],
 									"POP":[0,0]}
+	$AnimationPlayerBuilding.play("build")
+	await $AnimationPlayerBuilding.animation_finished
+	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
+	updateTooltip()
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass
@@ -39,7 +41,7 @@ func updateSprite(pos=-1):
 func applyEffectModifier(effectName):
 	match effectName:
 		"Heat" :
-				modifier["FOOD"] += _heat_modifier_value
+				modifier["FOOD"] = -5
 				unsetHourglass()
 		"Pollution" :
 				modifier["FOOD"] = -5
