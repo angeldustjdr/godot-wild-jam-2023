@@ -14,6 +14,7 @@ shader_parameter/add_margins = true
 
 [node name="SporeBuilding" instance=ExtResource("1_4odel")]
 effect = "Spore"
+animationDestroy = "Spore"
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_r3tj7")

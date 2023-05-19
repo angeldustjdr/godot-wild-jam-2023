@@ -29,6 +29,7 @@ var totalStat = {"POP" : 0,
 @export var swapable = true
 @export var outcomeAllowed = true
 @export var particuleAllowed = false
+@export var animationDestroy = ""
 
 @onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
 	"Pollution" : "The floor is covered with polluted water!",
@@ -114,9 +115,10 @@ func createConfirmMenu(obj):
 func selfDestruct(type):
 	#print(i,j)
 	GameState.actionnable_off()
+	if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
 	dust.global_position = self.global_position + Vector2(34,68)
 	dust.visible = true
-	$AnimationPlayerDestroy.play("destroy")
+	$AnimationPlayerDestroy.play("destroy"+animationDestroy)
 	await $AnimationPlayerDestroy.animation_finished
 	dust.visible = false
 	RadioDiffusion.gridUpdateCall(i,j,type)
