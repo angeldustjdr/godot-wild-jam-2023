@@ -1,9 +1,16 @@
 start/Let's get to work ! Destroy buildings by clicking on it./end
 lock/Something has become inaccessible.../end
 swap/What? The layout of the city just changed!/end
-wait_turn/I have a bad feeling about this./end
-ras1/Nothing bad happened./end
-ras2/The connected toaster went down. Nobody seems to care./end
+wait_turn/A timer has decreased./end
+ras/Nothing bad happened./end
+strangeNoise/A strange noise is heard. Let's hope it's not too bad./end
+pipes/Some pipings broke but nobody was injured./end
+toaster/The connected toaster went down. Nobody seems to care./end
+wifi/The wifi went down. A day of mourning has been declared./end
+bank/The bank system went down. Everyone's debt has been cleared./end
+ai/AI do not work anymore. Not a bad thing./end
+light/The lights went down. Let's get candles./end
+socialMedia/The Main Social Media went down. Now, where can we post those stories?/end
 tuto1/How To play :/tuto2
 tuto2/The goal is destroy those awful techno-organic buildings and replace them with sustainable ones,/tuto3
 tuto3/while still providing enough ressources for your people./tuto4
@@ -11,7 +18,7 @@ tuto4/Be careful though, as we lost the knowledge of what the building actually 
 tuto5/Some buildings have nasty effects and can affect adjacent constructions./tuto6
 tuto6/But you won't know until you destroy them./tuto7
 tuto7/Read the tooltips and act accordingly./tuto8
-tuto8/Good luck !/end
+tuto8/Good luck ! The clock is ticking.../end
 Heat/A techno-furnace has been destroyed!/end
 Pollution/A contaminated factory has been destroyed!/end
 Spore/A techno-spore farm has been destroyed!/end

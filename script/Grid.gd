@@ -22,7 +22,11 @@ var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"SuperO2" : preload("res://scene/SuperO2Generator.tscn")}
 
 @export var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 2, "Pollution" : 2, "Spore" : 2} # number of special buildings
-@export var possibleOutcomes = {"RAS" : 25, "LOCK" : 25, "SWAP" : 25, "TIMER" : 25} #probability of outcomes
+@export var possibleOutcomes = {"RAS" : 30, "LOCK" : 30, "SWAP" : 30, "TIMER" : 20} #probability of outcomes
+@onready var outcomeDialogueRAS = ["ras","toaster","strangeNoise","pipes","wifi","bank","ai","light","socialMedia"]
+@onready var outComeOnce = ["toaster","wifi","bank","ai","light","socialMedia"]
+
+
 var emptyGrid = Array()
 
 signal gridUpdated(x,y)
@@ -232,8 +236,10 @@ func generateOutcome(destr_i,destr_j):
 					RadioDiffusion.nextDialogNeeded("wait_turn")
 					ok=true
 		_ : 
-			var nb_variation = 2
-			RadioDiffusion.nextDialogNeeded("ras"+str(randi_range(1,nb_variation)))
+			outcomeDialogueRAS.shuffle()
+			var outcomeDialogue = outcomeDialogueRAS[0]
+			if outcomeDialogue in outComeOnce: outcomeDialogueRAS.erase(outcomeDialogue)
+			RadioDiffusion.nextDialogNeeded(outcomeDialogue)
 	GameState.actionnable_on()
 		
 func getRandomI():
