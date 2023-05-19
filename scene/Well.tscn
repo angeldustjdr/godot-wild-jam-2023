@@ -17,6 +17,7 @@ shader_parameter/add_margins = true
 [node name="Well" instance=ExtResource("1_day3t")]
 script = ExtResource("2_5bo8q")
 description = "A little Well"
+isHighTech = false
 playIdle = false
 base_stat = {
 "FOOD": 0,

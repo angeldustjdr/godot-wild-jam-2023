@@ -26,6 +26,10 @@ var ressource = {"POP" : 0,
 				"WATER" : 0,
 				"FOOD" : 0,
 				"O2" : 0}
+var ressourceHighTech = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}
 var ressourceName = ressource.keys()
 
 func ressourceInit(p,w,f,o):
@@ -37,6 +41,10 @@ func ressourceInit(p,w,f,o):
 func fillRessource(newRessource):
 	for elem in newRessource.keys():
 		ressource[elem] = newRessource[elem]
+		
+func fillHighTechRessource(newRessource):
+	for elem in newRessource.keys():
+		ressourceHighTech[elem] = newRessource[elem]		
 
 func calculatePop():
 	for elem in limit.keys():

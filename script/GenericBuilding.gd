@@ -2,6 +2,7 @@ extends Area2D
 class_name GenericBuilding
 
 @export_multiline var description:String
+@export var isHighTech = true
 @export var effect:String = "Nothing"
 @export var playIdle:bool
 
