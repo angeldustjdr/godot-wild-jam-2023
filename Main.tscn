@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn3ct20vgo1ch"]
+[gd_scene load_steps=17 format=3 uid="uid://cn3ct20vgo1ch"]
 
 [ext_resource type="Script" path="res://script/Main.gd" id="1_k1vvl"]
 [ext_resource type="Script" path="res://script/Grid.gd" id="2_r7481"]
@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dj5j2pi11jxhf" path="res://scene/IrrigatedPattern.tscn" id="6_iw5en"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="6_q8o6k"]
 [ext_resource type="Script" path="res://script/DialogueText.gd" id="7_1pdy4"]
-[ext_resource type="PackedScene" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
+[ext_resource type="PackedScene" uid="uid://cgkxt2v035kte" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
 [ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="8_cws47"]
-[ext_resource type="Texture2D" uid="uid://0xhkwxb5eepg" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="Texture2D" uid="uid://461h1qvdkpx5" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="PackedScene" uid="uid://dg0qo0a0sv2oj" path="res://scene/ChannelPattern.tscn" id="8_x115a"]
 [ext_resource type="PackedScene" uid="uid://cc1ka6bva02ic" path="res://scene/HeatParticules.tscn" id="12_8a8dp"]
 
 [sub_resource type="Gradient" id="Gradient_hxwbt"]
@@ -53,6 +54,8 @@ script = ExtResource("2_r7481")
 [node name="IrrigatedPattern" parent="Patterns" instance=ExtResource("6_iw5en")]
 
 [node name="PermaCulturePattern" parent="Patterns" instance=ExtResource("7_davgc")]
+
+[node name="ChannelPattern" parent="Patterns" instance=ExtResource("8_x115a")]
 
 [node name="Bottom_UI" type="Control" parent="."]
 layout_mode = 3

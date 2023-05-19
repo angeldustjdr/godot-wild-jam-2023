@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg0qo0a0sv2oj"]
+
+[ext_resource type="Script" path="res://script/ChannelPattern.gd" id="1_8cymr"]
+
+[node name="ChannelPattern" type="Node2D"]
+script = ExtResource("1_8cymr")

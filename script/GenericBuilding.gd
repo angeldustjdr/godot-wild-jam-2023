@@ -54,6 +54,7 @@ signal buildingDestruction(i,j)
 var sprites = {}
 var appliedPatterns = []
 var pos = []
+var alphas = []
 var appliedPatternsNames = []
 var applicablePatterns = []
 var applicablePatternsValues = []
@@ -85,14 +86,19 @@ func resetSprite():
 		return true
 	return false
 
-func updateSpriteName(given_name, p=-1):
+func updateSpriteName(given_name, p=-1,alpha=0):
 	if p == -1:
 		self.get_node("Sprite").texture = load(self.sprites[given_name])
+		if alpha != 0:
+			self.get_node("Sprite").rotation_degrees = alpha
 	else:
 		self.get_node("Sprite").texture = load(self.sprites[given_name][p])
+		if alpha != 0:
+			self.get_node("Sprite").rotation_degrees = alpha
 
 func applyBaseSprite():
 	self.get_node("Sprite").texture = load(self.sprites["base"])
+	self.get_node("Sprite").rotation_degrees = 0
 
 func isPatternApplied(pattern): # Not robust for instanciation... don't use it
 	return pattern in self.appliedPatterns
@@ -118,12 +124,13 @@ func getPatternModifierValue(pattern,stat):
 func computePosition():
 	return self.pos.max()
 
-func applyPattern(pattern,p=-1):
+func applyPattern(pattern,p=-1,alph=90):
 	if not self.isPatternAppliedName(pattern.name):
 		self.appliedPatternsNames.append(pattern.name)
 		self.appliedPatterns.append(pattern.duplicate())
 		self.appliedPatterns[-1].coords = pattern.coords.duplicate()
 		self.pos.append(p)
+		self.alphas.append(alph)
 		for stat in patternModifier.keys():
 			var value = self.getPatternModifierValue(pattern,stat)
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)

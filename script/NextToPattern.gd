@@ -31,9 +31,3 @@ func check(i,j,grid):
 			return false
 		else:
 			return false
-
-func apply(grid):
-	for coordinates in self.coords:
-		var cell = grid.getCell(coordinates[0],coordinates[1])
-		cell.applyPattern(self)
-		cell.updateSprite()

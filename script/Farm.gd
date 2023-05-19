@@ -9,10 +9,10 @@ func _ready():
 									"res://asset/sheet/big_farm_lower_right.png",
 									"res://asset/sheet/big_farm_lower_left.png"],
 					"IrrigatedPattern": "res://asset/sheet/crops_irrigated.png",
-					"Irrigated4FieldsPattern":["res://asset/sheet/big_farm_upper_left.png",
-											"res://asset/sheet/big_farm_upper_right.png",
-											"res://asset/sheet/big_farm_lower_right.png",
-											"res://asset/sheet/big_farm_lower_left.png"],}
+					"Irrigated4FieldsPattern":["res://asset/sheet/big_farm_irrigated_upper_left.png",
+											"res://asset/sheet/big_farm_irrigated_upper_right.png",
+											"res://asset/sheet/big_farm_irrigated_lower_right.png",
+											"res://asset/sheet/big_farm_irrigated_lower_left.png"],}
 	self.applicablePatterns = ["4FieldsPattern","IrrigatedPattern","PermaCulturePattern"]
 	self.applicablePatternsValues = {"FOOD":[1,1,1],
 									"WATER":[0,0,0],
