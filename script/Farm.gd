@@ -42,7 +42,8 @@ func applyEffectModifier(effectName):
 	match effectName:
 		"Heat" :
 				modifier["FOOD"] = -5
-				unsetHourglass()
+				hourglassTimer = 5
+				setHourglass()
 		"Pollution" :
 				modifier["FOOD"] = -5
 				unsetHourglass()

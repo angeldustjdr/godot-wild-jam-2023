@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhe0gdpwpe3hf"]
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_0j54i"]
-[ext_resource type="Script" path="res://script/updateUI.gd" id="1_auiuf"]
+[ext_resource type="PackedScene" uid="uid://bj232y15ucqoe" path="res://scene/ui_category.tscn" id="2_8ksi2"]
 
 [node name="Top_UI" type="Control"]
 layout_mode = 3
@@ -21,74 +21,5 @@ offset_bottom = 68.0
 grow_horizontal = 2
 columns = 4
 
-[node name="Vbox" type="VBoxContainer" parent="Grid"]
-custom_minimum_size = Vector2(100, 68)
+[node name="UI_Category" parent="Grid" instance=ExtResource("2_8ksi2")]
 layout_mode = 2
-alignment = 1
-
-[node name="Food" type="Label" parent="Grid/Vbox"]
-layout_mode = 2
-text = "Food"
-horizontal_alignment = 1
-
-[node name="Food_quantity" type="ProgressBar" parent="Grid/Vbox"]
-layout_mode = 2
-theme = ExtResource("1_0j54i")
-max_value = 10.0
-allow_greater = true
-script = ExtResource("1_auiuf")
-ressourceType = "FOOD"
-
-[node name="Vbox2" type="VBoxContainer" parent="Grid"]
-custom_minimum_size = Vector2(100, 68)
-layout_mode = 2
-alignment = 1
-
-[node name="Water" type="Label" parent="Grid/Vbox2"]
-layout_mode = 2
-text = "Water"
-horizontal_alignment = 1
-
-[node name="Water_quantity" type="ProgressBar" parent="Grid/Vbox2"]
-layout_mode = 2
-theme = ExtResource("1_0j54i")
-max_value = 10.0
-allow_greater = true
-script = ExtResource("1_auiuf")
-ressourceType = "WATER"
-
-[node name="Vbox3" type="VBoxContainer" parent="Grid"]
-custom_minimum_size = Vector2(100, 68)
-layout_mode = 2
-alignment = 1
-
-[node name="O2" type="Label" parent="Grid/Vbox3"]
-layout_mode = 2
-text = "O2"
-horizontal_alignment = 1
-
-[node name="O2_quantity" type="ProgressBar" parent="Grid/Vbox3"]
-layout_mode = 2
-theme = ExtResource("1_0j54i")
-max_value = 10.0
-allow_greater = true
-script = ExtResource("1_auiuf")
-ressourceType = "O2"
-
-[node name="Vbox4" type="VBoxContainer" parent="Grid"]
-custom_minimum_size = Vector2(100, 68)
-layout_mode = 2
-alignment = 1
-
-[node name="Pop" type="Label" parent="Grid/Vbox4"]
-layout_mode = 2
-text = "Population"
-horizontal_alignment = 1
-
-[node name="Pop_quantity" type="Label" parent="Grid/Vbox4"]
-layout_mode = 2
-theme = ExtResource("1_0j54i")
-text = "0"
-horizontal_alignment = 1
-script = ExtResource("1_auiuf")
-ressourceType = "POP"

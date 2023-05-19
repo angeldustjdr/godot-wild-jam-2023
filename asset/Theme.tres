@@ -1,7 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cjnwflv66k2s4"]
 
-[ext_resource type="FontFile" uid="uid://c52cjasgjhins" path="res://game_over.ttf" id="1_wfc2g"]
-
+[ext_resource type="FontFile" uid="uid://cxndv42ufh5oi" path="res://game_over.ttf" id="1_wfc2g"]
 
 [resource]
 default_font = ExtResource("1_wfc2g")
