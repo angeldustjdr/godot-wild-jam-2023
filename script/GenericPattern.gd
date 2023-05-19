@@ -8,7 +8,7 @@ func _ready():
 	self.visible = false
 
 func check(_i,_j,_grid):
-	pass
+	self.coords = []
 
 func apply(_grid):
 	pass

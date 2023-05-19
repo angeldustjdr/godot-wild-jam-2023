@@ -7,7 +7,7 @@ func _ready():
 	super()
 
 func check(i,j,grid):
-	self.coords=[]
+	super(i,j,grid)
 	var cellij = grid.getCell(i,j)
 	if(cellij != null):
 		if name_to_check in cellij.name:
@@ -89,6 +89,6 @@ func apply(grid):
 	if self.checkAlreadySquare(grid):
 		for i in range(0,len(self.coords)):
 			var cell = grid.getCell(self.coords[i][0],self.coords[i][1])
-			cell.get_node("Sprite").texture = self.sprites[i]
 			cell.applyPattern(self)
+			cell.updateSprite(i)
 	self.coords=[]

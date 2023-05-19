@@ -5,7 +5,17 @@ var _heat_modifier_value = -5
 
 func _ready():
 	# Defining applicable patterns
-	self.applicablePatterns = ["4FieldsPattern","IrrigatedPattern"]
+	self.sprites = {"base": "res://asset/sheet/crops-1-sheet.png",
+					"4FieldsPattern":["res://asset/sheet/big_farm_upper_left.png",
+									"res://asset/sheet/big_farm_upper_right.png",
+									"res://asset/sheet/big_farm_lower_right.png",
+									"res://asset/sheet/big_farm_lower_left.png"],
+					"IrrigatedPattern": "res://asset/sheet/crops_irrigated.png",
+					"Irrigated4FieldsPattern":["res://asset/sheet/big_farm_upper_left.png",
+											"res://asset/sheet/big_farm_upper_right.png",
+											"res://asset/sheet/big_farm_lower_right.png",
+											"res://asset/sheet/big_farm_lower_left.png"],}
+	self.applicablePatterns = ["4FieldsPattern","IrrigatedPattern","PermaCulturePattern"]
 	self.applicablePatternsValues = {"FOOD":[1,1],
 									"WATER":[0,0],
 									"O2":[0,0],
@@ -13,6 +23,18 @@ func _ready():
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass
+
+func updateSprite(pos=-1):
+	if not self.resetSprite():
+		if ((self.isPatternAppliedName("4FieldsPattern") and self.isPatternAppliedName("IrrigatedPattern"))
+		or (self.isPatternAppliedName("4FieldsPattern") and self.isPatternAppliedName("PermaCulturePattern"))):
+			self.updateSpriteName("Irrigated4FieldsPattern",pos)
+		elif self.isPatternAppliedName("IrrigatedPattern") or self.isPatternAppliedName("PermaCulturePattern"):
+			self.updateSpriteName("IrrigatedPattern",pos)
+		elif self.isPatternAppliedName("4FieldsPattern"):
+			self.updateSpriteName("4FieldsPattern",pos)
+		else:
+			print("Farm:updateSprite:WARNING: Unknown pattern combination.")
 
 func applyEffectModifier(effectName):
 	match effectName:

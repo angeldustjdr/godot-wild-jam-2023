@@ -3,11 +3,25 @@ class_name myTree # Tree is already a class in godot4
 
 func _ready():
 	# Defining applicable patterns
-	self.applicablePatterns = ["4TreesPattern"]
-	self.applicablePatternsValues = {"FOOD":[1],
-									"WATER":[0],
-									"O2":[0],
-									"POP":[0]}
+	self.sprites = {"base": "res://asset/sheet/tree-1-sheet.png",
+					"4TreesPattern":["res://asset/sheet/big_tree_upper_left.png",
+									"res://asset/sheet/big_tree_upper_right.png",
+									"res://asset/sheet/big_tree_lower_right.png",
+									"res://asset/sheet/big_tree_lower_left.png"]}
+	self.applicablePatterns = ["4TreesPattern","PermaCulturePattern"]
+	self.applicablePatternsValues = {"FOOD":[0,0],
+									"WATER":[0,0],
+									"O2":[1,0],
+									"POP":[0,0]}
+
+func updateSprite(pos=-1):
+	if not self.resetSprite():
+		if self.isPatternAppliedName("4TreesPattern") or (self.isPatternAppliedName("4TreesPattern") and  self.isPatternAppliedName("PermaCulturePattern")):
+			self.updateSpriteName("4TreesPattern",pos)
+		elif self.isPatternAppliedName("PermaCulturePattern"):
+			self.updateSpriteName("base",pos)
+		else:
+			print("Tree:updateSprite:WARNING: Unknown pattern combination.")
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass

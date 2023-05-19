@@ -43,6 +43,7 @@ var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
 
 # PATTERNS
+var sprites = {}
 var appliedPatterns = []
 var applicablePatterns = []
 var applicablePatternsValues = []
@@ -62,8 +63,29 @@ func _ready():
 	updateTooltip()
 
 # PATTERNS ####
+func resetSprite():
+	if self.appliedPatterns.is_empty():
+		self.applyBaseSprite()
+		return true
+	return false
+
+func updateSpriteName(name, pos=-1):
+	if pos != -1:
+		self.get_node("Sprite").texture = load(self.sprites[name][pos])
+	else:
+		self.get_node("Sprite").texture = load(self.sprites[name])
+
+func applyBaseSprite():
+	self.get_node("Sprite").texture = load(self.sprites["base"])
+
 func isPatternApplied(pattern):
 	return pattern in self.appliedPatterns
+
+func isPatternAppliedName(pattern_name):
+	var appliedPatternsName = []
+	for pattern in self.appliedPatterns:
+		appliedPatternsName.append(pattern.name)
+	return pattern_name in appliedPatternsName
 
 func isApplicablePattern(pattern):
 	for p in self.applicablePatterns:
@@ -110,7 +132,6 @@ func createConfirmMenu(obj):
 	RadioDiffusion.createConfirmMenuCall(obj)
 
 func selfDestruct(type):
-	#print(i,j)
 	GameState.actionnable_off()
 	RadioDiffusion.gridUpdateCall(i,j,type)
 	if outcomeAllowed : RadioDiffusion.generateOutcomeCall(i,j)
