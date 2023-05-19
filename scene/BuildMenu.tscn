@@ -17,7 +17,7 @@ script = ExtResource("1_45w4o")
 
 [node name="FarmButton" type="Button" parent="."]
 layout_mode = 2
-text = "Plant crops"
+text = "Plant Crops"
 
 [node name="TreeButton" type="Button" parent="."]
 layout_mode = 2

@@ -11,10 +11,13 @@ func setTimer(n):
 	self.text = str(n)
 	if n<=10:
 		$AnimationPlayer.play("flash")
-	if n<=0:
-		if parent.locked : parent.unsetLock()
+	if n==0:
+		if parent.locked : 
+			parent.unsetLock()
+			parent.updateTooltip()
 		else : parent.selfDestruct("Empty")
 
 func decreaseTimer():
-	setTimer(turnLeft-1)
-	$Hourglass/AnimationPlayerHourglass.play("rotateHourglass")
+	if turnLeft >= 0:
+		setTimer(turnLeft-1)
+		$Hourglass/AnimationPlayerHourglass.play("rotateHourglass")

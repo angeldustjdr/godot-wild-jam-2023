@@ -87,7 +87,6 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
 	recalculateEffect()
 	calculateRessources()
-	GameState.increaseNbAction()
 	RadioDiffusion.cleanSelectedCall()
 	gridUpdated.emit(x,y)
 	GameState.actionnable_on()
