@@ -53,6 +53,8 @@ var applicablePatterns = []
 var applicablePatternsValues = []
 
 func _ready():
+	$AnimationPlayerBuilding.play("build")
+	await $AnimationPlayerBuilding.animation_finished
 	var random = randf_range(0,100)
 	if random < 20 and lockable :
 		locked = true

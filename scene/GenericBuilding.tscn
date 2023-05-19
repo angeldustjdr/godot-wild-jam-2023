@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://8001k27dcfjx"]
+[gd_scene load_steps=13 format=3 uid="uid://8001k27dcfjx"]
 
 [ext_resource type="Script" path="res://script/GenericBuilding.gd" id="1_v8jsb"]
 [ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="2_ihrt5"]
@@ -45,6 +45,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(34, 34)]
+}
 
 [sub_resource type="Animation" id="Animation_lhjvy"]
 resource_name = "idle"
@@ -74,9 +86,38 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1.05, 0.95), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ogrl4"]
+resource_name = "build"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(34, 68), Vector2(34, 34)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ksdrg"]
 _data = {
 "RESET": SubResource("Animation_5ipuh"),
+"build": SubResource("Animation_ogrl4"),
 "idle": SubResource("Animation_lhjvy")
 }
 
