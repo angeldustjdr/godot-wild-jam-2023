@@ -22,7 +22,7 @@ var building = {"Generic" : preload("res://scene/GenericBuilding.tscn"),
 				"SuperO2" : preload("res://scene/SuperO2Generator.tscn")}
 
 @export var requiredBuilding = {"SuperWater" : 2, "SuperFood" : 2, "SuperO2" : 2, "Heat" : 2, "Pollution" : 2, "Spore" : 2} # number of special buildings
-@export var possibleOutcomes = {"RAS" : 250, "LOCK" : 25, "SWAP" : 25, "TIMER" : 25} #probability of outcomes
+@export var possibleOutcomes = {"RAS" : 0, "LOCK" : 25, "SWAP" : 25, "TIMER" : 0} #probability of outcomes
 var emptyGrid = Array()
 
 signal gridUpdated(x,y)
@@ -81,7 +81,7 @@ func fillInitialGrid() -> void:
 
 
 func gridUpdate(x,y,type): #pops a building of type at [x,y]
-	await get_tree().create_timer(0.3).timeout
+	#await get_tree().create_timer(0.3).timeout
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = self.grid[x][y].effect

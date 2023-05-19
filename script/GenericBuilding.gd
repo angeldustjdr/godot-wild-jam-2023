@@ -42,6 +42,7 @@ var j
 var cellEffect = "Nothing"
 var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
+@onready var dust = $AnimationPlayerDestroy.get_node("DustParticule")
 
 # PATTERNS
 var appliedPatterns = []
@@ -113,6 +114,11 @@ func createConfirmMenu(obj):
 func selfDestruct(type):
 	#print(i,j)
 	GameState.actionnable_off()
+	dust.global_position = self.global_position + Vector2(34,68)
+	dust.visible = true
+	$AnimationPlayerDestroy.play("destroy")
+	await $AnimationPlayerDestroy.animation_finished
+	dust.visible = false
 	RadioDiffusion.gridUpdateCall(i,j,type)
 	if outcomeAllowed : RadioDiffusion.generateOutcomeCall(i,j)
 	queue_free()
