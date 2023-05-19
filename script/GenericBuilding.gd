@@ -110,7 +110,7 @@ func getPatternModifierValue(pattern,stat):
 	if stat in self.applicablePatternsValues.keys():
 		var modifiers = self.applicablePatternsValues[stat]
 		if self.isApplicablePattern(pattern):
-			var index = self.applicablePatterns.find(pattern,0)
+			var index = self.applicablePatterns.find(pattern.name,0)
 			return modifiers[index]
 		else:
 			print("GenericBuilding:getPatternValue:ERROR: Pattern is not applicable.")
@@ -125,6 +125,7 @@ func applyPattern(pattern,p=-1):
 		self.appliedPatterns[-1].coords = pattern.coords.duplicate()
 		self.pos.append(p)
 		for stat in patternModifier.keys():
+			var value = self.getPatternModifierValue(pattern,stat)
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
 
