@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1pis7haq12vr"]
+[gd_scene load_steps=6 format=3 uid="uid://b1pis7haq12vr"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_w1hx2"]
 [ext_resource type="Script" path="res://script/Tree.gd" id="2_sdvdm"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_ugomi"]
+[ext_resource type="Texture2D" uid="uid://bbixni731vpj2" path="res://asset/sheet/tree-1-sheet.png" id="4_l6l8r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l27tc"]
 resource_local_to_scene = true
@@ -30,3 +31,4 @@ particuleAllowed = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_l27tc")
+texture = ExtResource("4_l6l8r")

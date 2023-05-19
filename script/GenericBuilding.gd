@@ -40,6 +40,7 @@ var totalStat = {"POP" : 0,
 
 var i
 var j
+
 var cellEffect = "Nothing"
 var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
@@ -48,6 +49,7 @@ var firstTime = true
 # PATTERNS
 var sprites = {}
 var appliedPatterns = []
+var appliedPatternsNames = []
 var applicablePatterns = []
 var applicablePatternsValues = []
 
@@ -81,14 +83,11 @@ func updateSpriteName(name, pos=-1):
 func applyBaseSprite():
 	self.get_node("Sprite").texture = load(self.sprites["base"])
 
-func isPatternApplied(pattern):
+func isPatternApplied(pattern): # Not robust for instanciation... don't use it
 	return pattern in self.appliedPatterns
 
 func isPatternAppliedName(pattern_name):
-	var appliedPatternsName = []
-	for pattern in self.appliedPatterns:
-		appliedPatternsName.append(pattern.name)
-	return pattern_name in appliedPatternsName
+	return pattern_name in self.appliedPatternsNames
 
 func isApplicablePattern(pattern):
 	for p in self.applicablePatterns:
@@ -106,22 +105,26 @@ func getPatternModifierValue(pattern,stat):
 			print("GenericBuilding:getPatternValue:ERROR: Pattern is not applicable.")
 
 func applyPattern(pattern):
-	if not self.isPatternApplied(pattern):
-		self.appliedPatterns.append(pattern)
+	if not self.isPatternAppliedName(pattern.name):
+		self.appliedPatternsNames.append(pattern.name)
+		self.appliedPatterns.append(pattern.duplicate())
 		for stat in patternModifier.keys():
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
 
+#untested
 func unApplyPattern(pattern):
-	if self.isPatternApplied(pattern):
-		self.appliedPatterns.erase(pattern)
+	if self.isPatternAppliedName(pattern.name):
+		var index = self.appliedPatternsNames.find(pattern.name,0)
+		self.appliedPatternsNames.remove(index)
+		var pattern_to_remove_obj = self.appliedPatterns[index]
+		var coordinates_of_pattern = pattern_to_remove_obj.coords
+		self.appliedPatterns.remove(index)
 		for stat in patternModifier.keys():
 			patternModifier[stat] -= self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
 	else:
 		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
-		
-###############
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if not locked :

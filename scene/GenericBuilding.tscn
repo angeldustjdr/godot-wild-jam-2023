@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="2_ihrt5"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_jt4ha"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="3_4g578"]
-[ext_resource type="Texture2D" uid="uid://b1y5pqiffrfj4" path="res://asset/sprite/chain.png" id="5_pgkn5"]
+[ext_resource type="Texture2D" uid="uid://onh3o58ooacv" path="res://asset/sprite/chain.png" id="5_pgkn5"]
 [ext_resource type="PackedScene" uid="uid://b4hs7wnnbndbx" path="res://scene/AnimationPlayerDestroy.tscn" id="6_6vore"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wq1gu"]

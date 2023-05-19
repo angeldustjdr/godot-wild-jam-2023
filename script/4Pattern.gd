@@ -81,7 +81,7 @@ func checkAlreadySquare(grid):
 	for coord in self.coords:
 		var i = coord[0]
 		var j = coord[1]
-		if grid.getCell(i,j).isPatternApplied(self):
+		if grid.getCell(i,j).isPatternAppliedName(self.name):
 			return false
 	return true
 
@@ -91,4 +91,3 @@ func apply(grid):
 			var cell = grid.getCell(self.coords[i][0],self.coords[i][1])
 			cell.applyPattern(self)
 			cell.updateSprite(i)
-	self.coords=[]

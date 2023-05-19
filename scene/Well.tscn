@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtllj1v6mld6i"]
+[gd_scene load_steps=6 format=3 uid="uid://dtllj1v6mld6i"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_day3t"]
 [ext_resource type="Script" path="res://script/Well.gd" id="2_5bo8q"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_x4qk2"]
+[ext_resource type="Texture2D" uid="uid://btxlstqed08yc" path="res://asset/sheet/well-sheet-1.png" id="4_pvxrj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25j6i"]
 resource_local_to_scene = true
@@ -30,3 +31,4 @@ particuleAllowed = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_25j6i")
+texture = ExtResource("4_pvxrj")
