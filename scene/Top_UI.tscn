@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhe0gdpwpe3hf"]
+[gd_scene load_steps=4 format=3 uid="uid://dhe0gdpwpe3hf"]
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_0j54i"]
 [ext_resource type="PackedScene" uid="uid://bj232y15ucqoe" path="res://scene/ui_category.tscn" id="2_8ksi2"]
+[ext_resource type="Script" path="res://script/PopulationLabel.gd" id="3_0maob"]
 
 [node name="Top_UI" type="Control"]
 layout_mode = 3
@@ -21,5 +22,27 @@ offset_bottom = 68.0
 grow_horizontal = 2
 columns = 4
 
-[node name="UI_Category" parent="Grid" instance=ExtResource("2_8ksi2")]
+[node name="FOOD" parent="Grid" instance=ExtResource("2_8ksi2")]
 layout_mode = 2
+ressourceType = "FOOD"
+
+[node name="WATER" parent="Grid" instance=ExtResource("2_8ksi2")]
+layout_mode = 2
+ressourceType = "WATER"
+
+[node name="O2" parent="Grid" instance=ExtResource("2_8ksi2")]
+layout_mode = 2
+ressourceType = "O2"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Grid"]
+layout_mode = 2
+
+[node name="LabelPOP" type="Label" parent="Grid/VBoxContainer"]
+layout_mode = 2
+text = "Population"
+
+[node name="POP" type="Label" parent="Grid/VBoxContainer"]
+layout_mode = 2
+text = "1000"
+horizontal_alignment = 1
+script = ExtResource("3_0maob")

@@ -17,6 +17,7 @@ shader_parameter/add_margins = true
 [node name="Tree" instance=ExtResource("1_w1hx2")]
 script = ExtResource("2_sdvdm")
 description = "A beautiful Tree"
+isHighTech = false
 playIdle = false
 base_stat = {
 "FOOD": 0,

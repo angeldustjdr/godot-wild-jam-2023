@@ -85,6 +85,7 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
+	await grid[x][y].get_node("AnimationPlayerBuilding").animation_finished
 	recalculateEffect()
 	calculateRessources()
 	RadioDiffusion.cleanSelectedCall()
@@ -101,12 +102,15 @@ func popBuilding(type,x,y):
 
 func calculateRessources(): # GB : could be optimized by considering only modified cells
 	var recalculatedRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
+	var recalculatedHighTechRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
 	for build in get_children():
 		for n in recalculatedRessource.keys():
 			build.getTotalStat()
 			recalculatedRessource[n] += build.totalStat[n]
-			recalculatedRessource[n] = clamp(recalculatedRessource[n],0,GameState.maxStat)
+			if build.isHighTech :
+				recalculatedHighTechRessource[n] += build.totalStat[n]
 	GameState.fillRessource(recalculatedRessource)
+	GameState.fillHighTechRessource(recalculatedHighTechRessource)
 	if GameState.checkPop: 
 		GameState.calculatePop()
 	RadioDiffusion.updateTopUICall()

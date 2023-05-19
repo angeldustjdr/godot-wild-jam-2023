@@ -17,6 +17,7 @@ shader_parameter/add_margins = true
 [node name="Farm" instance=ExtResource("1_4fp6f")]
 script = ExtResource("2_m277t")
 description = "Some growing crops."
+isHighTech = false
 playIdle = false
 base_stat = {
 "FOOD": 1,
