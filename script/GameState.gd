@@ -51,3 +51,19 @@ func calculatePop():
 		if ressource[elem] <= limit[elem]:
 			ressource["POP"] = clamp(ressource["POP"]-100,0,maxStatPop)
 			checkPop = false
+#########
+func reset():
+	ressource = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}
+	ressourceHighTech = {"POP" : 0,
+				"WATER" : 0,
+				"FOOD" : 0,
+				"O2" : 0}
+	nbAction = 0
+	checkPop = false
+	actionnable = true
+
+func _ready():
+	reset()

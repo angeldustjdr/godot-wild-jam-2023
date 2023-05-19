@@ -145,7 +145,7 @@ func unApplyPattern(pattern):
 func _on_input_event(_viewport, event, _shape_idx):
 	if not locked :
 		if event is InputEventMouseButton and GameState.actionnable:
-			if event.button_index==MOUSE_BUTTON_LEFT:
+			if event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
 				GameState.actionnable_off()
 				GameState.actionnable_off()
 				createConfirmMenu(self)

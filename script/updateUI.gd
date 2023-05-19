@@ -35,7 +35,7 @@ func updateTopUI():
 	$Jauge_lowtech.scale.x = 2.*clamp(toPourcent(lowtech),0,100)/100.
 	$Jauge_hightech.scale.x = 2.*clamp(toPourcent(hightech),0,100-clamp(toPourcent(lowtech),0,100))/100.
 	$Jauge_hightech.position.x = $Jauge_lowtech.position.x + $Jauge_lowtech.texture.get_width()*$Jauge_lowtech.scale.x
-	$Amount.text = str(clamp(toPourcent(total),0,100))+"%"
+	$Amount.text = str(clamp(toPourcent(total),0,1000))+"%"
 	checkColor()
 
 func checkColor():
