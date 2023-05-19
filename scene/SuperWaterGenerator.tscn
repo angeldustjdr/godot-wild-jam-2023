@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4x0ar"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_3fxsc"]
-[ext_resource type="Texture2D" uid="uid://4wdyhat4aht3" path="res://asset/sheet/water-plant-1-sheet.png" id="3_qt113"]
+[ext_resource type="Texture2D" uid="uid://dim0taldnh38w" path="res://asset/sheet/water-plant-1-sheet.png" id="3_qt113"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kucal"]
 resource_local_to_scene = true
@@ -22,6 +22,7 @@ base_stat = {
 "WATER": 6
 }
 hasHourglass = true
+locakable = false
 outcomeAllowed = false
 
 [node name="Sprite" parent="." index="0"]

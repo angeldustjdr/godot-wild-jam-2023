@@ -25,6 +25,7 @@ var totalStat = {"POP" : 0,
 @export var hasHourglass = false
 @export var hourglassTimer = 50
 @export var locked = false
+@export var locakable = true
 @export var swapable = true
 @export var outcomeAllowed = true
 @export var particuleAllowed = false
@@ -194,18 +195,20 @@ func unsetHourglass():
 		$Hourglass.queue_free()
 
 func setLock():
-	unsetLock()
-	hasHourglass = true
-	hourglassTimer = 6
-	locked = true
-	$Chain.visible = true
-	setHourglass()
+	if locakable:
+		unsetLock()
+		hasHourglass = true
+		hourglassTimer = 6
+		locked = true
+		$Chain.visible = true
+		setHourglass()
 
 func unsetLock():
-	hasHourglass = false
-	$Chain.visible = false
-	locked = false
-	unsetHourglass()
+	if locakable:
+		hasHourglass = false
+		$Chain.visible = false
+		locked = false
+		unsetHourglass()
 
 func getLocked():
 	var returned = ""

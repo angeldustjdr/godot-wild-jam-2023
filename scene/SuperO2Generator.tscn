@@ -22,6 +22,7 @@ base_stat = {
 "WATER": 0
 }
 hasHourglass = true
+locakable = false
 outcomeAllowed = false
 
 [node name="Sprite" parent="." index="0"]

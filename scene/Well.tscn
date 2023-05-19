@@ -24,6 +24,7 @@ base_stat = {
 "POP": 0,
 "WATER": 1
 }
+locakable = false
 swapable = false
 outcomeAllowed = false
 particuleAllowed = true

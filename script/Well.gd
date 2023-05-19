@@ -42,8 +42,3 @@ func applyEffectModifier(effectName):
 				unsetHourglass()
 	popLabel(getTotalStat())
 
-func setLock():
-	pass
-
-func unsetLock():
-	pass
