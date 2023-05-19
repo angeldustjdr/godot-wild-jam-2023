@@ -14,6 +14,7 @@ shader_parameter/add_margins = true
 
 [node name="HeatBuilding" instance=ExtResource("1_gq15e")]
 effect = "Heat"
+animationDestroy = "Heat"
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_f40ye")

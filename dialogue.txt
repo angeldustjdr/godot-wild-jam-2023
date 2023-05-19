@@ -8,3 +8,6 @@ ras2/The connected toaster went down. Nobody seems to care./end
 tuto1/You need to destroy those awful buildings and build sustainable buildings while providing the population needs./tuto2
 tuto2/Be careful though, as we don't know what the building actually does.../tuto3
 tuto3/Read the tooltips and observe the effects. You will only succeed by trying./end
+Heat/A techno-furnace has been destroyed!/end
+Pollution/A contaminated factory has been destroyed!/end
+Spore/A techno-spore farm has been destroyed!/end

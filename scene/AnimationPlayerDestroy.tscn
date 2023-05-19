@@ -1,0 +1,216 @@
+[gd_scene load_steps=14 format=3 uid="uid://b4hs7wnnbndbx"]
+
+[ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="1_4gltn"]
+[ext_resource type="Texture2D" uid="uid://gvmpybdfao44" path="res://asset/sheet/fournaise-sheet.png" id="2_2kbbo"]
+[ext_resource type="Texture2D" uid="uid://ni3i2sb10sqm" path="res://asset/sheet/sewer-sheet.png" id="3_u5xj7"]
+[ext_resource type="Texture2D" uid="uid://dmvtdearw3a18" path="res://asset/sheet/spore_generator-sheet.png" id="4_yr2gs"]
+[ext_resource type="Texture2D" uid="uid://cv016tjbjadl4" path="res://asset/sprite/dust.png" id="5_oqjj1"]
+
+[sub_resource type="Animation" id="Animation_coeub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(34, 34)]
+}
+
+[sub_resource type="Animation" id="Animation_ylm5r"]
+resource_name = "destroy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(34, 34), Vector2(34, 68)]
+}
+
+[sub_resource type="Animation" id="Animation_y7l3y"]
+resource_name = "destroyHeat"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(34, 34), Vector2(34, 68)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_2kbbo")]
+}
+
+[sub_resource type="Animation" id="Animation_keuap"]
+resource_name = "destroyPollution"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(34, 34), Vector2(34, 68)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_4gltn"), ExtResource("3_u5xj7")]
+}
+
+[sub_resource type="Animation" id="Animation_0eoqy"]
+resource_name = "destroySpore"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(34, 34), Vector2(34, 68)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_4gltn"), ExtResource("4_yr2gs")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7r8rq"]
+_data = {
+"RESET": SubResource("Animation_coeub"),
+"destroy": SubResource("Animation_ylm5r"),
+"destroyHeat": SubResource("Animation_y7l3y"),
+"destroyPollution": SubResource("Animation_keuap"),
+"destroySpore": SubResource("Animation_0eoqy")
+}
+
+[sub_resource type="Curve" id="Curve_6uh38"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_afqxf"]
+offsets = PackedFloat32Array(0.709091, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="AnimationPlayerDestroy" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_7r8rq")
+}
+
+[node name="DustParticule" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(34, 68)
+texture = ExtResource("5_oqjj1")
+emission_shape = 3
+emission_rect_extents = Vector2(34, 1)
+gravity = Vector2(0, -100)
+damping_max = 10.0
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_6uh38")
+color_ramp = SubResource("Gradient_afqxf")

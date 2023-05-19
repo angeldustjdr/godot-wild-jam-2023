@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_2foch"]
 [ext_resource type="Script" path="res://script/Empty.gd" id="2_mvp6a"]
-[ext_resource type="Texture2D" uid="uid://f3ubac1dcywi" path="res://asset/sheet/empty-sheet.png" id="3_31xh0"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_ye8ws"]
+[ext_resource type="Texture2D" uid="uid://i00lf8a07afe" path="res://asset/sheet/empty-space-sheet.png" id="4_7kr6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p7vs3"]
 resource_local_to_scene = true
@@ -18,8 +18,9 @@ shader_parameter/add_margins = true
 script = ExtResource("2_mvp6a")
 description = "An empty space."
 playIdle = false
+lockable = false
 outcomeAllowed = false
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_p7vs3")
-texture = ExtResource("3_31xh0")
+texture = ExtResource("4_7kr6w")

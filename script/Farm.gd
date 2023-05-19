@@ -61,9 +61,3 @@ func applyEffectModifier(effectName):
 				modifier["FOOD"] = 0
 				unsetHourglass()
 	popLabel(getTotalStat())
-
-func setLock():
-	pass
-
-func unsetLock():
-	pass

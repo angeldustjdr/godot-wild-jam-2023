@@ -54,9 +54,3 @@ func applyEffectModifier(effectName):
 				modifier["O2"] = 0
 				unsetHourglass()
 	popLabel(getTotalStat())
-
-func setLock():
-	pass
-
-func unsetLock():
-	pass

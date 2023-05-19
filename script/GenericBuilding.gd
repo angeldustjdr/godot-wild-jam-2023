@@ -25,9 +25,11 @@ var totalStat = {"POP" : 0,
 @export var hasHourglass = false
 @export var hourglassTimer = 50
 @export var locked = false
+@export var lockable = true
 @export var swapable = true
 @export var outcomeAllowed = true
 @export var particuleAllowed = false
+@export var animationDestroy = ""
 
 @onready var effectDescription = {"Heat" : "The air temperature is pretty high here!",
 	"Pollution" : "The floor is covered with polluted water!",
@@ -41,6 +43,7 @@ var j
 var cellEffect = "Nothing"
 var firstTime = true
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
+@onready var dust = $AnimationPlayerDestroy.get_node("DustParticule")
 
 # PATTERNS
 var sprites = {}
@@ -50,7 +53,7 @@ var applicablePatternsValues = []
 
 func _ready():
 	var random = randf_range(0,100)
-	if random < 20 :
+	if random < 20 and lockable :
 		locked = true
 	if hasHourglass:
 		setHourglass()
@@ -133,6 +136,12 @@ func createConfirmMenu(obj):
 
 func selfDestruct(type):
 	GameState.actionnable_off()
+	if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
+	dust.global_position = self.global_position + Vector2(34,68)
+	dust.visible = true
+	$AnimationPlayerDestroy.play("destroy"+animationDestroy)
+	await $AnimationPlayerDestroy.animation_finished
+	dust.visible = false
 	RadioDiffusion.gridUpdateCall(i,j,type)
 	if outcomeAllowed : RadioDiffusion.generateOutcomeCall(i,j)
 	queue_free()
@@ -215,18 +224,19 @@ func unsetHourglass():
 		$Hourglass.queue_free()
 
 func setLock():
-	unsetLock()
-	hasHourglass = true
-	hourglassTimer = 6
-	locked = true
-	$Chain.visible = true
-	setHourglass()
+	if lockable:
+		unsetLock()
+		hasHourglass = true
+		hourglassTimer = randi_range(3,7)
+		locked = true
+		$Chain.visible = true
+		setHourglass()
 
 func unsetLock():
-	hasHourglass = false
-	$Chain.visible = false
-	locked = false
-	unsetHourglass()
+		hasHourglass = false
+		$Chain.visible = false
+		locked = false
+		unsetHourglass()
 
 func getLocked():
 	var returned = ""

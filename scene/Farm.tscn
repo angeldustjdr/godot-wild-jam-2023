@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbti86078p3o"]
+[gd_scene load_steps=5 format=3 uid="uid://dbti86078p3o"]
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_4fp6f"]
 [ext_resource type="Script" path="res://script/Farm.gd" id="2_m277t"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_kr3jd"]
-[ext_resource type="Texture2D" uid="uid://bx5tbr7giolwd" path="res://asset/sheet/crops-1-sheet.png" id="4_5hrgb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yi5r"]
 resource_local_to_scene = true
@@ -24,10 +23,10 @@ base_stat = {
 "POP": 0,
 "WATER": 0
 }
+lockable = false
 swapable = false
 outcomeAllowed = false
 particuleAllowed = true
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_2yi5r")
-texture = ExtResource("4_5hrgb")
