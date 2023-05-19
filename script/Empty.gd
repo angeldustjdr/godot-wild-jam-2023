@@ -7,12 +7,6 @@ func _on_input_event(_viewport, event, _shape_idx):
 				GameState.actionnable_off()
 				createBuildMenu(self)
 
-func _process(_delta):
-	if locked : locked=false
-
-func getLocked():
-	return ""
-
 func createBuildMenu(obj):
 	RadioDiffusion.createBuildMenuCall(obj)
 

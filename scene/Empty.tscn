@@ -18,7 +18,7 @@ shader_parameter/add_margins = true
 script = ExtResource("2_mvp6a")
 description = "An empty space."
 playIdle = false
-locakable = false
+lockable = false
 outcomeAllowed = false
 
 [node name="Sprite" parent="." index="0"]

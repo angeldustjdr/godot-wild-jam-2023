@@ -25,7 +25,7 @@ var totalStat = {"POP" : 0,
 @export var hasHourglass = false
 @export var hourglassTimer = 50
 @export var locked = false
-@export var locakable = true
+@export var lockable = true
 @export var swapable = true
 @export var outcomeAllowed = true
 @export var particuleAllowed = false
@@ -51,7 +51,7 @@ var applicablePatternsValues = []
 
 func _ready():
 	var random = randf_range(0,100)
-	if random < 20 :
+	if random < 20 and lockable :
 		locked = true
 	if hasHourglass:
 		setHourglass()
@@ -201,16 +201,15 @@ func unsetHourglass():
 		$Hourglass.queue_free()
 
 func setLock():
-	if locakable:
+	if lockable:
 		unsetLock()
 		hasHourglass = true
-		hourglassTimer = 6
+		hourglassTimer = randi_range(3,7)
 		locked = true
 		$Chain.visible = true
 		setHourglass()
 
 func unsetLock():
-	if locakable:
 		hasHourglass = false
 		$Chain.visible = false
 		locked = false
