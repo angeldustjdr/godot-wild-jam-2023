@@ -8,6 +8,7 @@ func _ready(): # signal connexion
 	RadioDiffusion.connect("createBuildMenuNeeded",createBuildMenu)
 	RadioDiffusion.connect("createConfirmMenuNeeded",createConfirmMenu)
 	RadioDiffusion.connect("popLabelNeeded",popLabel)
+	RadioDiffusion.connect("updateTopUINeeded",ambianceManager)
 	$Grid.connect("gridUpdated",checkPatterns)
 	
 	GameState.ressourceInit(1000,16,16,16)
@@ -43,3 +44,12 @@ func popLabel(pos,text,dir):
 
 func _on_pass_turn_button_pressed():
 	GameState.increaseNbAction()
+
+func ambianceManager():
+	var lowTechFood = GameState.ressource["FOOD"]-GameState.ressourceHighTech["FOOD"]
+	var lowTechWater = GameState.ressource["FOOD"]-GameState.ressourceHighTech["WATER"]
+	var lowTechO2 = GameState.ressource["FOOD"]-GameState.ressourceHighTech["O2"]
+	var pourcentGlobal = ((lowTechFood+lowTechO2+lowTechWater)/3)/(GameState.maxStat/2.)
+	$AmbiantParticules.amount = int(pourcentGlobal*15)+1
+	$WorldEnvironment.environment.glow_bloom = pourcentGlobal*0.5
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn3ct20vgo1ch"]
+[gd_scene load_steps=16 format=3 uid="uid://cn3ct20vgo1ch"]
 
 [ext_resource type="Script" path="res://script/Main.gd" id="1_k1vvl"]
 [ext_resource type="Script" path="res://script/Grid.gd" id="2_r7481"]
@@ -11,6 +11,19 @@
 [ext_resource type="PackedScene" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
 [ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="8_cws47"]
 [ext_resource type="Texture2D" uid="uid://0xhkwxb5eepg" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="PackedScene" uid="uid://cc1ka6bva02ic" path="res://scene/HeatParticules.tscn" id="12_8a8dp"]
+
+[sub_resource type="Gradient" id="Gradient_hxwbt"]
+colors = PackedColorArray(0.06, 0.05342, 0.0036, 0.545098, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_usmtc"]
+gradient = SubResource("Gradient_hxwbt")
+
+[sub_resource type="Environment" id="Environment_cftlh"]
+background_mode = 3
+glow_enabled = true
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_usmtc")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k1vvl")
@@ -97,6 +110,17 @@ focus_mode = 0
 icon = ExtResource("8_debgt")
 icon_alignment = 1
 expand_icon = true
+
+[node name="AmbiantParticules" parent="." instance=ExtResource("12_8a8dp")]
+position = Vector2(272, 272)
+scale = Vector2(2, 2)
+amount = 1
+lifetime = 10.0
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cftlh")
 
 [connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
 [connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]
