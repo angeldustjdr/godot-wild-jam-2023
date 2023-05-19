@@ -27,19 +27,19 @@ func updateTopUI():
 	if modified!=0:
 		var mySign = ""
 		if modified>0 : mySign="+"
-		RadioDiffusion.popLabelCall(self.global_position+Vector2(34,34),mySign+str(modified)+"% "+ressourceType,"DOWN")
+		RadioDiffusion.popLabelCall(self.global_position+Vector2(34,34),mySign+str(int(modified))+"% "+ressourceType,"DOWN")
 	total = newTotal
 	hightech = newHighTechTotal
 	lowtech = newLowTechTotal
-	self.tooltip_text = str(toPourcent(hightech))+"% (high tech)\n"+str(toPourcent(lowtech))+"% (low tech)"
+	self.tooltip_text = str(int(toPourcent(hightech)))+"% (high tech)\n"+str(int(toPourcent(lowtech)))+"% (low tech)"
 	$Jauge_lowtech.scale.x = 2.*clamp(toPourcent(lowtech),0,100)/100.
 	$Jauge_hightech.scale.x = 2.*clamp(toPourcent(hightech),0,100-clamp(toPourcent(lowtech),0,100))/100.
 	$Jauge_hightech.position.x = $Jauge_lowtech.position.x + $Jauge_lowtech.texture.get_width()*$Jauge_lowtech.scale.x
-	$Amount.text = str(clamp(toPourcent(total),0,1000))+"%"
+	$Amount.text = str(int(clamp(toPourcent(total),0,1000)))+"%"
 	checkColor()
 
 func checkColor():
-	if clamp(toPourcent(total),0,100) < 50 : 
+	if clamp(toPourcent(total),0,100) < 100 : 
 		if not $Amount/AnimationPlayer.is_playing() : $Amount/AnimationPlayer.play("flash")
 	else : $Amount/AnimationPlayer.play("RESET")
 	

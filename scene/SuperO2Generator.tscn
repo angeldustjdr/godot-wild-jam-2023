@@ -17,7 +17,7 @@ shader_parameter/add_margins = true
 description = "A weird machine that somehow purifies the air."
 base_stat = {
 "FOOD": 0,
-"O2": 6,
+"O2": 8,
 "POP": 0,
 "WATER": 0
 }

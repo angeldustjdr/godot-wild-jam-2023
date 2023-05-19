@@ -19,9 +19,9 @@ func increaseNbAction():
 
 #################
 # RESSOURCE
-var maxStat = 20
+var maxStat = 30
 var maxStatPop = 1000
-var limit = {"WATER" : 10,"FOOD" : 10,"O2" : 10}
+var limit = {"WATER" : 15,"FOOD" : 15,"O2" : 15}
 var ressource = {"POP" : 0,
 				"WATER" : 0,
 				"FOOD" : 0,

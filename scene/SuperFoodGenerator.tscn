@@ -16,7 +16,7 @@ shader_parameter/add_margins = true
 [node name="SuperFood" instance=ExtResource("1_l28i7")]
 description = "Organic alveola that somehow provides a lot of food."
 base_stat = {
-"FOOD": 6,
+"FOOD": 8,
 "O2": 0,
 "POP": 0,
 "WATER": 0

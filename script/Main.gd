@@ -10,7 +10,7 @@ func _ready(): # signal connexion
 	RadioDiffusion.connect("popLabelNeeded",popLabel)
 	$Grid.connect("gridUpdated",checkPatterns)
 	
-	GameState.ressourceInit(1000,12,12,12)
+	GameState.ressourceInit(1000,16,16,16)
 	RadioDiffusion.updateTopUICall()
 
 func createBuildMenu(obj):

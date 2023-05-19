@@ -19,7 +19,7 @@ base_stat = {
 "FOOD": 0,
 "O2": 0,
 "POP": 0,
-"WATER": 6
+"WATER": 8
 }
 hasHourglass = true
 lockable = false
