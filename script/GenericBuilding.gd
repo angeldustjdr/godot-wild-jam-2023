@@ -151,9 +151,6 @@ func unApplyPattern(pattern):
 	else:
 		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
 
-func _process(_delta):
-	print(GameState.actionnable)
-
 func _on_input_event(_viewport, event, _shape_idx):
 	if GameState.menuOpened == false:
 		if not locked :

@@ -6,8 +6,8 @@ func _ready():
 	GameState.menuOpened = true
 
 func _input(event):
-	if event is InputEventMouseButton and !GameState.actionnable:
-		if event.button_index==MOUSE_BUTTON_RIGHT:
+	if event is InputEventMouseButton:
+		if event.button_index==MOUSE_BUTTON_RIGHT and event.pressed:
 			freeMenu()
 
 func _on_destroy_pressed():
