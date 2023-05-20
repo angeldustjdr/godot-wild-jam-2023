@@ -124,8 +124,6 @@ func calculateRessources(): # GB : could be optimized by considering only modifi
 				recalculatedHighTechRessource[n] += build.totalStat[n]
 	GameState.fillRessource(recalculatedRessource)
 	GameState.fillHighTechRessource(recalculatedHighTechRessource)
-	if GameState.checkPop: 
-		GameState.calculatePop()
 	RadioDiffusion.updateTopUICall()
 
 func recalculateEffect():

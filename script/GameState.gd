@@ -14,7 +14,9 @@ var checkPop = false
 func increaseNbAction():
 	nbAction = (nbAction+1)%2
 	transfertNbAction.emit()
-	if nbAction==0: checkPop = true
+	if nbAction==0: 
+		checkPop = true
+		calculatePop()
 	else: checkPop = false
 
 #################

@@ -44,6 +44,7 @@ func popLabel(pos,text,dir):
 
 func _on_pass_turn_button_pressed():
 	GameState.increaseNbAction()
+	RadioDiffusion.updateTopUICall()
 
 func ambianceManager():
 	var lowTechFood = GameState.ressource["FOOD"]-GameState.ressourceHighTech["FOOD"]
