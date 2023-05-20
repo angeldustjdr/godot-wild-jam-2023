@@ -39,7 +39,7 @@ func updateSprite():
 		elif  self.isPatternAppliedName("ChannelPattern"):
 			self.updateSpriteName("ChannelPattern",p,ori)
 		elif self.isPatternAppliedName("IrrigatedPattern"):
-			self.updateSpriteName("IrrigatedPattern",p)
+			self.updateSpriteName("IrrigatedPattern",p,0)
 		else:
 			print("Well:updateSprite:WARNING: Unknown pattern combination.")
 		$AnimationPlayerBuilding.play("pattern_up")
