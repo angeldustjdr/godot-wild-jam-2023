@@ -21,6 +21,7 @@ playIdle = false
 lockable = false
 outcomeAllowed = false
 destroyable = false
+playBuild = false
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_p7vs3")

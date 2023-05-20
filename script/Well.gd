@@ -21,6 +21,7 @@ func _ready():
 	await $AnimationPlayerBuilding.animation_finished
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
+	GameState.actionnable_on()
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass

@@ -49,6 +49,7 @@ var firstTime = true
 @export var destroyable = true
 var dust
 @export var nbFrames = 2
+@export var playBuild = true
 
 # PATTERNS
 signal buildingDestruction(i,j)
@@ -61,8 +62,9 @@ var applicablePatterns = []
 var applicablePatternsValues = []
 
 func _ready():
-	$AnimationPlayerBuilding.play("build")
-	await $AnimationPlayerBuilding.animation_finished
+	if playBuild:
+		$AnimationPlayerBuilding.play("build")
+		await $AnimationPlayerBuilding.animation_finished
 	var random = randf_range(0,100)
 	if random < 20 and lockable :
 		locked = true
@@ -79,6 +81,7 @@ func _ready():
 		dust = $AnimationPlayerDestroy.get_node("DustParticule")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
+	GameState.actionnable_on()
 
 # PATTERNS ####
 func resetSprite():
@@ -148,12 +151,15 @@ func unApplyPattern(pattern):
 	else:
 		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
 
+func _process(_delta):
+	print(GameState.actionnable)
+
 func _on_input_event(_viewport, event, _shape_idx):
-	if not locked :
-		if event is InputEventMouseButton and GameState.actionnable:
-			if event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
-				createConfirmMenu(self)
-				GameState.actionnable_off()
+	if GameState.menuOpened == false:
+		if not locked :
+			if event is InputEventMouseButton and GameState.actionnable:
+				if event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
+					createConfirmMenu(self)
 
 func createConfirmMenu(obj):
 	RadioDiffusion.createConfirmMenuCall(obj)
