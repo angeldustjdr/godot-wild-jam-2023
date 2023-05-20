@@ -58,5 +58,6 @@ func ambianceManager():
 	$CanvasModulate.color = Color(1,1,1-(pourcentGlobal*0.1))
 
 func GameOver():
+	RadioDiffusion.nextDialogNeeded("pop_neg")
 	var g = GameOverTitle.instantiate()
 	add_child(g)

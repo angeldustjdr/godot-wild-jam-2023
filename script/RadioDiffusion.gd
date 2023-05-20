@@ -45,3 +45,15 @@ func popLabelCall(pos,text,dir):
 signal endDialogue
 func callEndDialogue():
 	endDialogue.emit()
+	
+signal rideau(sens)
+func rideauCall(sens):
+	rideau.emit(sens)
+
+signal rideauFinished
+func rideauFinishedCall():
+	rideauFinished.emit()
+
+signal endGame
+func endGameCall():
+	endGame.emit()

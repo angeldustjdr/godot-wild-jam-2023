@@ -6,6 +6,7 @@ var Ymax = 5
 var grid = Array() #holds the buildings in a 2d matrix. Warning, X and Y are based on godot x and y axis (oriented weirdly)
 var sourceEffectGrid = Array() #holds the source of effect
 var effectGrid = Array() #holds the effects
+var endGameDetected = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -102,7 +103,8 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	calculateRessources()
 	RadioDiffusion.cleanSelectedCall()
 	gridUpdated.emit(x,y)
-	GameState.actionnable_on()
+	checkEndGame()
+	if not endGameDetected : GameState.actionnable_on()
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
@@ -166,6 +168,15 @@ func applyEffect():
 func cleanNode():
 	for n in get_children():
 		n.queue_free()
+		
+func checkEndGame():
+	var NbHighTech = Xmax*Ymax
+	for n in get_children():
+		if not n.isHighTech : NbHighTech -= 1
+	if NbHighTech==0 :
+		RadioDiffusion.nextDialogNeeded("EndGame")
+		endGameDetected = true
+		RadioDiffusion.endGameCall()
 
 func generateOutcome(destr_i,destr_j):
 	GameState.actionnable_off()

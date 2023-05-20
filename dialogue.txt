@@ -7,8 +7,8 @@ strangeNoise/A strange noise is heard. Let's hope it's not too bad./end
 pipes/Some pipings broke but nobody was injured./end
 toaster/The connected toaster went down. Nobody seems to care./end
 wifi/The wifi went down. A day of mourning has been declared./end
-bank/The bank system went down. Everyone's debt has been cleared./end
-ai/AI do not work anymore. Not a bad thing./end
+bank/The banking system went down. Everyone's debt has been cleared./end
+ai/AI bots do not work anymore. Not a bad thing./end
 light/The lights went down. Let's get candles./end
 socialMedia/The Main Social Media went down. Now, where can we post those stories?/end
 tuto1/How To play :/tuto2
@@ -22,3 +22,5 @@ tuto8/Good luck ! The clock is ticking.../end
 Heat/A techno-furnace has been destroyed!/end
 Pollution/A contaminated factory has been destroyed!/end
 Spore/A techno-spore farm has been destroyed!/end
+EndGame/Congratulations! You have completed your tasks. Hopefuly people live a better live now./end
+pop_neg/All the population died.../end
