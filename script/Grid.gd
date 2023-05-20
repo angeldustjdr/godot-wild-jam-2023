@@ -33,6 +33,7 @@ var emptyGrid = Array()
 signal gridUpdated(x,y)
 
 func _ready():
+	rng.seed = 0
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
 	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)

@@ -90,12 +90,10 @@ func resetSprite():
 func updateSpriteName(given_name, p=-1,alpha=0):
 	if p == -1:
 		self.get_node("Sprite").texture = load(self.sprites[given_name])
-		if alpha != 0:
-			self.get_node("Sprite").rotation_degrees = alpha
+		self.get_node("Sprite").rotation_degrees = alpha
 	else:
 		self.get_node("Sprite").texture = load(self.sprites[given_name][p])
-		if alpha != 0:
-			self.get_node("Sprite").rotation_degrees = alpha
+		self.get_node("Sprite").rotation_degrees = alpha
 
 func applyBaseSprite():
 	self.get_node("Sprite").texture = load(self.sprites["base"])
