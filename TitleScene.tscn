@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddehcy8ppw850"]
+[gd_scene load_steps=5 format=3 uid="uid://ddehcy8ppw850"]
 
 [ext_resource type="Script" path="res://script/TitleScene.gd" id="1_i6uf6"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_srx31"]
 [ext_resource type="FontFile" uid="uid://dwd42d6bnymt0" path="res://punk_rockf.ttf" id="2_whp1a"]
+[ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="4_m1hhg"]
 
 [node name="TitleScene" type="Node2D"]
 script = ExtResource("1_i6uf6")
@@ -28,6 +29,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="StartButton" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 424.0
 offset_right = 320.0
@@ -35,6 +37,7 @@ offset_bottom = 459.0
 text = "Start"
 
 [node name="Name" type="Label" parent="Control"]
+layout_mode = 0
 offset_top = 120.0
 offset_right = 544.0
 offset_bottom = 214.0
@@ -42,5 +45,7 @@ theme_override_fonts/font = ExtResource("2_whp1a")
 text = "My Jam Game"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Rideau" parent="." instance=ExtResource("4_m1hhg")]
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]

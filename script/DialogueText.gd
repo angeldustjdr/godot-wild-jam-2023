@@ -8,7 +8,6 @@ var nextLine = "end"
 var isTyping = false
 @onready var timer = $Timer
 @onready var waitBar = $DialogueProgressBar
-signal endDialogue
 
 func _ready():
 	RadioDiffusion.connect("nextDialogPlease",startDialogue)
@@ -39,7 +38,7 @@ func endLine():
 	await get_tree().create_timer(0.3).timeout
 	isTyping = false
 	if nextLine!= "end": waitBar.startTimer()
-	else: endDialogue.emit()
+	else: RadioDiffusion.callEndDialogue()
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton:

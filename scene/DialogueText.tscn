@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmq1gkrak1lt7"]
+
+[ext_resource type="Script" path="res://script/DialogueText.gd" id="1_pc3us"]
+[ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="2_ud6kr"]
+
+[node name="DialogueText" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = -36.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "toto"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("1_pc3us")
+startingPoint = "tuto1"
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DialogueProgressBar" parent="." instance=ExtResource("2_ud6kr")]
+visible = true
+layout_mode = 0
+offset_left = 472.0
+offset_top = 72.0
+offset_right = 504.0
+offset_bottom = 104.0
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

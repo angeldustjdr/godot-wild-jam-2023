@@ -41,3 +41,7 @@ func nextDialogNeeded(text):
 signal popLabelNeeded(pos,text,dir)
 func popLabelCall(pos,text,dir):
 	popLabelNeeded.emit(pos,text,dir)
+
+signal endDialogue
+func callEndDialogue():
+	endDialogue.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cn3ct20vgo1ch"]
+[gd_scene load_steps=18 format=3 uid="uid://cn3ct20vgo1ch"]
 
 [ext_resource type="Script" path="res://script/Main.gd" id="1_k1vvl"]
 [ext_resource type="Script" path="res://script/Grid.gd" id="2_r7481"]
@@ -8,23 +8,24 @@
 [ext_resource type="PackedScene" uid="uid://dj5j2pi11jxhf" path="res://scene/IrrigatedPattern.tscn" id="6_iw5en"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="6_q8o6k"]
 [ext_resource type="Script" path="res://script/DialogueText.gd" id="7_1pdy4"]
-[ext_resource type="PackedScene" uid="uid://cgkxt2v035kte" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
+[ext_resource type="PackedScene" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
 [ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="8_cws47"]
-[ext_resource type="Texture2D" uid="uid://461h1qvdkpx5" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="Texture2D" uid="uid://0xhkwxb5eepg" path="res://asset/sprite/hourglass.png" id="8_debgt"]
 [ext_resource type="PackedScene" uid="uid://dg0qo0a0sv2oj" path="res://scene/ChannelPattern.tscn" id="8_x115a"]
 [ext_resource type="PackedScene" uid="uid://cc1ka6bva02ic" path="res://scene/HeatParticules.tscn" id="12_8a8dp"]
+[ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="14_uvgje"]
 
-[sub_resource type="Gradient" id="Gradient_hxwbt"]
-colors = PackedColorArray(0.06, 0.05342, 0.0036, 0.545098, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_85kgo"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.9, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_usmtc"]
-gradient = SubResource("Gradient_hxwbt")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tiyms"]
+gradient = SubResource("Gradient_85kgo")
 
 [sub_resource type="Environment" id="Environment_cftlh"]
 background_mode = 3
 glow_enabled = true
-adjustment_enabled = true
-adjustment_color_correction = SubResource("GradientTexture1D_usmtc")
+glow_strength = 2.0
+adjustment_color_correction = SubResource("GradientTexture1D_tiyms")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k1vvl")
@@ -124,6 +125,11 @@ gravity = Vector2(0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cftlh")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(1, 1, 0.9, 1)
+
+[node name="Rideau" parent="." instance=ExtResource("14_uvgje")]
 
 [connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
 [connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]

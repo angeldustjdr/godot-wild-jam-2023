@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://c86filsth2pik"]
+[gd_scene load_steps=23 format=3 uid="uid://c86filsth2pik"]
 
 [ext_resource type="Script" path="res://script/Tutoriel.gd" id="1_1tsfp"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_47q81"]
-[ext_resource type="Script" path="res://script/DialogueText.gd" id="2_l7w11"]
-[ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="3_srdv8"]
+[ext_resource type="Script" path="res://script/tutoBottomUI.gd" id="3_re36x"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="5_vdtcj"]
 [ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="6_j3hym"]
 [ext_resource type="Texture2D" uid="uid://bvbj48eaomyv" path="res://asset/sheet/fournaise-sheet.png" id="7_negx8"]
@@ -12,6 +11,44 @@
 [ext_resource type="PackedScene" uid="uid://ykimlxn2kbwu" path="res://scene/tuto_area2d.tscn" id="10_0n4k8"]
 [ext_resource type="PackedScene" uid="uid://b2bi3kptd10vi" path="res://scene/SmokeParticules.tscn" id="10_vg4d1"]
 [ext_resource type="PackedScene" uid="uid://cx7rl2v1uy4eh" path="res://scene/SporeParticules.tscn" id="11_2rqt3"]
+[ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="13_m3rpk"]
+
+[sub_resource type="Animation" id="Animation_87mv4"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hax76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5p5po"]
+_data = {
+"RESET": SubResource("Animation_hax76"),
+"flash": SubResource("Animation_87mv4")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qfwvy"]
 resource_local_to_scene = true
@@ -21,6 +58,33 @@ shader_parameter/width = 0.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_8xb15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_j3hym")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_d6h0n"]
 resource_name = "shift"
@@ -51,37 +115,47 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_8xb15"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p26i"]
+_data = {
+"RESET": SubResource("Animation_8xb15"),
+"shift": SubResource("Animation_d6h0n")
+}
+
+[sub_resource type="Animation" id="Animation_3elkw"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0l12b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
+tracks/0/path = NodePath("..:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_j3hym")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p26i"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7841"]
 _data = {
-"RESET": SubResource("Animation_8xb15"),
-"shift": SubResource("Animation_d6h0n")
+"RESET": SubResource("Animation_0l12b"),
+"flash": SubResource("Animation_3elkw")
 }
 
 [node name="Tutoriel" type="Node2D"]
@@ -99,6 +173,7 @@ offset_top = 420.0
 offset_right = 544.0
 offset_bottom = 544.0
 theme = ExtResource("1_47q81")
+script = ExtResource("3_re36x")
 
 [node name="ColorRect" type="ColorRect" parent="Bottom_UI"]
 layout_mode = 1
@@ -109,34 +184,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.239216, 0.239216, 0.239216, 1)
 
-[node name="DialogueText" type="Label" parent="Bottom_UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 12.0
-offset_right = -36.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-text = "toto"
+[node name="Label" type="Label" parent="Bottom_UI"]
+layout_mode = 0
+offset_right = 544.0
+offset_bottom = 124.0
+mouse_filter = 0
+text = "Click here for the briefing"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
-script = ExtResource("2_l7w11")
-startingPoint = "tuto1"
 
-[node name="Timer" type="Timer" parent="Bottom_UI/DialogueText"]
-
-[node name="DialogueProgressBar" parent="Bottom_UI/DialogueText" instance=ExtResource("3_srdv8")]
-visible = true
-layout_mode = 0
-offset_left = 472.0
-offset_top = 72.0
-offset_right = 504.0
-offset_bottom = 104.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bottom_UI/Label"]
+autoplay = "flash"
+libraries = {
+"": SubResource("AnimationLibrary_5p5po")
+}
 
 [node name="SkipButton" type="Button" parent="."]
 offset_left = 401.0
@@ -214,6 +275,33 @@ libraries = {
 "": SubResource("AnimationLibrary_3p26i")
 }
 
-[connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
-[connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]
+[node name="Explanation3" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 232.0
+offset_bottom = 88.0
+theme = ExtResource("1_47q81")
+theme_override_font_sizes/font_size = 35
+text = "Try me!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Arrow4" type="Sprite2D" parent="Explanation3"]
+material = SubResource("ShaderMaterial_qfwvy")
+position = Vector2(104, 40)
+rotation = -3.14159
+texture = ExtResource("8_jdmym")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Explanation3"]
+root_node = NodePath("../Arrow4")
+autoplay = "flash"
+libraries = {
+"": SubResource("AnimationLibrary_t7841")
+}
+
+[node name="Rideau" parent="." instance=ExtResource("13_m3rpk")]
+visible = false
+
+[connection signal="gui_input" from="Bottom_UI/Label" to="Bottom_UI" method="_on_label_gui_input"]
 [connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

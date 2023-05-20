@@ -132,7 +132,7 @@ func applyPattern(pattern,p=-1,alph=90):
 		self.pos.append(p)
 		self.alphas.append(alph)
 		for stat in patternModifier.keys():
-			var value = self.getPatternModifierValue(pattern,stat)
+			var _value = self.getPatternModifierValue(pattern,stat)
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
 

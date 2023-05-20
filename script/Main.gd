@@ -50,6 +50,8 @@ func ambianceManager():
 	var lowTechWater = GameState.ressource["FOOD"]-GameState.ressourceHighTech["WATER"]
 	var lowTechO2 = GameState.ressource["FOOD"]-GameState.ressourceHighTech["O2"]
 	var pourcentGlobal = ((lowTechFood+lowTechO2+lowTechWater)/3)/(GameState.maxStat/2.)
-	$AmbiantParticules.amount = int(pourcentGlobal*15)+1
+	$AmbiantParticules.amount = clamp(int(pourcentGlobal*15)+1,1,20)
 	$WorldEnvironment.environment.glow_bloom = pourcentGlobal*0.5
+	$CanvasModulate.color = Color(1,1,1-(pourcentGlobal*0.1))
+
 	
