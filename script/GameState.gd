@@ -48,11 +48,14 @@ func fillHighTechRessource(newRessource):
 	for elem in newRessource.keys():
 		ressourceHighTech[elem] = newRessource[elem]		
 
+signal GameOver
 func calculatePop():
 	for elem in limit.keys():
 		if ressource[elem] <= limit[elem]:
 			ressource["POP"] = clamp(ressource["POP"]-100,0,maxStatPop)
 			checkPop = false
+	if ressource["POP"] <= 0:
+		GameOver.emit()
 #########
 func reset():
 	ressource = {"POP" : 0,

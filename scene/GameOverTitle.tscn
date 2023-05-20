@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckubivsfutxcf"]
+
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_hfowu"]
+[ext_resource type="Script" path="res://script/GameOverTitle.gd" id="2_omyar"]
+
+[sub_resource type="Animation" id="Animation_n0unp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ne6gk"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aj4h3"]
+_data = {
+"RESET": SubResource("Animation_n0unp"),
+"flash": SubResource("Animation_ne6gk")
+}
+
+[node name="GameOverTitle" type="Control"]
+z_index = 10
+custom_minimum_size = Vector2(544, 544)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 544.0
+offset_bottom = 544.0
+theme = ExtResource("1_hfowu")
+script = ExtResource("2_omyar")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 68
+theme_override_constants/margin_top = 136
+theme_override_constants/margin_right = 68
+theme_override_constants/margin_bottom = 272
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over
+Click to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/ColorRect"]
+autoplay = "flash"
+libraries = {
+"": SubResource("AnimationLibrary_aj4h3")
+}
+
+[connection signal="gui_input" from="MarginContainer/ColorRect" to="." method="_on_color_rect_gui_input"]

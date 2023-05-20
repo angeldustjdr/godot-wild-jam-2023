@@ -2,6 +2,7 @@ extends Node2D
 
 var selected # hold the cell to build onto
 @onready var juicyLabel = preload("res://scene/JuicyLabel.tscn")
+@onready var GameOverTitle = preload("res://scene/GameOverTitle.tscn")
 
 func _ready(): # signal connexion
 	RadioDiffusion.connect("cleanSelectionNeeded",cleanSelected)
@@ -9,6 +10,7 @@ func _ready(): # signal connexion
 	RadioDiffusion.connect("createConfirmMenuNeeded",createConfirmMenu)
 	RadioDiffusion.connect("popLabelNeeded",popLabel)
 	RadioDiffusion.connect("updateTopUINeeded",ambianceManager)
+	GameState.connect("GameOver",GameOver)
 	$Grid.connect("gridUpdated",checkPatterns)
 	
 	GameState.ressourceInit(1000,16,16,16)
@@ -48,11 +50,13 @@ func _on_pass_turn_button_pressed():
 
 func ambianceManager():
 	var lowTechFood = GameState.ressource["FOOD"]-GameState.ressourceHighTech["FOOD"]
-	var lowTechWater = GameState.ressource["FOOD"]-GameState.ressourceHighTech["WATER"]
-	var lowTechO2 = GameState.ressource["FOOD"]-GameState.ressourceHighTech["O2"]
+	var lowTechWater = GameState.ressource["WATER"]-GameState.ressourceHighTech["WATER"]
+	var lowTechO2 = GameState.ressource["O2"]-GameState.ressourceHighTech["O2"]
 	var pourcentGlobal = ((lowTechFood+lowTechO2+lowTechWater)/3)/(GameState.maxStat/2.)
 	$AmbiantParticules.amount = clamp(int(pourcentGlobal*15)+1,1,20)
 	$WorldEnvironment.environment.glow_bloom = pourcentGlobal*0.5
 	$CanvasModulate.color = Color(1,1,1-(pourcentGlobal*0.1))
 
-	
+func GameOver():
+	var g = GameOverTitle.instantiate()
+	add_child(g)

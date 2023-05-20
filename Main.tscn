@@ -130,6 +130,7 @@ environment = SubResource("Environment_cftlh")
 color = Color(1, 1, 0.9, 1)
 
 [node name="Rideau" parent="." instance=ExtResource("14_uvgje")]
+z_index = 10
 
 [connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
 [connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]
