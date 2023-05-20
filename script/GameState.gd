@@ -7,7 +7,7 @@ func actionnable_on():
 	actionnable = true
 func actionnable_off():
 	actionnable = false
-	
+
 signal transfertNbAction
 var nbAction = 0
 var checkPop = false

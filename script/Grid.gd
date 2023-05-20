@@ -105,7 +105,6 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	RadioDiffusion.cleanSelectedCall()
 	gridUpdated.emit(x,y)
 	checkEndGame()
-	if not endGameDetected : GameState.actionnable_on()
 	
 func popBuilding(type,x,y):
 	var b = building[type].instantiate()
@@ -180,7 +179,6 @@ func checkEndGame():
 		RadioDiffusion.endGameCall()
 
 func generateOutcome(destr_i,destr_j):
-	GameState.actionnable_off()
 	var outcome = Array()
 	for o in possibleOutcomes.keys():
 		for p in possibleOutcomes[o]:
@@ -250,7 +248,6 @@ func generateOutcome(destr_i,destr_j):
 			var outcomeDialogue = outcomeDialogueRAS[0]
 			if outcomeDialogue in outComeOnce: outcomeDialogueRAS.erase(outcomeDialogue)
 			RadioDiffusion.nextDialogNeeded(outcomeDialogue)
-	GameState.actionnable_on()
 		
 func getRandomI():
 	return randi_range(0,Xmax-1)

@@ -79,6 +79,7 @@ func _ready():
 		dust = $AnimationPlayerDestroy.get_node("DustParticule")
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
+	GameState.actionnable_on()
 
 # PATTERNS ####
 func resetSprite():
@@ -148,12 +149,14 @@ func unApplyPattern(pattern):
 	else:
 		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
 
+func _process(_delta):
+	print(GameState.actionnable)
+
 func _on_input_event(_viewport, event, _shape_idx):
 	if not locked :
 		if event is InputEventMouseButton and GameState.actionnable:
 			if event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
 				createConfirmMenu(self)
-				GameState.actionnable_off()
 
 func createConfirmMenu(obj):
 	RadioDiffusion.createConfirmMenuCall(obj)
