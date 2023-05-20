@@ -27,6 +27,7 @@ func updateSprite():
 			self.updateSpriteName("base",p)
 		else:
 			print("Tree:updateSprite:WARNING: Unknown pattern combination.")
+		$AnimationPlayerBuilding.play("pattern_up")
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass

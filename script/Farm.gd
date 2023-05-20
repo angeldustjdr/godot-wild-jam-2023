@@ -39,6 +39,7 @@ func updateSprite():
 			self.updateSpriteName("4FieldsPattern",p)
 		else:
 			print("Farm:updateSprite:WARNING: Unknown pattern combination.")
+		$AnimationPlayerBuilding.play("pattern_up")
 
 func applyEffectModifier(effectName):
 	match effectName:

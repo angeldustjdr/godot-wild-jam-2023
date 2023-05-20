@@ -42,6 +42,7 @@ func updateSprite():
 			self.updateSpriteName("IrrigatedPattern",p)
 		else:
 			print("Well:updateSprite:WARNING: Unknown pattern combination.")
+		$AnimationPlayerBuilding.play("pattern_up")
 
 func applyEffectModifier(effectName):
 	match effectName:
