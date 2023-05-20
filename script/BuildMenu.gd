@@ -2,6 +2,8 @@ extends VBoxContainer
 
 @onready var main = get_parent()
 
+func _ready():
+	GameState.menuOpened = true
 	
 func _input(event):
 	if event is InputEventMouseButton and !GameState.actionnable:
@@ -30,4 +32,5 @@ func _on_cancel_pressed():
 	freeMenu()
 
 func freeMenu():
+	GameState.menuOpened = false
 	queue_free()
