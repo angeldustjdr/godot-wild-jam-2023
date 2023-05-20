@@ -34,8 +34,3 @@ destroyable = false
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_25j6i")
 texture = ExtResource("4_ni233")
-
-[node name="Timer" type="Timer" parent="." index="6"]
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

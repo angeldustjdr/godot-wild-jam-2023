@@ -69,6 +69,3 @@ func applyEffectModifier(effectName):
 				unsetHourglass()
 	popLabel(getTotalStat())
 
-
-func _on_timer_timeout():
-	$Sprite.frame = ($Sprite.frame+1)%2

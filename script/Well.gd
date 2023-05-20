@@ -75,6 +75,3 @@ func applyEffectModifier(effectName):
 	popLabel(getTotalStat())
 
 
-
-func _on_timer_timeout():
-	$Sprite.frame = ($Sprite.frame+1)%2

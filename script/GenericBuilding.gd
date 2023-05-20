@@ -286,3 +286,7 @@ func _on_tooltip_mouse_entered():
 
 func _on_tooltip_mouse_exited():
 	$Sprite.material.set_shader_parameter("width",0.)
+
+
+func _on_timer_timeout():
+	$Sprite.frame = ($Sprite.frame+1)%2
