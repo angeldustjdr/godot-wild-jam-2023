@@ -60,3 +60,7 @@ func applyEffectModifier(effectName):
 				modifier["O2"] = 0
 				unsetHourglass()
 	popLabel(getTotalStat())
+
+
+func _on_timer_timeout():
+	$Sprite.frame = ($Sprite.frame+1)%2

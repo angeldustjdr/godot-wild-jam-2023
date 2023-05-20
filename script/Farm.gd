@@ -23,6 +23,7 @@ func _ready():
 	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 
+
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass
 
@@ -67,3 +68,7 @@ func applyEffectModifier(effectName):
 				modifier["FOOD"] = 0
 				unsetHourglass()
 	popLabel(getTotalStat())
+
+
+func _on_timer_timeout():
+	$Sprite.frame = ($Sprite.frame+1)%2
