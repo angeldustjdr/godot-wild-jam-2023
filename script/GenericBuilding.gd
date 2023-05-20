@@ -48,6 +48,7 @@ var firstTime = true
 @onready var animationDestroyNode = preload("res://scene/AnimationPlayerDestroy.tscn")
 @export var destroyable = true
 var dust
+@export var nbFrames = 2
 
 # PATTERNS
 signal buildingDestruction(i,j)
@@ -289,4 +290,4 @@ func _on_tooltip_mouse_exited():
 
 
 func _on_timer_timeout():
-	$Sprite.frame = ($Sprite.frame+1)%2
+	$Sprite.frame = ($Sprite.frame+1)%nbFrames
