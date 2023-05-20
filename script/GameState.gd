@@ -1,5 +1,9 @@
 extends Node
 
+func _input(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		SoundManager.playSoundNamed("clic")
+
 #################
 # GLOBAL
 var actionnable = true

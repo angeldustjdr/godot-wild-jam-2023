@@ -162,6 +162,7 @@ func selfDestruct(type):
 	buildingDestruction.emit(self.j,self.i)
 	GameState.actionnable_off()
 	if destroyable:
+		SoundManager.playSoundNamed("destroy")
 		if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
 		dust.global_position = self.global_position + Vector2(34,68)
 		dust.visible = true

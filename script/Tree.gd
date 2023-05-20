@@ -2,6 +2,7 @@ extends GenericBuilding
 class_name myTree # Tree is already a class in godot4
 
 func _ready():
+	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/tree-1-sheet.png",
 					"4TreesPattern":["res://asset/sheet/big_tree_upper_left.png",
