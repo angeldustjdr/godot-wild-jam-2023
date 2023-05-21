@@ -118,12 +118,14 @@ func popBuilding(type,x,y):
 func calculateRessources(): # GB : could be optimized by considering only modified cells
 	var recalculatedRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
 	var recalculatedHighTechRessource = {"WATER" : 0,"FOOD" : 0,"O2" : 0}
-	for build in get_children():
-		for n in recalculatedRessource.keys():
-			build.getTotalStat()
-			recalculatedRessource[n] += build.totalStat[n]
-			if build.isHighTech :
-				recalculatedHighTechRessource[n] += build.totalStat[n]
+	for i in range(0,self.Ymax):
+		for j in range(0,self.Xmax):
+			for n in recalculatedRessource.keys():
+				var build = self.getCell(i,j)
+				build.getTotalStat()
+				recalculatedRessource[n] += build.totalStat[n]
+				if build.isHighTech :
+					recalculatedHighTechRessource[n] += build.totalStat[n]
 	GameState.fillRessource(recalculatedRessource)
 	GameState.fillHighTechRessource(recalculatedHighTechRessource)
 	RadioDiffusion.updateTopUICall()
