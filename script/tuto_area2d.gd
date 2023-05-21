@@ -3,6 +3,7 @@ extends Area2D
 @onready var status = "techno"
 @onready var initialScale = self.scale
 @onready var initialPosition = self.position
+signal tutoWell
 
 func _on_control_gui_input(event):
 	if event is InputEventMouseButton:
@@ -47,4 +48,5 @@ func _on_build_pressed():
 	await $DemoSprite2/AnimationPlayer.animation_finished
 	$Tooltip.tooltip_text = "Fresh water for everyone."
 	status = "finish"
+	tutoWell.emit()
 	

@@ -20,7 +20,7 @@ light/The lights went down. Let's get candles./end
 socialMedia/The Main Social Media went down. Now, where can we post those stories?/end
 tuto1/A long time ago, technopriests made a pact with an unknown entity./tuto2
 tuto2/The entity granted them advanced technologies to sustain their population./tuto3
-tuto3/However, these structures are now crumbling, and the technopriests are no longer present./tuto4
+tuto3/However, these structures are now crumbling, and the technopriests have been overthrown./tuto4
 tuto4/If you don't act quickly, resources will soon be scarce/end
 tuto5/Destroy seemingly useless buildings to free up space/tuto6
 tuto6/and replace them with low-tech resource providers./tuto7
