@@ -1,0 +1,7 @@
+A long time ago, technopriests made a pact with an unknown entity.
+The entity granted them advanced technologies to sustain their population.
+However, these structures are now crumbling, and the technopriests are no longer present.
+If you don't act quickly, resources will soon be scarce.
+Destroy seemingly useless buildings to free up space and replace them with low-tech resource providers.
+Some buildings emit negative effects if not destroyed. Be cautious: demolishing a building may have unforeseen consequences.
+Remember to read tooltips and attempt to replace your old resources with new ones before the timer expires. Good luck!
