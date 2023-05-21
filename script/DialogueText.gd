@@ -17,6 +17,7 @@ func _ready():
 
 func startDialogue(which):
 	if which == "end" : return
+	RadioDiffusion.startCurrentDialogueCall(which)
 	waitBar.stopTimer()
 	isTyping = true
 	line = DialogueManager.Dialogues[which][0]

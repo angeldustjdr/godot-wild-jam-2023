@@ -45,6 +45,10 @@ func popLabelCall(pos,text,dir):
 signal endDialogue
 func callEndDialogue():
 	endDialogue.emit()
+
+signal startCurrentDialogue(tag)
+func startCurrentDialogueCall(tag):
+	startCurrentDialogue.emit(tag)
 	
 signal rideau(sens)
 func rideauCall(sens):
