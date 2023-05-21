@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_day3t"]
 [ext_resource type="Script" path="res://script/Well.gd" id="2_5bo8q"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_x4qk2"]
-[ext_resource type="Texture2D" uid="uid://dp33rmxis5xu3" path="res://asset/sheet/well-sheet-1.png" id="4_ni233"]
+[ext_resource type="Texture2D" uid="uid://btxlstqed08yc" path="res://asset/sheet/well-sheet-1.png" id="4_ni233"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25j6i"]
 resource_local_to_scene = true
@@ -16,7 +16,7 @@ shader_parameter/add_margins = true
 
 [node name="Well" instance=ExtResource("1_day3t")]
 script = ExtResource("2_5bo8q")
-description = "A little Well"
+description = "A little Well."
 isHighTech = false
 base_stat = {
 "FOOD": 0,

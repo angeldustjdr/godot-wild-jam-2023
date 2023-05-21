@@ -2,6 +2,7 @@ extends GenericBuilding
 class_name Well
 
 func _ready():
+	super()
 	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/well-sheet-1.png",
@@ -19,7 +20,6 @@ func _ready():
 									"POP":[0,0]}
 	$AnimationPlayerBuilding.play("build")
 	await $AnimationPlayerBuilding.animation_finished
-	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 	GameState.actionnable_on()
 
@@ -45,6 +45,17 @@ func updateSprite():
 		else:
 			print("Well:updateSprite:WARNING: Unknown pattern combination.")
 		$AnimationPlayerBuilding.play("pattern_up")
+
+func updateDescription():
+	if (self.isPatternAppliedName("ChannelPattern") 
+		and self.isPatternAppliedName("IrrigatedPattern")):
+		self.current_description = "A water channel irrigating a nearby field."
+	elif(self.isPatternAppliedName("ChannelPattern")):
+		self.current_description = "A water channel."
+	elif(self.isPatternAppliedName("IrrigatedPattern")):
+		self.current_description = "A little well irrigating a nearby field."
+	else:
+		self.resetDescription()
 
 func applyEffectModifier(effectName):
 	match effectName:

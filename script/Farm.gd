@@ -2,6 +2,7 @@ extends GenericBuilding
 class_name Farm
 
 func _ready():
+	super()
 	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/crops-1-sheet.png",
@@ -21,7 +22,6 @@ func _ready():
 									"POP":[0,0,0]}
 	$AnimationPlayerBuilding.play("build")
 	await $AnimationPlayerBuilding.animation_finished
-	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 	GameState.actionnable_on()
 
@@ -43,6 +43,26 @@ func updateSprite():
 		else:
 			print("Farm:updateSprite:WARNING: Unknown pattern combination.")
 		$AnimationPlayerBuilding.play("pattern_up")
+
+func updateDescription():
+	if (self.isPatternAppliedName("4FieldsPattern") 
+		and self.isPatternAppliedName("IrrigatedPattern")
+		and self.isPatternAppliedName("PermaCulturePattern")):
+		self.current_description = "An irrigated parcel of farm in permaculture."
+	elif(self.isPatternAppliedName("4FieldsPattern") 
+		and self.isPatternAppliedName("IrrigatedPattern")):
+		self.current_description = "An irrigated parcel of farm."
+	elif(self.isPatternAppliedName("4FieldsPattern") 
+		and self.isPatternAppliedName("PermaCulturePattern")):
+		self.current_description = "A parcel of farm in permaculture."
+	elif self.isPatternAppliedName("4FieldsPattern"):
+		self.current_description = "A parcel of farm."
+	elif self.isPatternAppliedName("PermaCulturePattern"):
+		self.current_description = "Some crops in permaculture."
+	elif self.isPatternAppliedName("IrrigatedPattern"):
+		self.current_description = "Some irrigated crops."
+	else:
+		self.resetDescription()
 
 func applyEffectModifier(effectName):
 	match effectName:
@@ -70,4 +90,3 @@ func applyEffectModifier(effectName):
 				modifier["FOOD"] = 0
 				unsetHourglass()
 	popLabel(getTotalStat())
-

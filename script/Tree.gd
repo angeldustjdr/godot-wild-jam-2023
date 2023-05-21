@@ -2,6 +2,7 @@ extends GenericBuilding
 class_name myTree # Tree is already a class in godot4
 
 func _ready():
+	super()
 	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/tree-1-sheet.png",
@@ -16,7 +17,6 @@ func _ready():
 									"POP":[0,0]}
 	$AnimationPlayerBuilding.play("build")
 	await $AnimationPlayerBuilding.animation_finished
-	RadioDiffusion.connect("updateTopUINeeded",updateTooltip)
 	updateTooltip()
 	GameState.actionnable_on()
 
@@ -30,6 +30,17 @@ func updateSprite():
 		else:
 			print("Tree:updateSprite:WARNING: Unknown pattern combination.")
 		$AnimationPlayerBuilding.play("pattern_up")
+
+func updateDescription():
+	if (self.isPatternAppliedName("4TreesPattern") 
+		and self.isPatternAppliedName("PermaCulturePattern")):
+		self.current_description = "A forest allowing permaculture in a nearby field."
+	elif(self.isPatternAppliedName("4TreesPattern")):
+		self.current_description = "A forest."
+	elif(self.isPatternAppliedName("PermaCulturePattern")):
+		self.current_description = "A beautiful tree allowing permaculture in a nearby field."
+	else:
+		self.resetDescription()
 
 func _on_input_event(_viewport, _event, _shape_idx):
 	pass

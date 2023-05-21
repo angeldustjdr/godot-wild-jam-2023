@@ -2,6 +2,7 @@ extends Area2D
 class_name GenericBuilding
 
 @export_multiline var description:String
+var current_description:String
 @export var isHighTech = true
 @export var effect:String = "Nothing"
 @export var playIdle:bool
@@ -62,6 +63,7 @@ var applicablePatterns = []
 var applicablePatternsValues = []
 
 func _ready():
+	self.current_description = self.description
 	if playBuild:
 		$AnimationPlayerBuilding.play("build")
 		await $AnimationPlayerBuilding.animation_finished
@@ -136,9 +138,9 @@ func applyPattern(pattern,p=-1,alph=90):
 		self.alphas.append(alph)
 		for stat in patternModifier.keys():
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
+		self.updateDescription()
 		popLabel(getTotalStat())
 
-#untested
 func unApplyPattern(pattern):
 	if self.isPatternAppliedName(pattern.name):
 		SoundManager.playSoundNamed("powerdown")
@@ -148,9 +150,18 @@ func unApplyPattern(pattern):
 		self.pos.remove_at(index)
 		for stat in patternModifier.keys():
 			patternModifier[stat] -= self.getPatternModifierValue(pattern,stat)
+		self.updateDescription()
 		popLabel(getTotalStat())
 	else:
 		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
+
+func updateDescription(): #virtual function to be implemented in daughter buildings
+	pass
+	
+func resetDescription():
+	self.current_description = self.description
+
+#############
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if GameState.menuOpened == false:
@@ -179,7 +190,7 @@ func selfDestruct(type):
 	queue_free()
 
 func updateTooltip():
-	var updatedDescription = description
+	var updatedDescription = current_description
 	updatedDescription += getTotalStat()
 	if getTotalStat() =="" : 
 		for n in base_stat.keys():
