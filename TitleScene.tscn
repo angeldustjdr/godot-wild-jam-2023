@@ -55,7 +55,6 @@ offset_bottom = 483.0
 text = "Credits"
 
 [node name="Rideau" parent="." instance=ExtResource("4_m1hhg")]
-color = Color(0, 0, 0, 1)
 offset_right = 544.0
 offset_bottom = 544.0
 

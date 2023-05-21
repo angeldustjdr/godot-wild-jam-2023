@@ -302,7 +302,6 @@ libraries = {
 
 [node name="Rideau" parent="." instance=ExtResource("13_m3rpk")]
 visible = false
-color = Color(0, 0, 0, 1)
 offset_right = 544.0
 offset_bottom = 544.0
 

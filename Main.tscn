@@ -278,7 +278,6 @@ color = Color(1, 1, 0.95, 1)
 
 [node name="Rideau" parent="." instance=ExtResource("14_uvgje")]
 z_index = 10
-color = Color(0, 0, 0, 1)
 offset_right = 544.0
 offset_bottom = 544.0
 
