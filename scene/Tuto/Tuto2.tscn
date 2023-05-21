@@ -286,3 +286,5 @@ hframes = 2
 layout_mode = 1
 offset_right = 544.0
 offset_bottom = 544.0
+
+[connection signal="pressed" from="Play" to="Bottom_UI" method="_on_play_pressed"]
