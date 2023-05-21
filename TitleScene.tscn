@@ -47,6 +47,7 @@ offset_bottom = 419.0
 text = "Start"
 
 [node name="CreditButton" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 224.0
 offset_top = 448.0
 offset_right = 320.0

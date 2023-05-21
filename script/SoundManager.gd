@@ -10,7 +10,8 @@ var sound_paths = {	"clic":"res://asset/sound/blip-2.wav",
 					"transition":"res://asset/sound/blip-1.wav",
 					"powerup":"res://asset/sound/powerUp-v2.wav",
 					"build":"res://asset/sound/corruption-v1.wav",
-					"destroy":"res://asset/sound/explosion-v1.wav"}
+					"destroy":"res://asset/sound/explosion-v1.wav",
+					"casserole":"res://asset/sound/Casserole.wav"}
 
 func _ready():
 	# Create the pool of AudioStreamPlayer nodes.

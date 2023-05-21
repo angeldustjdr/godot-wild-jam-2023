@@ -172,6 +172,7 @@ func checkEndGame():
 	var NbHighTech = Xmax*Ymax
 	for n in get_children():
 		if not n.isHighTech : NbHighTech -= 1
+	print(NbHighTech)
 	if NbHighTech==0 :
 		RadioDiffusion.nextDialogNeeded("EndGame")
 		endGameDetected = true

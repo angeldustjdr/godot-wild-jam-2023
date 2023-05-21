@@ -17,7 +17,6 @@ shader_parameter/add_margins = true
 [node name="Empty" instance=ExtResource("1_2foch")]
 script = ExtResource("2_mvp6a")
 description = "An empty space to build on."
-playIdle = false
 lockable = false
 outcomeAllowed = false
 destroyable = false

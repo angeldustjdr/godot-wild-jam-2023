@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cn3ct20vgo1ch"]
+[gd_scene load_steps=29 format=3 uid="uid://cn3ct20vgo1ch"]
 
 [ext_resource type="Script" path="res://script/Main.gd" id="1_k1vvl"]
 [ext_resource type="Script" path="res://script/Grid.gd" id="2_r7481"]
@@ -8,16 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://dj5j2pi11jxhf" path="res://scene/IrrigatedPattern.tscn" id="6_iw5en"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="6_q8o6k"]
 [ext_resource type="Script" path="res://script/DialogueText.gd" id="7_1pdy4"]
-[ext_resource type="PackedScene" uid="uid://cgkxt2v035kte" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
+[ext_resource type="PackedScene" path="res://scene/PermaCulturePattern.tscn" id="7_davgc"]
 [ext_resource type="PackedScene" uid="uid://4ft2sfu28omo" path="res://scene/DialogueProgressBar.tscn" id="8_cws47"]
-[ext_resource type="Texture2D" uid="uid://461h1qvdkpx5" path="res://asset/sprite/hourglass.png" id="8_debgt"]
+[ext_resource type="Texture2D" uid="uid://0xhkwxb5eepg" path="res://asset/sprite/hourglass.png" id="8_debgt"]
 [ext_resource type="PackedScene" uid="uid://dg0qo0a0sv2oj" path="res://scene/ChannelPattern.tscn" id="8_x115a"]
 [ext_resource type="PackedScene" uid="uid://cc1ka6bva02ic" path="res://scene/HeatParticules.tscn" id="12_8a8dp"]
 [ext_resource type="Script" path="res://script/PassTurnButton.gd" id="13_bk1g5"]
-[ext_resource type="Texture2D" uid="uid://bmu8uvwgwp5t7" path="res://asset/sprite/cycle.png" id="14_8s00a"]
+[ext_resource type="Texture2D" uid="uid://bs3umdthpks06" path="res://asset/sprite/cycle.png" id="14_8s00a"]
 [ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="14_uvgje"]
 [ext_resource type="Script" path="res://script/RestartButton.gd" id="15_6eiay"]
 [ext_resource type="Script" path="res://script/Score.gd" id="16_gqyle"]
+[ext_resource type="Texture2D" uid="uid://dm3ou8f3eybt7" path="res://asset/sprite/poule.png" id="17_37yx5"]
 
 [sub_resource type="Animation" id="Animation_71p5x"]
 length = 0.001
@@ -56,6 +57,44 @@ _data = {
 "flash": SubResource("Animation_ina10")
 }
 
+[sub_resource type="Animation" id="Animation_lh2ev"]
+resource_name = "poule"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.261799, 0.0, -0.261799, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_33vvn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4cte"]
+_data = {
+"RESET": SubResource("Animation_33vvn"),
+"poule": SubResource("Animation_lh2ev")
+}
+
 [sub_resource type="Gradient" id="Gradient_85kgo"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.9, 1)
 
@@ -75,8 +114,9 @@ script = ExtResource("1_k1vvl")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 48.0
 offset_right = 544.0
-offset_bottom = 544.0
+offset_bottom = 592.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -171,20 +211,56 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("15_6eiay")
 
-[node name="Score" type="Label" parent="."]
+[node name="ScoreRect" type="ColorRect" parent="."]
 visible = false
-offset_top = 424.0
-offset_right = 545.0
-offset_bottom = 454.0
+z_index = 15
+offset_left = 128.0
+offset_top = 376.0
+offset_right = 416.0
+offset_bottom = 416.0
+size_flags_vertical = 6
+color = Color(0, 0, 0, 1)
+script = ExtResource("16_gqyle")
+
+[node name="Score" type="Label" parent="ScoreRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("6_q8o6k")
 text = "MonScore"
 horizontal_alignment = 1
-script = ExtResource("16_gqyle")
+vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Score"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScoreRect/Score"]
 autoplay = "flash"
 libraries = {
 "": SubResource("AnimationLibrary_aeuk6")
+}
+
+[node name="Poule" type="Sprite2D" parent="ScoreRect"]
+position = Vector2(0, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("17_37yx5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScoreRect/Poule"]
+autoplay = "poule"
+libraries = {
+"": SubResource("AnimationLibrary_b4cte")
+}
+
+[node name="Poule2" type="Sprite2D" parent="ScoreRect"]
+position = Vector2(288, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("17_37yx5")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ScoreRect/Poule2"]
+autoplay = "poule"
+libraries = {
+"": SubResource("AnimationLibrary_b4cte")
 }
 
 [node name="AmbiantParticules" parent="." instance=ExtResource("12_8a8dp")]

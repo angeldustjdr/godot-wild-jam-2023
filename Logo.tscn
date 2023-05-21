@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://csrbaxpi7b5dm"]
+
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_b6ggk"]
+[ext_resource type="Script" path="res://script/Logo.gd" id="1_rthdb"]
+[ext_resource type="FontFile" uid="uid://dwd42d6bnymt0" path="res://punk_rockf.ttf" id="2_twkfo"]
+[ext_resource type="Texture2D" uid="uid://csssgaf6muoew" path="res://asset/sprite/casserole.png" id="3_iidkp"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_sx2tj"]
+[ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="5_wg50s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtpkf"]
+shader = ExtResource("3_sx2tj")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[node name="Logo" type="Control"]
+custom_minimum_size = Vector2(544, 544)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rthdb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 88.0
+offset_right = 544.0
+offset_bottom = 186.0
+theme = ExtResource("1_b6ggk")
+theme_override_fonts/font = ExtResource("2_twkfo")
+text = "French Pan 
+Studio"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jtpkf")
+position = Vector2(272, 320)
+scale = Vector2(3, 3)
+texture = ExtResource("3_iidkp")
+
+[node name="Rideau" parent="." instance=ExtResource("5_wg50s")]
+layout_mode = 0
+anchors_preset = 0
+offset_right = 0.0
+offset_bottom = 0.0

@@ -4,7 +4,7 @@ extends Control
 
 func _ready():
 	var myTween = create_tween()
-	myTween.tween_property(self, "position", Vector2(0,-self.size.x), 10.0)
+	myTween.tween_property(self, "position", Vector2(0,-self.size.x), 15.0)
 	
 func _input(event):
 	if event is InputEventMouseButton:

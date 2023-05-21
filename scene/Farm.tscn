@@ -18,7 +18,6 @@ shader_parameter/add_margins = true
 script = ExtResource("2_m277t")
 description = "Some growing crops."
 isHighTech = false
-playIdle = false
 base_stat = {
 "FOOD": 1,
 "O2": 0,

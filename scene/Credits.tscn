@@ -25,7 +25,12 @@ offset_top = 544.0
 offset_right = 544.0
 offset_bottom = 1088.0
 theme = ExtResource("1_mkj5w")
-text = "Les crédits de ouf"
+text = "\"Reclaim!\" was created for the Godot Wild Jam #57.
+
+- French Pan Studio -
+Jodie: Pixel art / Game design
+Vost: Programmation / Game design
+angeldust: Programmation / Game design"
 horizontal_alignment = 1
 
 [node name="Rideau" parent="." instance=ExtResource("3_y2txb")]
