@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/TitleScene.gd" id="1_i6uf6"]
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_srx31"]
-[ext_resource type="FontFile" uid="uid://bwl1rd3gs04h3" path="res://punk_rockf.ttf" id="2_whp1a"]
+[ext_resource type="FontFile" uid="uid://dwd42d6bnymt0" path="res://punk_rockf.ttf" id="2_whp1a"]
 [ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="4_m1hhg"]
 
 [node name="TitleScene" type="Node2D"]
@@ -55,7 +55,6 @@ offset_bottom = 483.0
 text = "Credits"
 
 [node name="Rideau" parent="." instance=ExtResource("4_m1hhg")]
-color = Color(0, 0, 0, 1)
 offset_right = 544.0
 offset_bottom = 544.0
 
