@@ -52,10 +52,10 @@ func ambianceManager():
 	var lowTechFood = GameState.ressource["FOOD"]-GameState.ressourceHighTech["FOOD"]
 	var lowTechWater = GameState.ressource["WATER"]-GameState.ressourceHighTech["WATER"]
 	var lowTechO2 = GameState.ressource["O2"]-GameState.ressourceHighTech["O2"]
-	var pourcentGlobal = ((lowTechFood+lowTechO2+lowTechWater)/3)/(GameState.maxStat/2.)
+	var pourcentGlobal = clamp(((lowTechFood+lowTechO2+lowTechWater)/3)/(GameState.maxStat/2.),0,1)
 	$AmbiantParticules.amount = clamp(int(pourcentGlobal*15)+1,1,20)
 	$WorldEnvironment.environment.glow_bloom = pourcentGlobal*0.5
-	$CanvasModulate.color = Color(1,1,1-(pourcentGlobal*0.1))
+	$CanvasModulate.color = Color(1,1,1-(pourcentGlobal*0.05))
 
 func GameOver():
 	RadioDiffusion.nextDialogNeeded("pop_neg")

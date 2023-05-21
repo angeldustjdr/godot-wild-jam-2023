@@ -289,7 +289,6 @@ func applyEffectModifier(_effectName):
 	pass
 
 func swap(arrivee_x,arrivee_y,size):
-	cellEffect = "InTransition"
 	var tween = create_tween()
 	tween.tween_property(self, "position",Vector2(arrivee_x*size,arrivee_y*size),0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 

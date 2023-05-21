@@ -157,6 +157,7 @@ func recalculateEffect():
 					["Pollution","Spore"]: effectGrid[i][j] = "Spore"
 					["Heat","Pollution","Spore"] : effectGrid[i][j] = "Meat"
 					_ : effectGrid[i][j] = "Nothing"
+	applyEffect()
 
 func applyEffect():
 	for n in get_children():
