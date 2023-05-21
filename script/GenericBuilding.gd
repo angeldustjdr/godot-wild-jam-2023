@@ -128,19 +128,20 @@ func computePosition():
 
 func applyPattern(pattern,p=-1,alph=90):
 	if not self.isPatternAppliedName(pattern.name):
+		SoundManager.playSoundNamed("powerup")
 		self.appliedPatternsNames.append(pattern.name)
 		self.appliedPatterns.append(pattern.duplicate())
 		self.appliedPatterns[-1].coords = pattern.coords.duplicate()
 		self.pos.append(p)
 		self.alphas.append(alph)
 		for stat in patternModifier.keys():
-			var _value = self.getPatternModifierValue(pattern,stat)
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
 
 #untested
 func unApplyPattern(pattern):
 	if self.isPatternAppliedName(pattern.name):
+		SoundManager.playSoundNamed("powerdown")
 		var index = self.appliedPatternsNames.find(pattern.name,0)
 		self.appliedPatternsNames.remove_at(index)
 		self.appliedPatterns.remove_at(index)

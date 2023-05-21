@@ -55,7 +55,7 @@ func getNeighborsCoords(i,j): # North, East, South, West
 	return [[i-1,j],[i,j+1],[i+1,j],[i,j-1]]
 
 func getCell(i,j): # i = line number and j = column number
-	if (i >= self.Ymax or j >= self.Xmax):
+	if i >= self.Ymax or j >= self.Xmax or i < 0 or j < 0:
 		return self
 	else:
 		return self.grid[j][i]
@@ -172,7 +172,6 @@ func checkEndGame():
 	var NbHighTech = Xmax*Ymax
 	for n in get_children():
 		if not n.isHighTech : NbHighTech -= 1
-	print(NbHighTech)
 	if NbHighTech==0 :
 		RadioDiffusion.nextDialogNeeded("EndGame")
 		endGameDetected = true
@@ -197,6 +196,7 @@ func generateOutcome(destr_i,destr_j):
 				var i = getRandomI()
 				var j = getRandomJ()
 				if grid[i][j].hasHourglass == false and grid[i][j].lockable: 
+					SoundManager.playSoundNamed("lock")
 					grid[i][j].setLock()
 					RadioDiffusion.nextDialogNeeded("lock")
 					ok=true
@@ -212,6 +212,7 @@ func generateOutcome(destr_i,destr_j):
 				var l = getRandomJ()
 				if [i,j]!=[k,l] and grid[i][j].swapable and grid[k][l].swapable:
 					if [i,j]!=[destr_i,destr_j] and [k,l]!=[destr_i,destr_j]:
+						SoundManager.playSoundNamed("swap")
 						grid[i][j].swap(k,l,tileSize)
 						grid[k][l].swap(i,j,tileSize)
 						var bufferIJ = grid[i][j]
@@ -239,6 +240,7 @@ func generateOutcome(destr_i,destr_j):
 				var i = getRandomI()
 				var j = getRandomJ()
 				if grid[i][j].hasHourglass and [i,j]!=[destr_i,destr_j]: 
+					SoundManager.playSoundNamed("timer")
 					grid[i][j].get_node("Hourglass").decreaseTimer()
 					grid[i][j].popLabel("-1 TURN")
 					RadioDiffusion.nextDialogNeeded("wait_turn")

@@ -9,6 +9,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index==MOUSE_BUTTON_LEFT and event.pressed:
+			#SoundManager.playSoundNamed("transition")
 			rideau.play("rideau_out")
 			await rideau.animation_finished
 			get_tree().change_scene_to_file("res://TitleScene.tscn")

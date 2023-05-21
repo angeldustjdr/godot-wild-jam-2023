@@ -6,4 +6,5 @@ func _ready():
 	SoundManager.playSoundNamed("casserole")
 	await get_tree().create_timer(4.0).timeout
 	$Rideau.actionRideau("out")
+	SoundManager.playSoundNamed("transition")
 	get_tree().change_scene_to_file("res://TitleScene.tscn")

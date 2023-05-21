@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_b6ggk"]
 [ext_resource type="Script" path="res://script/Logo.gd" id="1_rthdb"]
-[ext_resource type="FontFile" uid="uid://dwd42d6bnymt0" path="res://punk_rockf.ttf" id="2_twkfo"]
-[ext_resource type="Texture2D" uid="uid://csssgaf6muoew" path="res://asset/sprite/casserole.png" id="3_iidkp"]
+[ext_resource type="FontFile" uid="uid://bwl1rd3gs04h3" path="res://punk_rockf.ttf" id="2_twkfo"]
+[ext_resource type="Texture2D" uid="uid://jpkp72dflntj" path="res://asset/sprite/casserole.png" id="3_iidkp"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_sx2tj"]
 [ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="5_wg50s"]
 
@@ -50,5 +50,10 @@ texture = ExtResource("3_iidkp")
 [node name="Rideau" parent="." instance=ExtResource("5_wg50s")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+color = Color(0, 0, 0, 1)

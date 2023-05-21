@@ -34,3 +34,4 @@ angeldust: Programmation / Game design"
 horizontal_alignment = 1
 
 [node name="Rideau" parent="." instance=ExtResource("3_y2txb")]
+color = Color(0, 0, 0, 1)
