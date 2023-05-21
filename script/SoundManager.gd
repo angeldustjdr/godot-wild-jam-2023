@@ -7,16 +7,16 @@ var available = []  # The available players.
 var queue = []  # The queue of sounds to play.
 var queue_vol = []  # Volume of the queued sounds.
 
-var sound_paths = {	"clic":"res://asset/sound/blip-2.wav",
-					"transition":"res://asset/sound/blip-1.wav",
-					"powerup":"res://asset/sound/powerUp-v2.wav",
-					"powerdown":"res://asset/sound/lose-4.wav",
-					"build":"res://asset/sound/corruption-v1.wav",
-					"destroy":"res://asset/sound/explosion-v1.wav",
-					"casserole":"res://asset/sound/Casserole.wav",
-					"swap":"res://asset/sound/hitHurt-v3.wav",
-					"lock":"res://asset/sound/doorClose_1.ogg",
-					"timer":"res://asset/sound/cancel-1.wav"}
+var sound_paths = {	"clic":"res://asset/sound/click1.ogg",
+					"transition":"res://asset/sound/woosh7.ogg", 
+					"powerup":"res://asset/sound/powerUp7.ogg", 
+					"powerdown":"res://asset/sound/lowDown.ogg",
+					"build":"res://asset/sound/stoneDragHit1.ogg",
+					"destroy":"res://asset/sound/rumble3.ogg",
+					"casserole":"res://asset/sound/Casserole.wav", 
+					"swap":"res://asset/sound/cardTakeOutPackage1.ogg",
+					"lock":"res://asset/sound/footstep00.ogg", 
+					"timer":"res://asset/sound/bookFlip3.ogg"}
 
 var base_volumes = {"clic":0.0,
 					"transition":0.0,
