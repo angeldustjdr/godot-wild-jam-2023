@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8001k27dcfjx" path="res://scene/GenericBuilding.tscn" id="1_65x5b"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_fqr5i"]
-[ext_resource type="Texture2D" uid="uid://dmgxdae66pdwb" path="res://asset/sheet/poumons-sheet.png" id="3_2y18k"]
+[ext_resource type="Texture2D" uid="uid://cgult0ix3qi08" path="res://asset/sheet/sheet_last_v/poumons-sheet.png" id="3_7uvtu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mq6i5"]
 resource_local_to_scene = true
@@ -28,4 +28,4 @@ outcomeAllowed = false
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_mq6i5")
-texture = ExtResource("3_2y18k")
+texture = ExtResource("3_7uvtu")

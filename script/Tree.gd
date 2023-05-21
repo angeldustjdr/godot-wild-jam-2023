@@ -5,11 +5,11 @@ func _ready():
 	super()
 	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
-	self.sprites = {"base": "res://asset/sheet/tree-1-sheet.png",
-					"4TreesPattern":["res://asset/sheet/big_tree_upper_left.png",
-									"res://asset/sheet/big_tree_upper_right.png",
-									"res://asset/sheet/big_tree_lower_right.png",
-									"res://asset/sheet/big_tree_lower_left.png"]}
+	self.sprites = {"base": "res://asset/sheet/sheet_last_v/tree-sheet.png",
+					"4TreesPattern":["res://asset/sheet/sheet_last_v/big_tree_upper_left-sheet.png",
+									"res://asset/sheet/sheet_last_v/big_tree_upper_right-sheet.png",
+									"res://asset/sheet/sheet_last_v/big_tree_lower_right-sheet.png",
+									"res://asset/sheet/sheet_last_v/big_tree_lower_left-sheet.png"]}
 	self.applicablePatterns = ["4TreesPattern","PermaCulturePattern"]
 	self.applicablePatternsValues = {"FOOD":[0,0],
 									"WATER":[0,0],

@@ -5,14 +5,14 @@ func _ready():
 	super()
 	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
-	self.sprites = {"base": "res://asset/sheet/well-sheet-1.png",
-					"IrrigatedPattern": "res://asset/sheet/irrigated_well.png",
-					"IrrigatedChannelPattern": ["res://asset/sheet/left_irrigated_channel.png",
-									"res://asset/sheet/middle_irrigated_channel.png",
-									"res://asset/sheet/right_irrigated_channel.png"],
-					"ChannelPattern":["res://asset/sheet/left_channel.png",
-										"res://asset/sheet/middle_channel.png",
-										"res://asset/sheet/right_channel.png"]}
+	self.sprites = {"base": "res://asset/sheet/sheet_last_v/well-sheet.png",
+					"IrrigatedPattern": "res://asset/sheet/sheet_last_v/well_irrigated-sheet.png",
+					"IrrigatedChannelPattern": ["res://asset/sheet/sheet_last_v/irrigated_canal_left_sheet.png",
+									"res://asset/sheet/sheet_last_v/irrigated_canal_center_sheet.png",
+									"res://asset/sheet/sheet_last_v/irrigated_canal_right_sheet.png"],
+					"ChannelPattern":["res://asset/sheet/sheet_last_v/canal_left_sheet.png",
+										"res://asset/sheet/sheet_last_v/canal_center_sheet.png",
+										"res://asset/sheet/sheet_last_v/canal_right_sheet.png"]}
 	self.applicablePatterns = ["IrrigatedPattern","ChannelPattern"]
 	self.applicablePatternsValues = {"FOOD":[0,0],
 									"WATER":[-1,1],

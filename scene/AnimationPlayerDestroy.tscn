@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4hs7wnnbndbx"]
+[gd_scene load_steps=13 format=3 uid="uid://b4hs7wnnbndbx"]
 
-[ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="1_4gltn"]
-[ext_resource type="Texture2D" uid="uid://bvbj48eaomyv" path="res://asset/sheet/fournaise-sheet.png" id="2_2kbbo"]
-[ext_resource type="Texture2D" uid="uid://di41u6r0i4uyd" path="res://asset/sheet/sewer-sheet.png" id="3_u5xj7"]
-[ext_resource type="Texture2D" uid="uid://cld4oxpagcfi1" path="res://asset/sheet/spore_generator-sheet.png" id="4_yr2gs"]
-[ext_resource type="Texture2D" uid="uid://bvlgt0mm1tcqu" path="res://asset/sprite/dust.png" id="5_oqjj1"]
+[ext_resource type="Texture2D" uid="uid://baywhgrfe4dfv" path="res://asset/sheet/sheet_last_v/fournaise-sheet.png" id="1_w25jo"]
+[ext_resource type="Texture2D" uid="uid://n4r2wjy4ayfr" path="res://asset/sheet/sheet_last_v/sewer-sheet.png" id="2_h5klp"]
+[ext_resource type="Texture2D" uid="uid://14qifu1ktagu" path="res://asset/sheet/sheet_last_v/spore_generator-sheet.png" id="3_yho48"]
+[ext_resource type="Texture2D" uid="uid://bmdqtimyuxiwo" path="res://asset/sprite/dust.png" id="5_oqjj1"]
 
 [sub_resource type="Animation" id="Animation_coeub"]
 length = 0.001
@@ -98,7 +97,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_2kbbo")]
+"values": [ExtResource("1_w25jo")]
 }
 
 [sub_resource type="Animation" id="Animation_keuap"]
@@ -135,10 +134,10 @@ tracks/2/path = NodePath("Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_4gltn"), ExtResource("3_u5xj7")]
+"values": [ExtResource("2_h5klp")]
 }
 
 [sub_resource type="Animation" id="Animation_0eoqy"]
@@ -175,10 +174,10 @@ tracks/2/path = NodePath("Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_4gltn"), ExtResource("4_yr2gs")]
+"values": [ExtResource("3_yho48")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7r8rq"]

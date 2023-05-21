@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bj232y15ucqoe"]
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_v4643"]
-[ext_resource type="Texture2D" uid="uid://bp64pt10bx868" path="res://asset/sprite/icon_food.png" id="2_1m2ru"]
+[ext_resource type="Texture2D" uid="uid://dx8m1vio3ls87" path="res://asset/sprite/icon_food.png" id="2_1m2ru"]
 [ext_resource type="Script" path="res://script/updateUI.gd" id="2_2esab"]
-[ext_resource type="Texture2D" uid="uid://dfio06xmmp4qe" path="res://asset/sprite/jauge_empty.png" id="3_6igks"]
-[ext_resource type="Texture2D" uid="uid://bdtepvfh0dg4c" path="res://asset/sprite/jauge_food1.png" id="4_6ct8e"]
-[ext_resource type="Texture2D" uid="uid://blc4pyq7m01o5" path="res://asset/sprite/jauge_food2.png" id="5_5nx6q"]
+[ext_resource type="Texture2D" uid="uid://b1kaitfkkve" path="res://asset/sprite/jauge_empty.png" id="3_6igks"]
+[ext_resource type="Texture2D" uid="uid://c80qqn6liecp6" path="res://asset/sprite/jauge_food1.png" id="4_6ct8e"]
+[ext_resource type="Texture2D" uid="uid://djoae1s08ekp6" path="res://asset/sprite/jauge_food2.png" id="5_5nx6q"]
 
 [sub_resource type="Animation" id="Animation_xuc1h"]
 length = 0.001

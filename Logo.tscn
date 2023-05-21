@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://csrbaxpi7b5dm"]
+[gd_scene load_steps=11 format=3 uid="uid://csrbaxpi7b5dm"]
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_b6ggk"]
 [ext_resource type="Script" path="res://script/Logo.gd" id="1_rthdb"]
-[ext_resource type="FontFile" uid="uid://dwd42d6bnymt0" path="res://punk_rockf.ttf" id="2_twkfo"]
-[ext_resource type="Texture2D" uid="uid://csssgaf6muoew" path="res://asset/sprite/casserole.png" id="3_iidkp"]
+[ext_resource type="FontFile" uid="uid://dem0nejarb6xq" path="res://punk_rockf.ttf" id="2_twkfo"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_sx2tj"]
+[ext_resource type="Texture2D" uid="uid://c15q3hxxhqck1" path="res://asset/sheet/sheet_last_v/casserole-sheet.png" id="5_5xxyi"]
 [ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="5_wg50s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtpkf"]
@@ -14,6 +14,67 @@ shader_parameter/width = 1.0
 shader_parameter/pattern = 0
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_afx22"]
+resource_name = "ping"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3.5, 3.5), Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_xxecl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xqbyr"]
+_data = {
+"RESET": SubResource("Animation_xxecl"),
+"ping": SubResource("Animation_afx22")
+}
 
 [node name="Logo" type="Control"]
 custom_minimum_size = Vector2(544, 544)
@@ -45,9 +106,17 @@ horizontal_alignment = 1
 material = SubResource("ShaderMaterial_jtpkf")
 position = Vector2(272, 320)
 scale = Vector2(3, 3)
-texture = ExtResource("3_iidkp")
+texture = ExtResource("5_5xxyi")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+autoplay = "ping"
+libraries = {
+"": SubResource("AnimationLibrary_xqbyr")
+}
 
 [node name="Rideau" parent="." instance=ExtResource("5_wg50s")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

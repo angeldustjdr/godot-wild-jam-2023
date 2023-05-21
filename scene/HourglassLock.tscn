@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b72x1y02mxbs5"]
 
-[ext_resource type="Texture2D" uid="uid://ddlia6nxqb8i1" path="res://asset/sprite/serrure.png" id="1_n0nnb"]
+[ext_resource type="Texture2D" uid="uid://cvcdlbuxymmrq" path="res://asset/sprite/serrure.png" id="1_n0nnb"]
 
 [sub_resource type="Animation" id="Animation_kder2"]
 length = 0.001
