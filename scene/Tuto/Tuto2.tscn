@@ -1,0 +1,288 @@
+[gd_scene load_steps=22 format=3 uid="uid://vrpittcjd2nh"]
+
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_e152g"]
+[ext_resource type="Shader" path="res://shader/Outline.gdshader" id="2_knjg5"]
+[ext_resource type="Script" path="res://scene/Tuto/Tuto2.gd" id="2_q0nwp"]
+[ext_resource type="Texture2D" uid="uid://dhq2dctrksvjn" path="res://asset/sheet/arrow_sheet.png" id="3_r3ytj"]
+[ext_resource type="PackedScene" uid="uid://cc1ka6bva02ic" path="res://scene/HeatParticules.tscn" id="4_7y0li"]
+[ext_resource type="PackedScene" uid="uid://b2bi3kptd10vi" path="res://scene/SmokeParticules.tscn" id="5_vsyed"]
+[ext_resource type="PackedScene" uid="uid://cx7rl2v1uy4eh" path="res://scene/SporeParticules.tscn" id="6_dvsvm"]
+[ext_resource type="PackedScene" uid="uid://ykimlxn2kbwu" path="res://scene/tuto_area2d.tscn" id="7_nclvi"]
+[ext_resource type="Texture2D" uid="uid://iyga3w6hcmq" path="res://asset/sheet/building1-sheet.png" id="8_cb5vc"]
+[ext_resource type="Texture2D" uid="uid://dslio43wx6nm7" path="res://asset/sheet/fournaise-sheet.png" id="9_ylwql"]
+[ext_resource type="Texture2D" uid="uid://3krwihviepji" path="res://asset/sprite/jauge_water1.png" id="10_abrtr"]
+[ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="10_pqtdw"]
+[ext_resource type="Texture2D" uid="uid://b1kaitfkkve" path="res://asset/sprite/jauge_empty.png" id="11_f10vm"]
+[ext_resource type="Texture2D" uid="uid://cn3o57lhfe1fw" path="res://asset/sprite/icon_water.png" id="12_h43n5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebtf2"]
+resource_local_to_scene = true
+shader = ExtResource("2_knjg5")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_8xb15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_cb5vc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d6h0n"]
+resource_name = "shift"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_cb5vc"), ExtResource("9_ylwql"), ExtResource("8_cb5vc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 3, 3.6, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1), Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3p26i"]
+_data = {
+"RESET": SubResource("Animation_8xb15"),
+"shift": SubResource("Animation_d6h0n")
+}
+
+[sub_resource type="Animation" id="Animation_0l12b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3elkw"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7841"]
+_data = {
+"RESET": SubResource("Animation_0l12b"),
+"flash": SubResource("Animation_3elkw")
+}
+
+[node name="Tuto2" type="Control"]
+custom_minimum_size = Vector2(544, 544)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 544.0
+offset_bottom = 544.0
+color = Color(0, 0, 0, 1)
+
+[node name="Bottom_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 420.0
+offset_right = 544.0
+offset_bottom = 544.0
+theme = ExtResource("1_e152g")
+script = ExtResource("2_q0nwp")
+
+[node name="ColorRect" type="ColorRect" parent="Bottom_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 383.0
+offset_right = 545.0
+offset_bottom = 418.0
+theme = ExtResource("1_e152g")
+text = "Skip to game"
+
+[node name="Arrow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ebtf2")
+position = Vector2(416, 104)
+texture = ExtResource("3_r3ytj")
+hframes = 2
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ebtf2")
+position = Vector2(360, 160)
+rotation = 4.71239
+texture = ExtResource("3_r3ytj")
+hframes = 2
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ebtf2")
+position = Vector2(416, 216)
+rotation = 3.14159
+texture = ExtResource("3_r3ytj")
+hframes = 2
+
+[node name="HeatParticules" parent="." instance=ExtResource("4_7y0li")]
+position = Vector2(416, 64)
+
+[node name="SmokeParticules" parent="." instance=ExtResource("5_vsyed")]
+position = Vector2(416, 256)
+
+[node name="Particules" parent="." instance=ExtResource("6_dvsvm")]
+position = Vector2(328, 160)
+
+[node name="Area2D" parent="." instance=ExtResource("7_nclvi")]
+
+[node name="DemoSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ebtf2")
+position = Vector2(416, 160)
+texture = ExtResource("8_cb5vc")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DemoSprite"]
+autoplay = "shift"
+libraries = {
+"": SubResource("AnimationLibrary_3p26i")
+}
+
+[node name="Explanation3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 232.0
+offset_bottom = 88.0
+theme = ExtResource("1_e152g")
+theme_override_font_sizes/font_size = 35
+text = "Try me!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Arrow4" type="Sprite2D" parent="Explanation3"]
+material = SubResource("ShaderMaterial_ebtf2")
+position = Vector2(104, 40)
+rotation = -3.14159
+texture = ExtResource("3_r3ytj")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Explanation3"]
+root_node = NodePath("../Arrow4")
+autoplay = "flash"
+libraries = {
+"": SubResource("AnimationLibrary_t7841")
+}
+
+[node name="Jauge2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -24.0
+offset_bottom = -24.0
+
+[node name="Jauge_hightech" type="Sprite2D" parent="Jauge2"]
+position = Vector2(64, 324)
+scale = Vector2(3.04762, 1)
+texture = ExtResource("10_abrtr")
+centered = false
+
+[node name="Jauge_empty" type="NinePatchRect" parent="Jauge2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 128.0
+offset_bottom = 336.0
+scale = Vector2(2, 1)
+texture = ExtResource("11_f10vm")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="Jauge2"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 294.0
+offset_right = 159.0
+offset_bottom = 324.0
+theme = ExtResource("1_e152g")
+text = "Water
+"
+horizontal_alignment = 1
+
+[node name="Icone" type="Sprite2D" parent="Jauge2"]
+position = Vector2(128, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h43n5")
+
+[node name="Arrow4" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ebtf2")
+position = Vector2(128, 224)
+rotation = 3.14159
+texture = ExtResource("3_r3ytj")
+hframes = 2
+
+[node name="Rideau" parent="." instance=ExtResource("10_pqtdw")]
+layout_mode = 1
+offset_right = 544.0
+offset_bottom = 544.0

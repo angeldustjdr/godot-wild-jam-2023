@@ -1,0 +1,270 @@
+[gd_scene load_steps=17 format=3 uid="uid://b6f88l5hdi0q5"]
+
+[ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_ajxac"]
+[ext_resource type="Script" path="res://scene/Tuto/Tuto1.gd" id="2_i4qjk"]
+[ext_resource type="Texture2D" uid="uid://y04a4u31g166" path="res://asset/sheet/food-plant-v2-sheet.png" id="3_hngpa"]
+[ext_resource type="Texture2D" uid="uid://b1d61xhujc2f1" path="res://asset/sheet/sheet_last_v/water-plant-sheet.png" id="4_il3xu"]
+[ext_resource type="Texture2D" uid="uid://cgult0ix3qi08" path="res://asset/sheet/sheet_last_v/poumons-sheet.png" id="5_7faj1"]
+[ext_resource type="Texture2D" uid="uid://djoae1s08ekp6" path="res://asset/sprite/jauge_food2.png" id="6_cxyv4"]
+[ext_resource type="Texture2D" uid="uid://b1kaitfkkve" path="res://asset/sprite/jauge_empty.png" id="7_wuy7v"]
+[ext_resource type="Texture2D" uid="uid://dx8m1vio3ls87" path="res://asset/sprite/icon_food.png" id="8_kw2o5"]
+[ext_resource type="Texture2D" uid="uid://3krwihviepji" path="res://asset/sprite/jauge_water1.png" id="9_tv702"]
+[ext_resource type="Texture2D" uid="uid://cn3o57lhfe1fw" path="res://asset/sprite/icon_water.png" id="10_sp865"]
+[ext_resource type="Texture2D" uid="uid://c5yq7un1ixlax" path="res://asset/sprite/jauge_o1.png" id="11_y1tll"]
+[ext_resource type="Texture2D" uid="uid://bua87jve4selw" path="res://asset/sprite/icon_o2.png" id="12_uqf0f"]
+[ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="13_dkt0j"]
+
+[sub_resource type="Animation" id="Animation_2pebn"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 2]
+}
+
+[sub_resource type="Animation" id="Animation_qp3lm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pl8f"]
+_data = {
+"RESET": SubResource("Animation_qp3lm"),
+"idle": SubResource("Animation_2pebn")
+}
+
+[node name="Tuto1" type="Control"]
+custom_minimum_size = Vector2(544, 544)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_ajxac")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bottom_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 420.0
+offset_right = 544.0
+offset_bottom = 544.0
+theme = ExtResource("1_ajxac")
+script = ExtResource("2_i4qjk")
+
+[node name="ColorRect" type="ColorRect" parent="Bottom_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[node name="Food" type="Sprite2D" parent="."]
+position = Vector2(127, 127)
+scale = Vector2(1.91176, 1.91176)
+texture = ExtResource("3_hngpa")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Food"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_4pl8f")
+}
+
+[node name="Water" type="Sprite2D" parent="."]
+position = Vector2(272, 128)
+scale = Vector2(1.91176, 1.91176)
+texture = ExtResource("4_il3xu")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Water"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_4pl8f")
+}
+
+[node name="O2" type="Sprite2D" parent="."]
+position = Vector2(416, 128)
+scale = Vector2(1.91176, 1.91176)
+texture = ExtResource("5_7faj1")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="O2"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_4pl8f")
+}
+
+[node name="Jauge" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -24.0
+offset_bottom = -24.0
+
+[node name="Jauge_hightech" type="Sprite2D" parent="Jauge"]
+position = Vector2(64, 324)
+scale = Vector2(3.04762, 1)
+texture = ExtResource("6_cxyv4")
+centered = false
+
+[node name="Jauge_empty" type="NinePatchRect" parent="Jauge"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 128.0
+offset_bottom = 336.0
+scale = Vector2(2, 1)
+texture = ExtResource("7_wuy7v")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="Jauge"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 294.0
+offset_right = 152.0
+offset_bottom = 324.0
+theme = ExtResource("1_ajxac")
+text = "Food
+"
+horizontal_alignment = 1
+
+[node name="Icone" type="Sprite2D" parent="Jauge"]
+position = Vector2(128, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("8_kw2o5")
+
+[node name="Jauge2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 144.0
+offset_top = -24.0
+offset_right = 144.0
+offset_bottom = -24.0
+
+[node name="Jauge_hightech" type="Sprite2D" parent="Jauge2"]
+position = Vector2(64, 324)
+scale = Vector2(3.04762, 1)
+texture = ExtResource("9_tv702")
+centered = false
+
+[node name="Jauge_empty" type="NinePatchRect" parent="Jauge2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 128.0
+offset_bottom = 336.0
+scale = Vector2(2, 1)
+texture = ExtResource("7_wuy7v")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="Jauge2"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 294.0
+offset_right = 159.0
+offset_bottom = 324.0
+theme = ExtResource("1_ajxac")
+text = "Water
+"
+horizontal_alignment = 1
+
+[node name="Icone" type="Sprite2D" parent="Jauge2"]
+position = Vector2(128, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("10_sp865")
+
+[node name="Jauge3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 288.0
+offset_top = -24.0
+offset_right = 288.0
+offset_bottom = -24.0
+
+[node name="Jauge_hightech" type="Sprite2D" parent="Jauge3"]
+position = Vector2(64, 324)
+scale = Vector2(3.04762, 1)
+texture = ExtResource("11_y1tll")
+centered = false
+
+[node name="Jauge_empty" type="NinePatchRect" parent="Jauge3"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 128.0
+offset_bottom = 336.0
+scale = Vector2(2, 1)
+texture = ExtResource("7_wuy7v")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="Jauge3"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 294.0
+offset_right = 165.0
+offset_bottom = 324.0
+theme = ExtResource("1_ajxac")
+text = "Oxygen
+"
+horizontal_alignment = 1
+
+[node name="Icone" type="Sprite2D" parent="Jauge3"]
+position = Vector2(128, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("12_uqf0f")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 384.0
+offset_right = 526.0
+offset_bottom = 419.0
+text = "Skip to game"
+
+[node name="Rideau" parent="." instance=ExtResource("13_dkt0j")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 544.0
+offset_bottom = 544.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="Play" to="Bottom_UI" method="_on_play_pressed"]
