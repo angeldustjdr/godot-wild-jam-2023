@@ -56,6 +56,8 @@ text = "Credits"
 
 [node name="Rideau" parent="." instance=ExtResource("4_m1hhg")]
 color = Color(0, 0, 0, 1)
+offset_right = 544.0
+offset_bottom = 544.0
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Control/CreditButton" to="." method="_on_credit_button_pressed"]

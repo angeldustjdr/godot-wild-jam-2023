@@ -103,6 +103,7 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	calculateRessources()
 	RadioDiffusion.cleanSelectedCall()
 	gridUpdated.emit(x,y)
+	updateUITooltip()
 	checkEndGame()
 	
 func popBuilding(type,x,y):
@@ -163,6 +164,10 @@ func applyEffect():
 		if n.cellEffect != effectGrid[n.i][n.j]:
 			n.cleanParticules()
 		n.applyCellEffect(effectGrid[n.i][n.j])
+
+func updateUITooltip():
+	for n in get_children():
+		n.updateTooltip()
 
 func cleanNode():
 	for n in get_children():
@@ -250,7 +255,8 @@ func generateOutcome(destr_i,destr_j):
 			var outcomeDialogue = outcomeDialogueRAS[0]
 			if outcomeDialogue in outComeOnce: outcomeDialogueRAS.erase(outcomeDialogue)
 			RadioDiffusion.nextDialogNeeded(outcomeDialogue)
-		
+	updateUITooltip()
+
 func getRandomI():
 	return randi_range(0,Xmax-1)
 func getRandomJ():
