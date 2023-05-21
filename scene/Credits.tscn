@@ -28,9 +28,21 @@ theme = ExtResource("1_mkj5w")
 text = "\"Reclaim!\" was created for the Godot Wild Jam #57.
 
 - French Pan Studio -
-Jodie: Pixel art / Game design
+angeldust: Programmation / Game design
+Belillart: Pixel art / Game design
 Vost: Programmation / Game design
-angeldust: Programmation / Game design"
+
+- Music ressources -
+Menu: \"dark2light\" by DSTechnician
+In game: \"Negative mass\" by ROBOXEL
+Ending: \"eretria\" by DSTechnician
+
+- Pixel art ressources -
+Some pixel art used have been modified from:
+\"Tiny wonder farm\" free asset pack by Butter Milk
+\"Cozy farm\" free asset pack by shubibubi
+\"Legend of Rogua Vol.1\" free asset pack by Cairo Creative Studios
+\"RPG worlds houses and interiors\" free asset pack by Szadi art"
 horizontal_alignment = 1
 
 [node name="Rideau" parent="." instance=ExtResource("3_y2txb")]
