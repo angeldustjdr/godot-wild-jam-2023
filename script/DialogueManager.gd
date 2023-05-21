@@ -22,8 +22,9 @@ tuto1/How To play :/tuto2
 tuto2/The goal is destroy those awful techno-organic buildings and replace them with sustainable ones,/tuto3
 tuto3/while still providing enough ressources for your people./tuto4
 tuto4/Be careful though, as we lost the knowledge of what the building actually does.../tuto5
-tuto5/Provide enough ressources before the techno-organic factories run out ouf power./tuto6
-tuto6/Good luck ! The clock is ticking.../end
+tuto5/Provide enough ressources before the techno-organic factories run out ouf power:/tuto6
+tuto6/Replace high-tech ressource factories by low-tech buildings./tuto7
+tuto7/Good luck ! The clock is ticking.../end
 Heat/A techno-furnace has been destroyed!/end
 Pollution/A contaminated factory has been destroyed!/end
 Spore/A techno-spore farm has been destroyed!/end
