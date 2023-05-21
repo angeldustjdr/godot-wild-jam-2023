@@ -98,7 +98,7 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
-	await grid[x][y].get_node("AnimationPlayerBuilding").animation_finished
+	if grid[x][y].destroyable : await grid[x][y].get_node("AnimationPlayerBuilding").animation_finished
 	recalculateEffect()
 	calculateRessources()
 	RadioDiffusion.cleanSelectedCall()
