@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://cjnwflv66k2s4" path="res://asset/Theme.tres" id="1_b6ggk"]
 [ext_resource type="Script" path="res://script/Logo.gd" id="1_rthdb"]
-[ext_resource type="FontFile" uid="uid://bwl1rd3gs04h3" path="res://punk_rockf.ttf" id="2_twkfo"]
+[ext_resource type="FontFile" uid="uid://dem0nejarb6xq" path="res://punk_rockf.ttf" id="2_twkfo"]
 [ext_resource type="Shader" path="res://shader/Outline.gdshader" id="3_sx2tj"]
-[ext_resource type="Texture2D" uid="uid://crxbhm7cnv0yt" path="res://asset/sheet/sheet_last_v/casserole-sheet.png" id="5_5xxyi"]
+[ext_resource type="Texture2D" uid="uid://c15q3hxxhqck1" path="res://asset/sheet/sheet_last_v/casserole-sheet.png" id="5_5xxyi"]
 [ext_resource type="PackedScene" uid="uid://cveu1qg4nspjp" path="res://scene/Rideau.tscn" id="5_wg50s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtpkf"]

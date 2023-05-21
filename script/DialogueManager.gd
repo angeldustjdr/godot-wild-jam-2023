@@ -18,13 +18,15 @@ bank/The banking system went down. Everyone's debt has been cleared./end
 ai/AI bots do not work anymore. Not a bad thing./end
 light/The lights went down. Let's get candles./end
 socialMedia/The Main Social Media went down. Now, where can we post those stories?/end
-tuto1/How To play :/tuto2
-tuto2/The goal is destroy those awful techno-organic buildings and replace them with sustainable ones,/tuto3
-tuto3/while still providing enough ressources for your people./tuto4
-tuto4/Be careful though, as we lost the knowledge of what the building actually does.../tuto5
-tuto5/Provide enough ressources before the techno-organic factories run out ouf power:/tuto6
-tuto6/Replace high-tech ressource factories by low-tech buildings./tuto7
-tuto7/Good luck ! The clock is ticking.../end
+tuto1/A long time ago, technopriests made a pact with an unknown entity./tuto2
+tuto2/The entity granted them advanced technologies to sustain their population./tuto3
+tuto3/However, these structures are now crumbling, and the technopriests are no longer present./tuto4
+tuto4/If you don't act quickly, resources will soon be scarce/end
+tuto5/Destroy seemingly useless buildings to free up space/tuto6
+tuto6/and replace them with low-tech resource providers./tuto7
+tuto7/Some buildings emit negative effects if not destroyed. /tuto8
+tuto8/Be cautious: demolishing a building may have unforeseen consequences./tuto9
+tuto9/Remember to read tooltips and attempt to replace your old resources with new ones before the timer expires. Good luck!/end
 Heat/A techno-furnace has been destroyed!/end
 Pollution/A contaminated factory has been destroyed!/end
 Spore/A techno-spore farm has been destroyed!/end

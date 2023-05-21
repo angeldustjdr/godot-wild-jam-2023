@@ -32,7 +32,7 @@ func _on_destroy_pressed():
 	$DemoSprite2/AnimationPlayer.play("destroy")
 	await $DemoSprite2/AnimationPlayer.animation_finished
 	$DustParticule.visible = false
-	$DemoSprite2.texture = load("res://asset/sheet/empty-space-sheet.png")
+	$DemoSprite2.texture = load("res://asset/sheet/sheet_last_v/empty-space-sheet.png")
 	$DemoSprite2/AnimationPlayer.play("build")
 	$Destroy.visible = false
 	await $DemoSprite2/AnimationPlayer.animation_finished
@@ -41,7 +41,7 @@ func _on_destroy_pressed():
 
 
 func _on_build_pressed():
-	$DemoSprite2.texture = load("res://asset/sheet/well-sheet-1.png")
+	$DemoSprite2.texture = load("res://asset/sheet/sheet_last_v/well-sheet.png")
 	$DemoSprite2/AnimationPlayer.play("build")
 	$Build.visible = false
 	await $DemoSprite2/AnimationPlayer.animation_finished
