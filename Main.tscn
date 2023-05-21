@@ -114,9 +114,8 @@ script = ExtResource("1_k1vvl")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 48.0
 offset_right = 544.0
-offset_bottom = 592.0
+offset_bottom = 544.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -279,6 +278,8 @@ color = Color(1, 1, 0.9, 1)
 
 [node name="Rideau" parent="." instance=ExtResource("14_uvgje")]
 z_index = 10
+offset_right = 544.0
+offset_bottom = 544.0
 
 [connection signal="gui_input" from="Bottom_UI/DialogueText" to="Bottom_UI/DialogueText" method="_on_gui_input"]
 [connection signal="timeout" from="Bottom_UI/DialogueText/Timer" to="Bottom_UI/DialogueText" method="_on_timer_timeout"]

@@ -37,7 +37,7 @@ var totalStat = {"POP" : 0,
 	"Smoke" : "Toxic smoke in the air!",
 	"Spore" : "Some weird spores float in the air!",
 	"Fertilizer" : "The crops grow better here for some reasons!",
-	"Meat" : "Something horrible tries to feed !"}
+	"Meat" : "Heated polluted spores... what a combo!"}
 
 var i
 var j
@@ -185,6 +185,7 @@ func updateTooltip():
 			if base_stat[n]!=0: updatedDescription += "\nNo "+n+" is produced here."
 	updatedDescription += getCellEffect()
 	updatedDescription += getLocked()
+	updatedDescription += getHourglassTooltip()
 	$Tooltip.tooltip_text = updatedDescription
 
 func getTotalStat():
@@ -239,13 +240,14 @@ func applyCellEffect(myEffect):
 				var p = particules.instantiate()
 				add_child(p)
 		cellEffect = myEffect
-		updateTooltip()
-		firstTime = false	
+		firstTime = false
+	updateTooltip()
 
-func setHourglass():
+func setHourglass(type="sablier"):
 	hasHourglass = true
 	var hourglass = load("res://scene/Hourglass.tscn")
 	var h = hourglass.instantiate()
+	h.init(type)
 	h.setTimer(hourglassTimer)
 	add_child(h)
 
@@ -254,6 +256,15 @@ func unsetHourglass():
 	if self.has_node("Hourglass") :
 		$Hourglass.queue_free()
 
+func getHourglassTooltip():
+	var tooltipText = ""
+	var hourglassNode = get_node_or_null("Hourglass")
+	if hasHourglass and hourglassNode!=null: 
+		if locked : tooltipText = "\nIt's locked for "+str(hourglassNode.turnLeft)+" turns."
+		else : tooltipText = "\nThis building will collapse in "+str(hourglassNode.turnLeft)+" turns."
+	return tooltipText
+
+
 func setLock():
 	if lockable:
 		unsetLock()
@@ -261,7 +272,7 @@ func setLock():
 		hourglassTimer = randi_range(3,7)
 		locked = true
 		$Chain.visible = true
-		setHourglass()
+		setHourglass("serrure")
 
 func unsetLock():
 		hasHourglass = false
@@ -271,7 +282,7 @@ func unsetLock():
 
 func getLocked():
 	var returned = ""
-	if locked: returned="\nThis building is locked."
+	if locked: returned="\nThis building is blocked by meat tentacles."
 	return returned
 
 func applyEffectModifier(_effectName):
