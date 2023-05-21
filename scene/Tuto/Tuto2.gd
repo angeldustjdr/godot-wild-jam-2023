@@ -2,7 +2,6 @@ extends Control
 
 @onready var dialog = load("res://scene/DialogueText.tscn")
 @export var startingPoint = "tuto5"
-@export var waittime = 5
 @onready var end = false
 @onready var rideau=get_parent().get_node("Rideau")
 
@@ -13,7 +12,6 @@ func _ready():
 	add_child(d)
 
 func endDialogue():
-	await get_tree().create_timer(waittime).timeout
 	end = true
 
 func _input(event):
