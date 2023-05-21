@@ -12,7 +12,7 @@ resource_local_to_scene = true
 shader = ExtResource("2_jt4ha")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
-shader_parameter/pattern = 0
+shader_parameter/pattern = 2
 shader_parameter/inside = false
 shader_parameter/add_margins = true
 

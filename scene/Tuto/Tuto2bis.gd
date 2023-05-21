@@ -11,7 +11,7 @@ func tutowell():
 	$Explanation3.visible = true
 
 func endDialogue():
-	$Tree.visible = false
+	$ControlFactory.visible = false
 	$ControlRight.visible = true
 	$Area2D.visible=true
 	$Explanation3.visible = true

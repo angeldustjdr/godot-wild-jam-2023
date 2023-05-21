@@ -258,6 +258,7 @@ offset_bottom = 419.0
 text = "Skip to game"
 
 [node name="Rideau" parent="." instance=ExtResource("13_dkt0j")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
