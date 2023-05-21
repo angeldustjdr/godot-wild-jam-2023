@@ -27,4 +27,5 @@ func setTimer(n):
 func decreaseTimer():
 	if turnLeft >= 0:
 		setTimer(turnLeft-1)
+		RadioDiffusion.updateTopUICall()
 		get_node("Hourglass/AnimationPlayerHourglass").play("rotateHourglass")
