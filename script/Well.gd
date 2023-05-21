@@ -2,7 +2,7 @@ extends GenericBuilding
 class_name Well
 
 func _ready():
-	super()
+	self.updateDescription()
 	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/sheet_last_v/well-sheet.png",
