@@ -102,6 +102,16 @@ text = "French Pan
 Studio"
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 444.0
+offset_right = 543.0
+offset_bottom = 542.0
+theme = ExtResource("1_b6ggk")
+theme_override_fonts/font = ExtResource("2_twkfo")
+text = "PRESENTS"
+horizontal_alignment = 1
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jtpkf")
 position = Vector2(272, 320)
