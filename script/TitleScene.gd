@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	MusicManager.playMusicNamed("game")
+	MusicManager.playMusicNamed("title")
 	GameState.reset()
 
 

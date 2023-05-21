@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	MusicManager.playMusicNamed("game")
 	RadioDiffusion.connect("endDialogue",endDialogue)
 
 func _on_skip_button_pressed():

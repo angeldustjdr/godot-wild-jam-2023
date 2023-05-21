@@ -1,8 +1,14 @@
 extends Node
 
-var musics_names = {"game":"res://asset/music/1-05. Negative Mass.mp3"}
-var musics_base_volumes = {"game":0.0}
-var musics_loops = {"game":true}
+var musics_names = {"game":"res://asset/music/1-05. Negative Mass.mp3",
+					"title":"res://asset/music/2-dark2light-116114.mp3",
+					"end":"res://asset/music/2-dark2light-116114.mp3"}
+var musics_base_volumes = {	"game":0.0,
+							"title":0.0,
+							"end":0.0}
+var musics_loops = {"game":true,
+					"title":true,
+					"end":true}
 var current = null
 
 # Called when the node enters the scene tree for the first time.

@@ -56,4 +56,5 @@ func rideauFinishedCall():
 
 signal endGame
 func endGameCall():
+	MusicManager.playMusicNamed("end")
 	endGame.emit()
