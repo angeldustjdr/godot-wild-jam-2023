@@ -148,6 +148,7 @@ func unApplyPattern(pattern):
 		self.appliedPatternsNames.remove_at(index)
 		self.appliedPatterns.remove_at(index)
 		self.pos.remove_at(index)
+		self.alphas.remove_at(index)
 		for stat in patternModifier.keys():
 			patternModifier[stat] -= self.getPatternModifierValue(pattern,stat)
 		self.updateDescription()

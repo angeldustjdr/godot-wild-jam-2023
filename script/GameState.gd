@@ -57,7 +57,7 @@ signal GameOver
 func calculatePop():
 	for elem in limit.keys():
 		if ressource[elem] <= limit[elem]:
-			ressource["POP"] = clamp(ressource["POP"]-100,0,maxStatPop)
+			ressource["POP"] = clamp(ressource["POP"]-50,0,maxStatPop)
 			checkPop = false
 	if ressource["POP"] <= 0:
 		GameOver.emit()
