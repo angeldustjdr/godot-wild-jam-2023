@@ -116,7 +116,6 @@ libraries = {
 }
 
 [node name="Rideau" parent="." instance=ExtResource("5_wg50s")]
-visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
