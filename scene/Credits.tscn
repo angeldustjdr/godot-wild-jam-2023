@@ -62,7 +62,7 @@ script = ExtResource("1_rsbbm")
 layout_mode = 0
 offset_top = 544.0
 offset_right = 544.0
-offset_bottom = 1088.0
+offset_bottom = 1188.0
 theme = ExtResource("1_mkj5w")
 text = "\"Reclaim!\" was created for the Godot Wild Jam #57.
 
@@ -108,7 +108,7 @@ libraries = {
 }
 
 [node name="Poule3" type="Sprite2D" parent="Control"]
-position = Vector2(288, 1118)
+position = Vector2(288, 1239)
 scale = Vector2(3, 3)
 texture = ExtResource("3_x4oqn")
 
