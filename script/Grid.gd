@@ -33,7 +33,6 @@ var emptyGrid = Array()
 signal gridUpdated(x,y)
 
 func _ready():
-	rng.seed = 0
 	RadioDiffusion.connect("gridUpdateNeeded",gridUpdate)
 	RadioDiffusion.connect("recalculateEffectNeeded",recalculateEffect)
 	RadioDiffusion.connect("calculateRessourcesNeeded",calculateRessources)
@@ -56,7 +55,7 @@ func getNeighborsCoords(i,j): # North, East, South, West
 	return [[i-1,j],[i,j+1],[i+1,j],[i,j-1]]
 
 func getCell(i,j): # i = line number and j = column number
-	if (i >= self.Ymax or j >= self.Xmax):
+	if i >= self.Ymax or j >= self.Xmax or i < 0 or j < 0:
 		return self
 	else:
 		return self.grid[j][i]
@@ -99,11 +98,12 @@ func gridUpdate(x,y,type): #pops a building of type at [x,y]
 	var newBuilding = popBuilding(type,x,y)
 	grid[x][y] = newBuilding
 	sourceEffectGrid[x][y] = self.grid[x][y].effect
-	await grid[x][y].get_node("AnimationPlayerBuilding").animation_finished
+	if grid[x][y].destroyable : await grid[x][y].get_node("AnimationPlayerBuilding").animation_finished
 	recalculateEffect()
 	calculateRessources()
 	RadioDiffusion.cleanSelectedCall()
 	gridUpdated.emit(x,y)
+	updateUITooltip()
 	checkEndGame()
 	
 func popBuilding(type,x,y):
@@ -165,6 +165,10 @@ func applyEffect():
 			n.cleanParticules()
 		n.applyCellEffect(effectGrid[n.i][n.j])
 
+func updateUITooltip():
+	for n in get_children():
+		n.updateTooltip()
+
 func cleanNode():
 	for n in get_children():
 		n.queue_free()
@@ -197,6 +201,7 @@ func generateOutcome(destr_i,destr_j):
 				var i = getRandomI()
 				var j = getRandomJ()
 				if grid[i][j].hasHourglass == false and grid[i][j].lockable: 
+					SoundManager.playSoundNamed("lock")
 					grid[i][j].setLock()
 					RadioDiffusion.nextDialogNeeded("lock")
 					ok=true
@@ -212,6 +217,7 @@ func generateOutcome(destr_i,destr_j):
 				var l = getRandomJ()
 				if [i,j]!=[k,l] and grid[i][j].swapable and grid[k][l].swapable:
 					if [i,j]!=[destr_i,destr_j] and [k,l]!=[destr_i,destr_j]:
+						SoundManager.playSoundNamed("swap")
 						grid[i][j].swap(k,l,tileSize)
 						grid[k][l].swap(i,j,tileSize)
 						var bufferIJ = grid[i][j]
@@ -239,6 +245,7 @@ func generateOutcome(destr_i,destr_j):
 				var i = getRandomI()
 				var j = getRandomJ()
 				if grid[i][j].hasHourglass and [i,j]!=[destr_i,destr_j]: 
+					SoundManager.playSoundNamed("timer")
 					grid[i][j].get_node("Hourglass").decreaseTimer()
 					grid[i][j].popLabel("-1 TURN")
 					RadioDiffusion.nextDialogNeeded("wait_turn")
@@ -248,7 +255,8 @@ func generateOutcome(destr_i,destr_j):
 			var outcomeDialogue = outcomeDialogueRAS[0]
 			if outcomeDialogue in outComeOnce: outcomeDialogueRAS.erase(outcomeDialogue)
 			RadioDiffusion.nextDialogNeeded(outcomeDialogue)
-		
+	updateUITooltip()
+
 func getRandomI():
 	return randi_range(0,Xmax-1)
 func getRandomJ():

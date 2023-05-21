@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b72x1y02mxbs5"]
+
+[ext_resource type="Texture2D" uid="uid://ddlia6nxqb8i1" path="res://asset/sprite/serrure.png" id="1_n0nnb"]
+
+[sub_resource type="Animation" id="Animation_kder2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hourglass:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ul3s7"]
+resource_name = "rotateHourglass"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hourglass:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w7up"]
+_data = {
+"RESET": SubResource("Animation_kder2"),
+"rotateHourglass": SubResource("Animation_ul3s7")
+}
+
+[node name="Hourglass" type="Sprite2D"]
+position = Vector2(-9, 18)
+texture = ExtResource("1_n0nnb")
+
+[node name="AnimationPlayerHourglass" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4w7up")
+}

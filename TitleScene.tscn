@@ -28,14 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StartButton" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 224.0
-offset_top = 424.0
-offset_right = 320.0
-offset_bottom = 459.0
-text = "Start"
-
 [node name="Name" type="Label" parent="Control"]
 layout_mode = 0
 offset_top = 120.0
@@ -46,6 +38,25 @@ text = "My Jam Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="StartButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 384.0
+offset_right = 320.0
+offset_bottom = 419.0
+text = "Start"
+
+[node name="CreditButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 448.0
+offset_right = 320.0
+offset_bottom = 483.0
+text = "Credits"
+
 [node name="Rideau" parent="." instance=ExtResource("4_m1hhg")]
+offset_right = 544.0
+offset_bottom = 544.0
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/CreditButton" to="." method="_on_credit_button_pressed"]

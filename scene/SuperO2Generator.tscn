@@ -15,6 +15,7 @@ shader_parameter/add_margins = true
 
 [node name="SuperO2" instance=ExtResource("1_65x5b")]
 description = "A weird machine that somehow purifies the air."
+playIdle = true
 base_stat = {
 "FOOD": 0,
 "O2": 8,

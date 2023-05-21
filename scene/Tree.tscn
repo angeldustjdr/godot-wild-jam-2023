@@ -18,7 +18,6 @@ shader_parameter/add_margins = true
 script = ExtResource("2_sdvdm")
 description = "A beautiful Tree"
 isHighTech = false
-playIdle = false
 base_stat = {
 "FOOD": 0,
 "O2": 1,

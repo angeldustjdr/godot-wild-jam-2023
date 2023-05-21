@@ -19,6 +19,7 @@ func check(i,j,grid):
 				var cell = grid.getCell(coordinates[0],coordinates[1])
 				if self.name_building_2 in cell.name and not cell.isPatternAppliedName(self.name):
 					self.coords.append([coordinates[0],coordinates[1]])
+					#print(self.coords)
 					return true
 			return false
 		elif self.name_building_2 in cellij.name:
@@ -27,6 +28,7 @@ func check(i,j,grid):
 				var cell = grid.getCell(coordinates[0],coordinates[1])
 				if self.name_building_1 in cell.name and not cell.isPatternAppliedName(self.name):
 					self.coords.append([coordinates[0],coordinates[1]])
+					#print(self.coords)
 					return true
 			return false
 		else:

@@ -2,6 +2,7 @@ extends GenericBuilding
 class_name Farm
 
 func _ready():
+	SoundManager.playSoundNamed("build")
 	# Defining applicable patterns
 	self.sprites = {"base": "res://asset/sheet/crops-1-sheet.png",
 					"4FieldsPattern":["res://asset/sheet/big_farm_upper_left.png",

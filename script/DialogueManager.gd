@@ -2,13 +2,37 @@ extends Node
 
 var Dialogues = {}
 var isReady = false
+var rawDialogue
 
 func _ready():
-	readDialogueFile("res://dialogue.txt")
+	rawDialogue = "start/Let's get to work ! Destroy buildings by clicking on it./end
+lock/Something has become inaccessible.../end
+swap/What? The layout of the city just changed!/end
+wait_turn/A timer has decreased./end
+ras/Nothing bad happened./end
+strangeNoise/A strange noise is heard. Let's hope it's not too bad./end
+pipes/Some pipings broke but nobody was injured./end
+toaster/The connected toaster went down. Nobody seems to care./end
+wifi/The wifi went down. A day of mourning has been declared./end
+bank/The banking system went down. Everyone's debt has been cleared./end
+ai/AI bots do not work anymore. Not a bad thing./end
+light/The lights went down. Let's get candles./end
+socialMedia/The Main Social Media went down. Now, where can we post those stories?/end
+tuto1/How To play :/tuto2
+tuto2/The goal is destroy those awful techno-organic buildings and replace them with sustainable ones,/tuto3
+tuto3/while still providing enough ressources for your people./tuto4
+tuto4/Be careful though, as we lost the knowledge of what the building actually does.../tuto5
+tuto5/Provide enough ressources before the techno-organic factories run out ouf power:/tuto6
+tuto6/Replace high-tech ressource factories by low-tech buildings./tuto7
+tuto7/Good luck ! The clock is ticking.../end
+Heat/A techno-furnace has been destroyed!/end
+Pollution/A contaminated factory has been destroyed!/end
+Spore/A techno-spore farm has been destroyed!/end
+EndGame/Congratulations! You have completed your tasks. Hopefuly people live a better live now./end
+pop_neg/All the population died.../end"
+	readDialogueFile()
 
-func readDialogueFile(path):
-	var f = FileAccess
-	var rawDialogue = f.get_file_as_string(path)
+func readDialogueFile():
 	rawDialogue = rawDialogue.replace("\r","")
 	rawDialogue = rawDialogue.split("\n")
 	for line in rawDialogue: 

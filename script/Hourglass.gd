@@ -6,6 +6,13 @@ var turnLeft
 func _ready():
 	GameState.connect("transfertNbAction",decreaseTimer)
 
+func init(type="sablier"):
+	var hourglass
+	if type=="sablier": hourglass = load("res://scene/HourglassDestroy.tscn")
+	else: hourglass = load("res://scene/HourglassLock.tscn")
+	var h = hourglass.instantiate()
+	add_child(h)
+
 func setTimer(n):
 	turnLeft = n
 	self.text = str(n)
@@ -20,4 +27,4 @@ func setTimer(n):
 func decreaseTimer():
 	if turnLeft >= 0:
 		setTimer(turnLeft-1)
-		$Hourglass/AnimationPlayerHourglass.play("rotateHourglass")
+		get_node("Hourglass/AnimationPlayerHourglass").play("rotateHourglass")

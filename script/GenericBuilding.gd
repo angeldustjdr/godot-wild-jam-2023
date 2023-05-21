@@ -37,7 +37,7 @@ var totalStat = {"POP" : 0,
 	"Smoke" : "Toxic smoke in the air!",
 	"Spore" : "Some weird spores float in the air!",
 	"Fertilizer" : "The crops grow better here for some reasons!",
-	"Meat" : "Something horrible tries to feed !"}
+	"Meat" : "Heated polluted spores... what a combo!"}
 
 var i
 var j
@@ -128,19 +128,20 @@ func computePosition():
 
 func applyPattern(pattern,p=-1,alph=90):
 	if not self.isPatternAppliedName(pattern.name):
+		SoundManager.playSoundNamed("powerup")
 		self.appliedPatternsNames.append(pattern.name)
 		self.appliedPatterns.append(pattern.duplicate())
 		self.appliedPatterns[-1].coords = pattern.coords.duplicate()
 		self.pos.append(p)
 		self.alphas.append(alph)
 		for stat in patternModifier.keys():
-			var _value = self.getPatternModifierValue(pattern,stat)
 			patternModifier[stat] += self.getPatternModifierValue(pattern,stat)
 		popLabel(getTotalStat())
 
 #untested
 func unApplyPattern(pattern):
 	if self.isPatternAppliedName(pattern.name):
+		SoundManager.playSoundNamed("powerdown")
 		var index = self.appliedPatternsNames.find(pattern.name,0)
 		self.appliedPatternsNames.remove_at(index)
 		self.appliedPatterns.remove_at(index)
@@ -150,9 +151,6 @@ func unApplyPattern(pattern):
 		popLabel(getTotalStat())
 	else:
 		print("GenericBuilding:unApplyPattern:WARNING: Try to unapply a not applied pattern...")
-
-func _process(_delta):
-	print(GameState.actionnable)
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if GameState.menuOpened == false:
@@ -168,6 +166,7 @@ func selfDestruct(type):
 	buildingDestruction.emit(self.j,self.i)
 	GameState.actionnable_off()
 	if destroyable:
+		SoundManager.playSoundNamed("destroy")
 		if animationDestroy!="": RadioDiffusion.nextDialogNeeded(animationDestroy)
 		dust.global_position = self.global_position + Vector2(34,68)
 		dust.visible = true
@@ -187,6 +186,7 @@ func updateTooltip():
 			if base_stat[n]!=0: updatedDescription += "\nNo "+n+" is produced here."
 	updatedDescription += getCellEffect()
 	updatedDescription += getLocked()
+	updatedDescription += getHourglassTooltip()
 	$Tooltip.tooltip_text = updatedDescription
 
 func getTotalStat():
@@ -241,13 +241,14 @@ func applyCellEffect(myEffect):
 				var p = particules.instantiate()
 				add_child(p)
 		cellEffect = myEffect
-		updateTooltip()
-		firstTime = false	
+		firstTime = false
+	updateTooltip()
 
-func setHourglass():
+func setHourglass(type="sablier"):
 	hasHourglass = true
 	var hourglass = load("res://scene/Hourglass.tscn")
 	var h = hourglass.instantiate()
+	h.init(type)
 	h.setTimer(hourglassTimer)
 	add_child(h)
 
@@ -256,6 +257,15 @@ func unsetHourglass():
 	if self.has_node("Hourglass") :
 		$Hourglass.queue_free()
 
+func getHourglassTooltip():
+	var tooltipText = ""
+	var hourglassNode = get_node_or_null("Hourglass")
+	if hasHourglass and hourglassNode!=null: 
+		if locked : tooltipText = "\nIt's locked for "+str(hourglassNode.turnLeft)+" turns."
+		else : tooltipText = "\nThis building will collapse in "+str(hourglassNode.turnLeft)+" turns."
+	return tooltipText
+
+
 func setLock():
 	if lockable:
 		unsetLock()
@@ -263,7 +273,7 @@ func setLock():
 		hourglassTimer = randi_range(3,7)
 		locked = true
 		$Chain.visible = true
-		setHourglass()
+		setHourglass("serrure")
 
 func unsetLock():
 		hasHourglass = false
@@ -273,14 +283,13 @@ func unsetLock():
 
 func getLocked():
 	var returned = ""
-	if locked: returned="\nThis building is locked."
+	if locked: returned="\nThis building is blocked by meat tentacles."
 	return returned
 
 func applyEffectModifier(_effectName):
 	pass
 
 func swap(arrivee_x,arrivee_y,size):
-	cellEffect = "InTransition"
 	var tween = create_tween()
 	tween.tween_property(self, "position",Vector2(arrivee_x*size,arrivee_y*size),0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 
